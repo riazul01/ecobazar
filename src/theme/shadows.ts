@@ -7,6 +7,6 @@ declare module '@mui/material/styles' {
   }
 }
 
-const customShadows = ['2px 2px 20px #222'];
+const customShadows = ['0px 8px 40px 0px #00260314'];
 
 export default customShadows;
