@@ -7,18 +7,19 @@ const Select: Components<Omit<Theme, 'components'>>['MuiSelect'] = {
       padding: 0,
       border: 'none',
       '&.MuiInputBase-root': {
-        background: 'transparent !important',
+        backgroundColor: 'transparent !important',
       },
       '& .MuiBox-root': {
-        fontSize: theme.typography.h4.fontSize,
+        color: theme.palette.text.secondary,
+        fontSize: theme.typography.h5.fontSize,
       },
     }),
     select: ({ theme }) => ({
-      padding: theme.spacing(1.25, 2),
+      padding: theme.spacing(0),
       paddingRight: '0 !important',
-      background: 'transparent !important',
-      color: theme.palette.primary.light,
-      fontWeight: 500,
+      color: theme.palette.text.secondary,
+      fontSize: theme.typography.body2.fontSize,
+      backgroundColor: 'transparent !important',
     }),
   },
 };

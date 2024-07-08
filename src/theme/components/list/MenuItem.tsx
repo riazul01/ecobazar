@@ -4,15 +4,16 @@ import { Components } from '@mui/material/styles/components';
 const MenuItem: Components<Omit<Theme, 'components'>>['MuiMenuItem'] = {
   styleOverrides: {
     root: ({ theme }) => ({
-      padding: theme.spacing(0.875, 1.25),
+      padding: theme.spacing(0.75, 1.25),
       color: theme.palette.primary.lighter,
-      borderRadius: theme.shape.borderRadius * 2,
+      fontSize: theme.typography.body2.fontSize,
+      borderRadius: theme.shape.borderRadius,
       transition: 'all 0.3s ease-in-out',
       '&:hover': {
-        background: theme.palette.primary.dark,
+        background: theme.palette.neutral.lighter,
       },
       '&.Mui-selected': {
-        background: `${theme.palette.primary.dark} !important`,
+        background: `${theme.palette.neutral.lighter} !important`,
       },
     }),
   },

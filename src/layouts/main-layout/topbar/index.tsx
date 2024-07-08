@@ -12,82 +12,64 @@ import LanguageSelect from './LanguageSelect';
 const Topbar = () => {
   const [currency, setCurrency] = useState('usd');
 
-  const handleSelectChange = (event: SelectChangeEvent) => {
+  const handleCurrencyChange = (event: SelectChangeEvent) => {
     setCurrency(event.target.value);
   };
 
   return (
-    <Box pt={1} width={1} zIndex={1200}>
-      <Stack mx="auto" px={1.5} maxWidth={1420} alignItems="center" justifyContent="space-between">
-        <Stack alignItems="center" spacing={1.5}>
-          <LanguageSelect />
-
-          <FormControl variant="filled" sx={{ width: 60 }}>
-            <Select
-              name="currency-select"
-              value={currency}
-              onChange={handleSelectChange}
-              sx={{
-                '& .MuiSelect-select': { mt: 0.5, p: '0 !important' },
-              }}
-              IconComponent={() => (
-                <IconifyIcon icon="iconamoon:arrow-down-2-duotone" color="primary.lighter" />
-              )}
-            >
-              <MenuItem value="usd">USD</MenuItem>
-              <MenuItem value="bdt">BDT</MenuItem>
-            </Select>
-          </FormControl>
+    <Box width={1} borderBottom={1} borderColor="info.main" zIndex={1200}>
+      <Stack
+        mx="auto"
+        px={1.5}
+        py={0.5}
+        maxWidth={1320}
+        alignItems="center"
+        justifyContent="space-between"
+      >
+        <Stack spacing={0.5} alignItems="center">
+          <IconifyIcon
+            icon="fluent:location-28-regular"
+            color="text.secondary"
+            fontSize="h6.fontSize"
+          />
+          <Typography variant="body2" color="text.secondary">
+            Store Location: Lincoln- 344, Illinois, Chicago, USA
+          </Typography>
         </Stack>
 
-        <Typography
-          variant="subtitle1"
-          component="p"
-          letterSpacing={0.5}
-          color="primary.lighter"
-          display={{ xs: 'none', md: 'block' }}
-          ml={{ xs: 0, lg: 10 }}
-        >
-          Get{' '}
-          <Typography color="primary.main" component="span" fontWeight={600}>
-            30% off
-          </Typography>{' '}
-          for first order with exciting gift box!{' '}
-          <Link href="#!" sx={{ textDecoration: 'underline' }}>
-            Learn more
-          </Link>
-        </Typography>
+        <Stack spacing={2.5} alignItems="center">
+          <Stack spacing={2} alignItems="center" mr={-1.5}>
+            <LanguageSelect />
 
-        <Stack spacing={1.5}>
-          <Link href="#!" color="primary.lighter" fontSize="subtitle1.fontSize">
-            Login
-          </Link>
-          <Typography color="primary.lighter">|</Typography>
-          <Link href="#!" color="primary.lighter" fontSize="subtitle1.fontSize">
-            Register
-          </Link>
-          <Typography color="primary.lighter" display={{ xs: 'none', sm: 'block' }}>
+            <FormControl variant="filled" sx={{ width: 60 }}>
+              <Select
+                name="currency"
+                value={currency}
+                onChange={handleCurrencyChange}
+                IconComponent={() => <IconifyIcon icon="iconamoon:arrow-down-2-light" />}
+                sx={{ '& .MuiSelect-select': { width: 32 } }}
+              >
+                <MenuItem value="usd">USD</MenuItem>
+                <MenuItem value="bdt">BDT</MenuItem>
+              </Select>
+            </FormControl>
+          </Stack>
+
+          <Typography color="neutral.lighter" fontSize="body2.fontSize">
             |
           </Typography>
-          <Link
-            href="#!"
-            color="primary.lighter"
-            fontSize="subtitle1.fontSize"
-            display={{ xs: 'none', sm: 'block' }}
-          >
-            About Us
-          </Link>
-          <Typography color="primary.lighter" display={{ xs: 'none', sm: 'block' }}>
-            |
-          </Typography>
-          <Link
-            href="#!"
-            color="primary.lighter"
-            fontSize="subtitle1.fontSize"
-            display={{ xs: 'none', sm: 'block' }}
-          >
-            Help
-          </Link>
+
+          <Stack spacing={0.5}>
+            <Link href="#!" color="text.secondary" fontSize="body2.fontSize">
+              Sing In
+            </Link>
+            <Typography color="text.secondary" fontSize="body2.fontSize">
+              /
+            </Typography>
+            <Link href="#!" color="text.secondary" fontSize="body2.fontSize">
+              Signup
+            </Link>
+          </Stack>
         </Stack>
       </Stack>
     </Box>

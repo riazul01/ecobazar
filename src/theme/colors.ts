@@ -20,11 +20,11 @@ export const greenGray = {
   700: '#406B42',
   800: '#173B1A',
   900: '#002603',
-}
+};
 
 export const blue = {
   500: '#2388FF',
-}
+};
 
 export const green = {
   100: '#84D187',
@@ -33,7 +33,7 @@ export const green = {
 };
 
 export const yellow = {
-  500: '#FF8A00'
+  500: '#FF8A00',
 };
 
 export const red = {
