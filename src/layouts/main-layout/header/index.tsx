@@ -1,16 +1,15 @@
 import Box from '@mui/material/Box';
 import Link from '@mui/material/Link';
 import Stack from '@mui/material/Stack';
-import Tooltip from '@mui/material/Tooltip';
+import Button from '@mui/material/Button';
+import Badge from '@mui/material/Badge';
 import TextField from '@mui/material/TextField';
 import ButtonBase from '@mui/material/ButtonBase';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import InputAdornment from '@mui/material/InputAdornment';
-import Image from 'components/base/Image';
 import IconifyIcon from 'components/base/IconifyIcon';
-import LocationSelect from './LocationSelect';
-import ProfileMenu from './ProfileMenu';
+import Image from 'components/base/Image';
 import Logo from 'assets/images/logo.png';
 
 interface HeaderProps {
@@ -18,7 +17,6 @@ interface HeaderProps {
 }
 
 const Header = ({ toggleDrawer }: HeaderProps) => {
-
   return (
     <Box py={3} width={1} borderBottom={1} borderColor="info.main" zIndex={1200}>
       <Stack mx="auto" px={1.5} maxWidth={1320} alignItems="center" justifyContent="space-between">
@@ -36,10 +34,11 @@ const Header = ({ toggleDrawer }: HeaderProps) => {
 
         <Stack
           width={1}
-          maxWidth={480}
+          maxWidth={498}
           alignItems="center"
           justifyContent="center"
           overflow="hidden"
+          borderRadius={1.5}
         >
           <TextField
             id="product-search"
@@ -56,43 +55,59 @@ const Header = ({ toggleDrawer }: HeaderProps) => {
             InputProps={{
               startAdornment: (
                 <InputAdornment position="start">
-                  <IconifyIcon icon="lets-icons:search-alt" />
+                  <IconifyIcon icon="weui:search-outlined" />
                 </InputAdornment>
               ),
             }}
           />
+          <Button
+            variant="contained"
+            color="primary"
+            sx={{
+              height: 1,
+              width: 120,
+              borderTopLeftRadius: 0,
+              borderBottomLeftRadius: 0,
+            }}
+          >
+            Search
+          </Button>
         </Stack>
 
-        <LocationSelect />
-
         <Stack mr={-1} spacing={1} alignItems="center" justifyContent="space-between">
-          <Tooltip title="Search" sx={{ display: { xs: 'flex', sm: 'none' } }}>
-            <IconButton size="large">
-              <IconifyIcon icon="lets-icons:search-alt" />
-            </IconButton>
-          </Tooltip>
+          <IconButton size="large" sx={{ backgroundColor: 'transparent !important' }}>
+            <IconifyIcon icon="ph:heart" />
+          </IconButton>
 
-          <Tooltip title="Phone" sx={{ display: { xs: 'none', lg: 'flex' } }}>
-            <IconButton component={Link} href="tel:+8801234567890" size="large">
-              <IconifyIcon icon="carbon:phone-voice" />
-            </IconButton>
-          </Tooltip>
+          <Typography variant="h3" color="neutral.lighter" fontWeight={200}>
+            |
+          </Typography>
 
-          <Tooltip title="Cart">
-            <IconButton size="large">
-              <IconifyIcon icon="ph:shopping-cart-duotone" />
+          <Stack
+            component={Link}
+            href="#!"
+            alignItems="center"
+            spacing={1}
+            sx={{ cursor: 'pointer' }}
+          >
+            <IconButton size="large" sx={{ backgroundColor: 'transparent !important' }}>
+              <Badge badgeContent={2}>
+                <IconifyIcon icon="la:shopping-bag" />
+              </Badge>
             </IconButton>
-          </Tooltip>
+            <Stack direction="column" alignItems="flex-start">
+              <Typography variant="caption" color="text.secondary" fontWeight={400}>
+                Shopping cart:
+              </Typography>
+              <Typography variant="body1" color="text.primary" fontWeight={500}>
+                $57.00
+              </Typography>
+            </Stack>
+          </Stack>
 
-          <Box sx={{ display: { xs: 'none', sm: 'flex' } }}>
-            <ProfileMenu />
-          </Box>
-
-          <Tooltip title="Menu">
-            <IconButton size="large" onClick={toggleDrawer(true)}>
-              <IconifyIcon icon="simple-line-icons:menu" />
-            </IconButton>
-          </Tooltip>
+          <IconButton size="large" onClick={toggleDrawer(true)} sx={{ display: 'none' }}>
+            <IconifyIcon icon="simple-line-icons:menu" />
+          </IconButton>
         </Stack>
       </Stack>
     </Box>

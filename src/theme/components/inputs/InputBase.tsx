@@ -7,7 +7,7 @@ const InputBase: Components<Omit<Theme, 'components'>>['MuiInputBase'] = {
       border: 1,
       borderStyle: 'solid',
       borderColor: theme.palette.info.main,
-      borderRadius: theme.shape.borderRadius,
+      borderRadius: theme.shape.borderRadius * 1.5,
       backgroundColor: `${theme.palette.info.lighter} !important`,
       fontSize: theme.typography.body1.fontSize,
       color: theme.palette.text.primary,
