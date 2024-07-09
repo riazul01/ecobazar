@@ -1,5 +1,5 @@
 import { PaletteColorOptions, PaletteOptions } from '@mui/material/styles';
-import { gray, green, red, yellow, white } from './colors';
+import { gray, green, greenGray, red, yellow, white } from './colors';
 
 declare module '@mui/material/styles' {
   interface PaletteOptions {
@@ -23,7 +23,7 @@ declare module '@mui/material/styles' {
 const palette: PaletteOptions = {
   neutral: {
     lighter: gray[100],
-    main: gray[100],
+    main: gray[500],
   },
   primary: {
     light: green[100],
@@ -33,7 +33,7 @@ const palette: PaletteOptions = {
   secondary: {
     light: gray[100],
     main: gray[100],
-    dark: gray[100],
+    darker: greenGray[900],
   },
   info: {
     lighter: white[100],

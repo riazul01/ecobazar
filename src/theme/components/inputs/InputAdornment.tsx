@@ -6,7 +6,7 @@ const InputAdornment: Components<Omit<Theme, 'components'>>['MuiInputAdornment']
     root: ({ theme }) => ({
       margin: '0 !important',
       paddingRight: theme.spacing(0.75),
-      color: theme.palette.primary.main,
+      color: theme.palette.text.primary,
       fontSize: theme.typography.h4.fontSize,
 
       '&.MuiInputAdornment-sizeSmall': {

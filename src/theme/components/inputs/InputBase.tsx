@@ -4,18 +4,18 @@ import { Components } from '@mui/material/styles/components';
 const InputBase: Components<Omit<Theme, 'components'>>['MuiInputBase'] = {
   styleOverrides: {
     root: ({ theme }) => ({
-      border: 2,
+      border: 1,
       borderStyle: 'solid',
-      borderColor: theme.palette.primary.main,
+      borderColor: theme.palette.info.main,
       borderRadius: theme.shape.borderRadius,
-      background: `${theme.palette.primary.dark} !important`,
-      fontSize: theme.typography.subtitle1.fontSize,
-      color: theme.palette.primary.lighter,
+      backgroundColor: `${theme.palette.info.lighter} !important`,
+      fontSize: theme.typography.body1.fontSize,
+      color: theme.palette.text.primary,
       padding: theme.spacing(1.25),
       letterSpacing: 0.5,
 
       '& input::placeholder': {
-        color: theme.palette.primary.lighter,
+        color: theme.palette.neutral.main,
         opacity: 1,
       },
       '&:before, &:after': {
@@ -23,7 +23,7 @@ const InputBase: Components<Omit<Theme, 'components'>>['MuiInputBase'] = {
       },
     }),
     colorSecondary: ({ theme }) => ({
-      background: `${theme.palette.primary.darker} !important`,
+      backgroundColor: `${theme.palette.info.main} !important`,
     }),
     sizeSmall: ({ theme }) => ({
       padding: theme.spacing(1, 1.25),
