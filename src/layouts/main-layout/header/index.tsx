@@ -23,7 +23,6 @@ const Header = ({ toggleDrawer }: HeaderProps) => {
         <ButtonBase
           component={Link}
           href="/"
-          sx={{ display: { xs: 'none', md: 'flex' } }}
           disableRipple
         >
           <Image src={Logo} height={32} width={32} />
@@ -37,8 +36,7 @@ const Header = ({ toggleDrawer }: HeaderProps) => {
           maxWidth={498}
           alignItems="center"
           justifyContent="center"
-          overflow="hidden"
-          borderRadius={1.5}
+          display={{xs: 'none', md: 'flex'}}
         >
           <TextField
             id="product-search"
@@ -64,8 +62,9 @@ const Header = ({ toggleDrawer }: HeaderProps) => {
             variant="contained"
             color="primary"
             sx={{
-              height: 1,
+              py: 0.95,
               width: 120,
+              borderRadius: 1.5,
               borderTopLeftRadius: 0,
               borderBottomLeftRadius: 0,
             }}
@@ -74,7 +73,7 @@ const Header = ({ toggleDrawer }: HeaderProps) => {
           </Button>
         </Stack>
 
-        <Stack mr={-1} spacing={1} alignItems="center" justifyContent="space-between">
+        <Stack spacing={1} alignItems="center" justifyContent="space-between">
           <IconButton size="large" sx={{ backgroundColor: 'transparent !important' }}>
             <IconifyIcon icon="ph:heart" />
           </IconButton>
@@ -95,7 +94,7 @@ const Header = ({ toggleDrawer }: HeaderProps) => {
                 <IconifyIcon icon="la:shopping-bag" />
               </Badge>
             </IconButton>
-            <Stack direction="column" alignItems="flex-start">
+            <Stack direction="column" alignItems="flex-start" display={{ xs: 'none', sm: 'flex' }}>
               <Typography variant="caption" color="text.secondary" fontWeight={400}>
                 Shopping cart:
               </Typography>
