@@ -7,8 +7,8 @@ const Home = () => {
     <>
       <Box mx="auto" px={1.5} width={1} maxWidth={1332}>
         <Hero />
+        <FeaturedServices />
       </Box>
-      <FeaturedServices />
 
       {/* <PopularCategories/> */}
     </>

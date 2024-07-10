@@ -1,3 +1,4 @@
+import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
 import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
@@ -40,18 +41,19 @@ const services: Service[] = [
 
 const FeaturedServices = () => {
   return (
-    <Stack
+    <Box
       component={Paper}
       mt={2.5}
-      mx="auto"
-      p={4}
+      mx={0}
+      p={5}
       width={1}
-      maxWidth={1332}
-      spacing={2}
+      display="grid"
+      gridTemplateColumns={{ xs: '1fr', md: 'repeat(2, 1fr)', xl: 'repeat(4, 1fr)' }}
+      gap={3}
       boxShadow={customShadows[0]}
     >
       {services.map((item) => (
-        <Stack flex={1} spacing={2.5} alignItems="center">
+        <Stack key={item.id} alignItems="center" spacing={2.5}>
           <IconifyIcon icon={item.icon} fontSize="h2.fontSize" color="primary.main" />
           <div>
             <Typography variant="body1" fontWeight={600}>
@@ -63,7 +65,7 @@ const FeaturedServices = () => {
           </div>
         </Stack>
       ))}
-    </Stack>
+    </Box>
   );
 };
 
