@@ -1,6 +1,6 @@
-import FeaturedServices from 'components/sections/featured-services';
-import Hero from 'components/sections/hero';
 import Box from '@mui/material/Box';
+import Hero from 'components/sections/hero';
+import FeaturedServices from 'components/sections/featured-services';
 
 const Home = () => {
   return (
