@@ -1,8 +1,8 @@
 import Box from '@mui/material/Box';
 import Link from '@mui/material/Link';
 import Stack from '@mui/material/Stack';
-import Button from '@mui/material/Button';
 import Badge from '@mui/material/Badge';
+import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import ButtonBase from '@mui/material/ButtonBase';
 import IconButton from '@mui/material/IconButton';
@@ -12,19 +12,11 @@ import IconifyIcon from 'components/base/IconifyIcon';
 import Image from 'components/base/Image';
 import Logo from 'assets/images/logo.png';
 
-interface HeaderProps {
-  toggleDrawer: (open: boolean) => (event: React.KeyboardEvent | React.MouseEvent) => void;
-}
-
-const Header = ({ toggleDrawer }: HeaderProps) => {
+const Header = () => {
   return (
-    <Box py={3} width={1} borderBottom={1} borderColor="info.main" zIndex={1200}>
+    <Box py={2.5} width={1} zIndex={1200}>
       <Stack mx="auto" px={1.5} maxWidth={1320} alignItems="center" justifyContent="space-between">
-        <ButtonBase
-          component={Link}
-          href="/"
-          disableRipple
-        >
+        <ButtonBase component={Link} href="/" disableRipple>
           <Image src={Logo} height={32} width={32} />
           <Typography ml={1} variant="h3" color="secondary.darker" fontWeight={500}>
             Ecobazar
@@ -36,7 +28,7 @@ const Header = ({ toggleDrawer }: HeaderProps) => {
           maxWidth={498}
           alignItems="center"
           justifyContent="center"
-          display={{xs: 'none', md: 'flex'}}
+          display={{ xs: 'none', md: 'flex' }}
         >
           <TextField
             id="product-search"
@@ -103,10 +95,6 @@ const Header = ({ toggleDrawer }: HeaderProps) => {
               </Typography>
             </Stack>
           </Stack>
-
-          <IconButton size="large" onClick={toggleDrawer(true)} sx={{ display: 'none' }}>
-            <IconifyIcon icon="simple-line-icons:menu" />
-          </IconButton>
         </Stack>
       </Stack>
     </Box>

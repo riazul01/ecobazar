@@ -1,7 +1,17 @@
-import { Box, AppBar, Toolbar, Button, Typography, IconButton, Stack } from '@mui/material';
+import Box from '@mui/material/Box';
+import Stack from '@mui/material/Stack';
+import AppBar from '@mui/material/AppBar';
+import Button from '@mui/material/Button';
+import Toolbar from '@mui/material/Toolbar';
+import Typography from '@mui/material/Typography';
+import IconButton from '@mui/material/IconButton';
 import IconifyIcon from 'components/base/IconifyIcon';
 
-const Navbar = () => {
+interface NavbarProps {
+  toggleDrawer: (open: boolean) => (event: React.KeyboardEvent | React.MouseEvent) => void;
+}
+
+const Navbar = ({ toggleDrawer }: NavbarProps) => {
   return (
     <Box width={1} bgcolor="info.dark" zIndex={1200}>
       <AppBar
@@ -17,6 +27,9 @@ const Navbar = () => {
         }}
       >
         <Toolbar>
+          <IconButton size="large" onClick={toggleDrawer(true)} sx={{ display: 'none' }}>
+            <IconifyIcon icon="simple-line-icons:menu" />
+          </IconButton>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block' } }}>
             <Button sx={{ color: '#fff', fontSize: 'body1.fontSize', fontWeight: 500 }}>
               Home
