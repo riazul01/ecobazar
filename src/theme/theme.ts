@@ -22,6 +22,7 @@ import ListItemIcon from './components/list/ListItemIcon';
 import Select from './components/inputs/Select';
 import ListItemText from './components/list/ListItemText';
 import MenuItem from './components/list/MenuItem';
+import Chip from './components/data-display/Chip';
 import Divider from './components/data-display/Divider';
 import Badge from './components/data-display/Badge';
 import Card from './components/cards/Card';
@@ -50,6 +51,7 @@ export const theme = createTheme({
     MuiListItemIcon: ListItemIcon,
     MuiListItemText: ListItemText,
     MuiDivider: Divider,
+    MuiChip: Chip,
     MuiBadge: Badge,
     MuiMenuItem: MenuItem,
     MuiButton: Button,

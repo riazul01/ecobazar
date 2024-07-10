@@ -1,4 +1,4 @@
-import {  useState, PropsWithChildren } from 'react';
+import { useState, PropsWithChildren } from 'react';
 import Stack from '@mui/material/Stack';
 import Sidebar from 'layouts/main-layout/sidebar';
 import Topbar from 'layouts/main-layout/topbar';
@@ -27,10 +27,8 @@ const MainLayout = ({ children }: PropsWithChildren) => {
       <Stack component="main" direction="column" width={1}>
         <Topbar />
         <Header toggleDrawer={toggleDrawer} />
-        <Navbar/>
-        <Stack direction="column" spacing={2.5}>
-          {children}
-        </Stack>
+        <Navbar />
+        {children}
       </Stack>
     </Stack>
   );

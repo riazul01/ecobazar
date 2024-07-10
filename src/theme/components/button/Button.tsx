@@ -9,7 +9,7 @@ const Button: Components<Omit<Theme, 'components'>>['MuiButton'] = {
     root: ({ theme }) => ({
       border: 1,
       borderStyle: 'solid',
-      borderRadius: theme.shape.borderRadius * 1.5,
+      borderRadius: theme.shape.borderRadius * 12,
       textTransform: 'initial',
     }),
     text: ({ theme }) => ({
@@ -24,19 +24,19 @@ const Button: Components<Omit<Theme, 'components'>>['MuiButton'] = {
       '&:hover': { backgroundColor: theme.palette.primary.main },
     }),
     containedSecondary: ({ theme }) => ({
-      color: theme.palette.text.primary,
-      borderColor: theme.palette.info.main,
-      backgroundColor: theme.palette.info.main,
-      '&:hover': { backgroundColor: theme.palette.info.main },
+      color: theme.palette.primary.main,
+      borderColor: theme.palette.info.lighter,
+      backgroundColor: theme.palette.info.lighter,
+      '&:hover': { backgroundColor: theme.palette.info.lighter },
     }),
     sizeLarge: ({ theme }) => ({
-      padding: theme.spacing(1.25, 2.25),
-      fontSize: theme.typography.button.fontSize,
+      padding: theme.spacing(1.5, 2.5),
+      fontSize: theme.typography.h6.fontSize,
       fontWeight: 600,
     }),
     sizeMedium: ({ theme }) => ({
-      padding: theme.spacing(1.125, 1.5),
-      fontSize: theme.typography.body2.fontSize,
+      padding: theme.spacing(1.25, 2.25),
+      fontSize: theme.typography.body1.fontSize,
       fontWeight: 600,
     }),
     sizeSmall: ({ theme }) => ({
@@ -45,10 +45,10 @@ const Button: Components<Omit<Theme, 'components'>>['MuiButton'] = {
       fontWeight: 700,
     }),
     startIcon: {
-      marginRight: 6,
+      marginRight: 12,
     },
     endIcon: {
-      marginLeft: 6,
+      marginLeft: 12,
     },
   },
 };
