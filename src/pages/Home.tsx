@@ -1,9 +1,10 @@
-import { Box, Chip, Stack, Typography, Button } from '@mui/material';
+import { Box, Chip, Stack, Typography, Button, Paper } from '@mui/material';
 import heroImage from 'assets/images/backgrounds/bannar1.png';
 import heroImage2 from 'assets/images/backgrounds/bannar2.png';
 import heroImage3 from 'assets/images/backgrounds/bannar3.png';
 import Bannar from 'components/common/Bannar';
 import IconifyIcon from 'components/base/IconifyIcon';
+import customShadows from 'theme/shadows';
 
 const Home = () => {
   return (
@@ -77,9 +78,22 @@ const Home = () => {
               Shop now
             </Button>
           </Bannar>
-          <Bannar bgImage={heroImage3} sx={{height: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center'}}>
-            <Typography variant='body2' color="info.lighter" textTransform="uppercase">Best Deal</Typography>
-            <Typography mt={1} variant='h3' color="info.lighter" lineHeight={1.25} fontWeight={600}>Special Products <br/> Deal of the Month</Typography>
+          <Bannar
+            bgImage={heroImage3}
+            sx={{
+              height: 1,
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              justifyContent: 'center',
+            }}
+          >
+            <Typography variant="body2" color="info.lighter" textTransform="uppercase">
+              Best Deal
+            </Typography>
+            <Typography mt={1} variant="h3" color="info.lighter" lineHeight={1.25} fontWeight={600}>
+              Special Products <br /> Deal of the Month
+            </Typography>
             <Button
               variant="text"
               size="medium"
@@ -89,6 +103,61 @@ const Home = () => {
               Shop now
             </Button>
           </Bannar>
+        </Stack>
+      </Stack>
+
+      <Stack
+        component={Paper}
+        mt={2.5}
+        mx="auto"
+        width={1}
+        maxWidth={1320}
+        spacing={2}
+        boxShadow={customShadows[0]}
+      >
+        <Stack flex={1} spacing={2.5} alignItems="center">
+          <IconifyIcon icon="la:shipping-fast" fontSize="h2.fontSize" color="primary.main" />
+          <Box>
+            <Typography variant="body1" fontWeight={600}>
+              Customer Support 24/7
+            </Typography>
+            <Typography mt={0.75} variant="body2" color="text.secondary">
+              Instant access to Support
+            </Typography>
+          </Box>
+        </Stack>
+        <Stack flex={1} spacing={2.5} alignItems="center">
+          <IconifyIcon icon="la:shipping-fast" fontSize="h2.fontSize" color="primary.main" />
+          <Box>
+            <Typography variant="body1" fontWeight={600}>
+              Customer Support 24/7
+            </Typography>
+            <Typography mt={0.75} variant="body2" color="text.secondary">
+              Instant access to Support
+            </Typography>
+          </Box>
+        </Stack>
+        <Stack flex={1} spacing={2.5} alignItems="center">
+          <IconifyIcon icon="la:shipping-fast" fontSize="h2.fontSize" color="primary.main" />
+          <Box>
+            <Typography variant="body1" fontWeight={600}>
+              Customer Support 24/7
+            </Typography>
+            <Typography mt={0.75} variant="body2" color="text.secondary">
+              Instant access to Support
+            </Typography>
+          </Box>
+        </Stack>
+        <Stack flex={1} spacing={2.5} alignItems="center">
+          <IconifyIcon icon="la:shipping-fast" fontSize="h2.fontSize" color="primary.main" />
+          <Box>
+            <Typography variant="body1" fontWeight={600}>
+              Customer Support 24/7
+            </Typography>
+            <Typography mt={0.75} variant="body2" color="text.secondary">
+              Instant access to Support
+            </Typography>
+          </Box>
         </Stack>
       </Stack>
     </>
