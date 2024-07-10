@@ -6,7 +6,7 @@ import bannarImage from 'assets/images/backgrounds/summar-sale.png';
 
 const SummarSale = () => {
   return (
-    <Bannar bgImage={bannarImage} sx={{ height: 1, p: 3.5 }}>
+    <Bannar bgImage={bannarImage} sx={{ flexGrow: 1, p: 3.5 }}>
       <Typography variant="body2" textTransform="uppercase" fontWeight={500} letterSpacing={0.5}>
         Summer Sale
       </Typography>
