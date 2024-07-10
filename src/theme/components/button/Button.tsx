@@ -8,6 +8,7 @@ const Button: Components<Omit<Theme, 'components'>>['MuiButton'] = {
   styleOverrides: {
     root: ({ theme }) => ({
       border: 1,
+      fontWeight: 500,
       borderStyle: 'solid',
       borderRadius: theme.shape.borderRadius * 12,
       textTransform: 'initial',
@@ -32,17 +33,14 @@ const Button: Components<Omit<Theme, 'components'>>['MuiButton'] = {
     sizeLarge: ({ theme }) => ({
       padding: theme.spacing(1.5, 2.5),
       fontSize: theme.typography.h6.fontSize,
-      fontWeight: 600,
     }),
     sizeMedium: ({ theme }) => ({
       padding: theme.spacing(1.25, 2.25),
       fontSize: theme.typography.body1.fontSize,
-      fontWeight: 600,
     }),
     sizeSmall: ({ theme }) => ({
       padding: theme.spacing(1, 1.15),
       fontSize: theme.typography.caption.fontSize,
-      fontWeight: 700,
     }),
     startIcon: {
       marginRight: 12,

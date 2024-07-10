@@ -1,4 +1,5 @@
 import Box from '@mui/material/Box';
+import Link from '@mui/material/Link';
 import Stack from '@mui/material/Stack';
 import AppBar from '@mui/material/AppBar';
 import Button from '@mui/material/Button';
@@ -6,6 +7,7 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import IconButton from '@mui/material/IconButton';
 import IconifyIcon from 'components/base/IconifyIcon';
+import sitemap from 'routes/sitemap';
 
 interface NavbarProps {
   toggleDrawer: (open: boolean) => (event: React.KeyboardEvent | React.MouseEvent) => void;
@@ -17,36 +19,44 @@ const Navbar = ({ toggleDrawer }: NavbarProps) => {
       <AppBar
         component="nav"
         sx={{
-          position: 'relative',
           mx: 'auto',
           px: 1.5,
-          py: 0.5,
+          py: 0,
           maxWidth: 1320,
+          position: 'relative',
           bgcolor: 'transparent',
+          overflow: 'visible',
           boxShadow: 'none',
         }}
       >
         <Toolbar>
-          <IconButton size="large" onClick={toggleDrawer(true)} sx={{ display: 'none' }}>
-            <IconifyIcon icon="simple-line-icons:menu" />
-          </IconButton>
-          <Box sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block' } }}>
-            <Button sx={{ color: '#fff', fontSize: 'body1.fontSize', fontWeight: 500 }}>
-              Home
-            </Button>
-            <Button sx={{ color: '#fff', fontSize: 'body1.fontSize', fontWeight: 500 }}>
-              Shop
-            </Button>
-            <Button sx={{ color: '#fff', fontSize: 'body1.fontSize', fontWeight: 500 }}>
-              Blog
-            </Button>
-            <Button sx={{ color: '#fff', fontSize: 'body1.fontSize', fontWeight: 500 }}>
-              About Us
-            </Button>
-            <Button sx={{ color: '#fff', fontSize: 'body1.fontSize', fontWeight: 500 }}>
-              Contact Us
-            </Button>
+          <Stack
+            flexGrow={1}
+            spacing={0.5}
+            alignItems="center"
+            display={{ xs: 'flex', md: 'none' }}
+          >
+            <IconButton size="large" onClick={toggleDrawer(true)}>
+              <IconifyIcon icon="clarity:menu-line" color="info.lighter" />
+            </IconButton>
+            <IconButton size="large">
+              <IconifyIcon icon="weui:search-outlined" color="info.lighter" />
+            </IconButton>
+          </Stack>
+
+          <Box ml={-2} flexGrow={1} display={{ xs: 'none', md: 'block' }}>
+            {sitemap.slice(0, 5).map((item) => (
+              <Button
+                key={item.id}
+                component={Link}
+                href={item.path}
+                sx={{ py: 0.75, color: 'info.lighter', fontSize: 'body1.fontSize' }}
+              >
+                {item.subheader}
+              </Button>
+            ))}
           </Box>
+
           <Stack spacing={0.25} alignItems="center">
             <IconButton size="large" sx={{ backgroundColor: 'transparent !important' }}>
               <IconifyIcon icon="ph:phone-call" color="info.lighter" />
