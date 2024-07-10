@@ -16,7 +16,7 @@ const BestDeal = () => {
         justifyContent: 'center',
       }}
     >
-      <Typography variant="body2" color="info.lighter" textTransform="uppercase">
+      <Typography mt={2} variant="body2" color="info.lighter" textTransform="uppercase">
         Best Deal
       </Typography>
       <Typography mt={1} variant="h3" color="info.lighter" lineHeight={1.25} fontWeight={600}>
