@@ -24,27 +24,27 @@ const languages: Language[] = [
   },
   {
     id: 2,
-    code: 'en-US',
-    lang: 'English (US)',
-    flag: 'twemoji:flag-united-states',
-  },
-  {
-    id: 3,
     code: 'ban',
     lang: 'বাংলা',
     flag: 'twemoji:flag-bangladesh',
   },
   {
-    id: 4,
+    id: 3,
     code: 'zh',
     lang: '中文',
     flag: 'twemoji:flag-china',
   },
   {
-    id: 5,
+    id: 4,
     code: 'tr',
     lang: 'Türkçe',
     flag: 'twemoji:flag-turkey',
+  },
+  {
+    id: 5,
+    code: 'dan',
+    lang: 'Danish',
+    flag: 'twemoji:flag-denmark',
   },
 ];
 
@@ -79,13 +79,10 @@ const LanguageSelect = () => {
         open={open}
         onClose={handleFlagMenuClose}
         onClick={handleFlagMenuClose}
-        PaperProps={{
-          elevation: 0,
-          sx: {
-            mt: 1.5,
-            p: '0 !important',
-            width: 240,
-            overflow: 'hidden',
+        sx={{
+          mt: 1.5,
+          '& .MuiList-root': {
+            width: 220,
           },
         }}
         transformOrigin={{ horizontal: 'right', vertical: 'top' }}
@@ -96,7 +93,7 @@ const LanguageSelect = () => {
             <MenuItem
               key={langItem.id}
               onClick={() => handleLanguageItemClick(langItem)}
-              sx={{ bgcolor: langItem.id === language.id ? 'primary.darker' : null }}
+              sx={{ bgcolor: langItem.id === language.id ? 'info.main' : null }}
             >
               <ListItemIcon sx={{ mr: 2, fontSize: 'h3.fontSize' }}>
                 <IconifyIcon icon={langItem.flag} />

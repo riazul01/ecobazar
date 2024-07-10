@@ -26,7 +26,7 @@ const Topbar = () => {
         alignItems="center"
         justifyContent="space-between"
       >
-        <Stack spacing={0.5} alignItems="center">
+        <Stack spacing={0.5} alignItems="center" display={{ xs: 'none', md: 'flex' }}>
           <IconifyIcon
             icon="fluent:location-28-regular"
             color="text.secondary"
@@ -37,7 +37,12 @@ const Topbar = () => {
           </Typography>
         </Stack>
 
-        <Stack spacing={2.5} alignItems="center">
+        <Stack
+          spacing={2.5}
+          alignItems="center"
+          width={{ xs: 1, md: 'auto' }}
+          justifyContent={{ xs: 'space-between', md: 'flex-end' }}
+        >
           <Stack spacing={2} alignItems="center" mr={-1.5}>
             <LanguageSelect />
 
@@ -55,7 +60,11 @@ const Topbar = () => {
             </FormControl>
           </Stack>
 
-          <Typography color="neutral.lighter" fontSize="body2.fontSize">
+          <Typography
+            color="neutral.lighter"
+            fontSize="body2.fontSize"
+            display={{ xs: 'none', md: 'flex' }}
+          >
             |
           </Typography>
 

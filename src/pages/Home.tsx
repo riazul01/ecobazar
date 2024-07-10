@@ -1,15 +1,16 @@
-import { Box, Chip, Stack, Typography, Button, Paper } from '@mui/material';
-import heroImage from 'assets/images/backgrounds/bannar1.png';
-import heroImage2 from 'assets/images/backgrounds/bannar2.png';
-import heroImage3 from 'assets/images/backgrounds/bannar3.png';
-import Bannar from 'components/common/Bannar';
-import IconifyIcon from 'components/base/IconifyIcon';
-import customShadows from 'theme/shadows';
+// import { Box, Chip, Stack, Typography, Button, Paper } from '@mui/material';
+// import heroImage from 'assets/images/backgrounds/bannar1.png';
+// import heroImage2 from 'assets/images/backgrounds/bannar2.png';
+// import heroImage3 from 'assets/images/backgrounds/bannar3.png';
+// import Bannar from 'components/common/Bannar';
+// import IconifyIcon from 'components/base/IconifyIcon';
+// import customShadows from 'theme/shadows';
+// import PopularCategories from 'components/sections/popular-categories';
 
 const Home = () => {
   return (
     <>
-      <Stack mt={2} mx="auto" width={1} maxWidth={1320} height={600} spacing={2}>
+      {/* <Stack mt={2} mx="auto" width={1} maxWidth={1320} height={600} spacing={2}>
         <Bannar bgImage={heroImage} sx={{ p: 7, flex: 2 }}>
           <Stack direction="column" justifyContent="center" height={1} spacing={3.5}>
             <Typography variant="h1" color="info.lighter" lineHeight={1.25} fontWeight={600}>
@@ -160,6 +161,9 @@ const Home = () => {
           </Box>
         </Stack>
       </Stack>
+
+      <PopularCategories/> */}
+      <h1>Hello</h1>
     </>
   );
 };

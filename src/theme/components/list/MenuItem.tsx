@@ -10,10 +10,10 @@ const MenuItem: Components<Omit<Theme, 'components'>>['MuiMenuItem'] = {
       borderRadius: theme.shape.borderRadius,
       transition: 'all 0.3s ease-in-out',
       '&:hover': {
-        background: theme.palette.neutral.lighter,
+        background: theme.palette.info.main,
       },
       '&.Mui-selected': {
-        background: `${theme.palette.neutral.lighter} !important`,
+        background: `${theme.palette.info.main} !important`,
       },
     }),
   },
