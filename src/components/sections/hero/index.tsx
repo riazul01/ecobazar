@@ -10,7 +10,7 @@ const Hero = () => {
       mx="auto"
       px={1.5}
       width={1}
-      maxWidth={1320}
+      maxWidth={1332}
       spacing={2}
       direction={{ xs: 'column', md: 'row' }}
     >

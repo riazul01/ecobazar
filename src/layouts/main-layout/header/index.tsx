@@ -15,7 +15,7 @@ import Logo from 'assets/images/logo.png';
 const Header = () => {
   return (
     <Box py={2.5} width={1} zIndex={1200}>
-      <Stack mx="auto" px={1.5} maxWidth={1320} alignItems="center" justifyContent="space-between">
+      <Stack mx="auto" px={1.5} maxWidth={1332} alignItems="center" justifyContent="space-between">
         <ButtonBase component={Link} href="/" disableRipple>
           <Image src={Logo} height={32} width={32} />
           <Typography ml={1} variant="h3" color="secondary.darker" fontWeight={500}>

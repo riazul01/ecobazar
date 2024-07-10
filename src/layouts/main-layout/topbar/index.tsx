@@ -22,7 +22,7 @@ const Topbar = () => {
         mx="auto"
         px={1.5}
         py={0.5}
-        maxWidth={1320}
+        maxWidth={1332}
         alignItems="center"
         justifyContent="space-between"
       >

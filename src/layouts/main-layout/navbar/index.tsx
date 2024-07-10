@@ -22,7 +22,7 @@ const Navbar = ({ toggleDrawer }: NavbarProps) => {
           mx: 'auto',
           px: 1.5,
           py: 0,
-          maxWidth: 1320,
+          maxWidth: 1332,
           position: 'relative',
           bgcolor: 'transparent',
           overflow: 'visible',
