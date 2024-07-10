@@ -1,7 +1,3 @@
-// import { Box, Stack, Typography, Paper } from '@mui/material';
-// import IconifyIcon from 'components/base/IconifyIcon';
-// import customShadows from 'theme/shadows';
-// import PopularCategories from 'components/sections/popular-categories';
 import Hero from 'components/sections/hero';
 
 const Home = () => {
