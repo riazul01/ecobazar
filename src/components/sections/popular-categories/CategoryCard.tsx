@@ -2,7 +2,7 @@ import Card from '@mui/material/Card';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import CardContent from '@mui/material/CardContent';
-import CategoryImage from 'assets/images/categories/1.png';
+import CategoryImage from 'assets/images/categories/fruits.png';
 
 
 const CategoryCard = () => {

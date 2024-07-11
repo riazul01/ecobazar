@@ -1,20 +1,11 @@
-import { Box, Stack, Grid, Button, Typography } from '@mui/material';
-import IconifyIcon from 'components/base/IconifyIcon';
+import { Box, Grid } from '@mui/material';
 import CategoryCard from './CategoryCard';
+import SectionHeader from 'components/common/SectionHeader';
 
 const PopularCategories = () => {
   return (
     <Box mt={5} mx="auto" width={1} maxWidth={1320}>
-      <Stack justifyContent="space-between" alignItems="center">
-        <Typography variant="h4">Popular Categories</Typography>
-        <Button
-          variant="text"
-          endIcon={<IconifyIcon icon="fluent:arrow-right-32-filled" />}
-          sx={{ pr: 0 }}
-        >
-          View All
-        </Button>
-      </Stack>
+      <SectionHeader title='Popular Categories' path="#!" linkText='View All'/>
 
       <Grid container spacing={2}>
         <Grid item xs={2}>

@@ -1,8 +1,8 @@
 import { useState, PropsWithChildren } from 'react';
 import Stack from '@mui/material/Stack';
 import Sidebar from 'layouts/main-layout/sidebar';
-import Topbar from 'layouts/main-layout/topbar';
-import Header from './header';
+// import Topbar from 'layouts/main-layout/topbar';
+// import Header from './header';
 import Navbar from './navbar';
 
 const MainLayout = ({ children }: PropsWithChildren) => {
@@ -25,8 +25,8 @@ const MainLayout = ({ children }: PropsWithChildren) => {
     <Stack width={1} minHeight="100vh">
       <Sidebar drawerOpen={drawerOpen} toggleDrawer={toggleDrawer} />
       <Stack component="main" direction="column" width={1}>
-        <Topbar />
-        <Header />
+        {/* <Topbar /> */}
+        {/* <Header /> */}
         <Navbar toggleDrawer={toggleDrawer} />
         {children}
       </Stack>
