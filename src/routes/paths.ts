@@ -1,0 +1,17 @@
+export const paths = {
+  home: "/",
+  products: "/products",
+  productDetails: "/products/details",
+  wishlist: "/wishlist",
+  about: "/about",
+  blog: "/blog",
+  contact: "/contact",
+  signIn: "/auth/signin",
+  signUp: "/auth/signup",
+  account: "/account",
+  faq: "/faq",
+};
+
+export const accountPaths = {
+  dashboard: `${paths.account}/dashboard`,
+};
