@@ -3,6 +3,8 @@ import customShadows from "./shadows";
 import typography from "./typography";
 import palette from "./palette";
 import CssBaseline from "./components/utils/CssBaseline";
+import Stack from "./components/layout/Stack";
+import Link from "./components/navigation/Link";
 
 export const theme = createTheme({
   typography,
@@ -18,6 +20,8 @@ export const theme = createTheme({
         },
       },
     },
+    MuiStack: Stack,
+    MuiLink: Link,
     MuiCssBaseline: CssBaseline,
   },
 });

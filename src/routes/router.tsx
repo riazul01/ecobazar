@@ -1,6 +1,8 @@
 import { Suspense, lazy } from "react";
 import { Outlet, createBrowserRouter } from "react-router";
 
+import MainLayout from "layouts/main-layout";
+
 const App = lazy(() => import("App"));
 const Home = lazy(() => import("pages/Home"));
 
@@ -16,7 +18,9 @@ const router = createBrowserRouter([
         path: "/",
         element: (
           <Suspense fallback={<h1>Loading...</h1>}>
-            <Outlet />
+            <MainLayout>
+              <Outlet />
+            </MainLayout>
           </Suspense>
         ),
         children: [
