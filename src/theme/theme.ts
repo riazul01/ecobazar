@@ -25,6 +25,9 @@ import FormControlLabel from "./components/input/FormControlLabel";
 import Checkbox from "./components/input/Checkbox";
 import Select from "./components/input/Select";
 
+import Badge from "./components/data-display/Badge";
+import Chip from "./components/data-display/Chip";
+
 import Link from "./components/navigation/Link";
 
 export const theme = createTheme({
@@ -63,6 +66,9 @@ export const theme = createTheme({
     MuiFormControlLabel: FormControlLabel,
     MuiCheckbox: Checkbox,
     MuiSelect: Select,
+
+    MuiBadge: Badge,
+    MuiChip: Chip,
 
     MuiCssBaseline: CssBaseline,
   },
