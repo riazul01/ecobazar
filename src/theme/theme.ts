@@ -3,7 +3,9 @@ import customShadows from "./shadows";
 import typography from "./typography";
 import palette from "./palette";
 import CssBaseline from "./components/utils/CssBaseline";
+
 import Stack from "./components/layout/Stack";
+import Paper from "./components/surface/Paper";
 
 import Button from "./components/button/Button";
 import ButtonBase from "./components/button/ButtonBase";
@@ -29,6 +31,7 @@ import Badge from "./components/data-display/Badge";
 import Chip from "./components/data-display/Chip";
 
 import Link from "./components/navigation/Link";
+import Drawer from "./components/navigation/Drawer";
 
 export const theme = createTheme({
   typography,
@@ -45,7 +48,9 @@ export const theme = createTheme({
       },
     },
     MuiStack: Stack,
+    MuiPaper: Paper,
     MuiLink: Link,
+    MuiDrawer: Drawer,
 
     MuiButton: Button,
     MuiButtonBase: ButtonBase,
