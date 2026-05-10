@@ -3,6 +3,8 @@ import Box from "@mui/material/Box";
 import Topbar from "./topbar/Topbar";
 import Header from "./header/Header";
 import Navbar from "./navbar/Navbar";
+import Newsletter from "./Newsletter";
+import Footer from "./Footer";
 
 const MainLayout = ({ children }: PropsWithChildren) => {
   return (
@@ -11,6 +13,8 @@ const MainLayout = ({ children }: PropsWithChildren) => {
       <Header />
       <Navbar />
       {children}
+      <Newsletter />
+      <Footer />
     </Box>
   );
 };
