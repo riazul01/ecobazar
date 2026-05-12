@@ -1,10 +1,9 @@
-import { Button } from "@mui/material";
+import Hero from "components/sections/home/hero";
 
 const Home = () => {
   return (
     <>
-      <h1>Hello World!</h1>
-      <Button variant="contained">Click Me</Button>
+      <Hero />
     </>
   );
 };
