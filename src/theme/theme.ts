@@ -30,6 +30,12 @@ import Select from "./components/input/Select";
 import Badge from "./components/data-display/Badge";
 import Chip from "./components/data-display/Chip";
 
+import Card from "./components/card/Card";
+import CardMedia from "./components/card/CardMedia";
+import CardHeader from "./components/card/CardHeader";
+import CardContent from "./components/card/CardContent";
+import CardActions from "./components/card/CardActions";
+
 import Link from "./components/navigation/Link";
 import Drawer from "./components/navigation/Drawer";
 
@@ -71,6 +77,12 @@ export const theme = createTheme({
     MuiFormControlLabel: FormControlLabel,
     MuiCheckbox: Checkbox,
     MuiSelect: Select,
+
+    MuiCard: Card,
+    MuiCardMedia: CardMedia,
+    MuiCardHeader: CardHeader,
+    MuiCardContent: CardContent,
+    MuiCardActions: CardActions,
 
     MuiBadge: Badge,
     MuiChip: Chip,
