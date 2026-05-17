@@ -1,6 +1,9 @@
 import HeroBg from "assets/backgrounds/hero-main.webp";
 import SummerSaleBg from "assets/backgrounds/summer-sale.webp";
 import BestDealBg from "assets/backgrounds/best-deal.webp";
+import VegetablesBg from "assets/backgrounds/vegetables.webp";
+import FruitsBg from "assets/backgrounds/fruits.webp";
+import MeatBg from "assets/backgrounds/meat.webp";
 
 import fruits from "assets/categories/fruits.png";
 import vegetables from "assets/categories/vegetables.png";
@@ -25,6 +28,9 @@ export {
   HeroBg,
   SummerSaleBg,
   BestDealBg,
+  VegetablesBg,
+  FruitsBg,
+  MeatBg,
   visa,
   mastercard,
   discover,
