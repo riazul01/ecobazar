@@ -3,6 +3,7 @@ import Categories from "components/sections/home/categories";
 import Services from "components/sections/home/Services";
 import PopularProducts from "components/sections/home/PopularProducts";
 import BannerGroup from "components/sections/home/banner-group";
+import HotDeals from "components/sections/home/HotDeals";
 
 const Home = () => {
   return (
@@ -12,6 +13,7 @@ const Home = () => {
       <Categories />
       <PopularProducts />
       <BannerGroup />
+      <HotDeals />
     </>
   );
 };
