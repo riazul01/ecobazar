@@ -4,6 +4,7 @@ import Services from "components/sections/home/Services";
 import PopularProducts from "components/sections/home/PopularProducts";
 import BannerGroup from "components/sections/home/banner-group";
 import HotDeals from "components/sections/home/HotDeals";
+import CTA from "components/sections/home/CTA";
 
 const Home = () => {
   return (
@@ -14,6 +15,7 @@ const Home = () => {
       <PopularProducts />
       <BannerGroup />
       <HotDeals />
+      <CTA />
     </>
   );
 };

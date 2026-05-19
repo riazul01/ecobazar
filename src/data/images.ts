@@ -4,6 +4,7 @@ import BestDealBg from "assets/backgrounds/best-deal.webp";
 import VegetablesBg from "assets/backgrounds/vegetables.webp";
 import FruitsBg from "assets/backgrounds/fruits.webp";
 import MeatBg from "assets/backgrounds/meat.webp";
+import CtaBg from 'assets/backgrounds/discount-banner.webp';
 
 import fruits from "assets/categories/fruits.png";
 import vegetables from "assets/categories/vegetables.png";
@@ -31,6 +32,7 @@ export {
   VegetablesBg,
   FruitsBg,
   MeatBg,
+  CtaBg,
   visa,
   mastercard,
   discover,
