@@ -8,6 +8,7 @@ import CTA from "components/sections/home/CTA";
 import FeaturedProducts from "components/sections/home/FeaturedProducts";
 import LatestNews from "components/sections/home/LatestNews";
 import Testimonials from "components/sections/home/testimonials";
+import Brands from "components/sections/home/Brands";
 
 const Home = () => {
   return (
@@ -22,6 +23,7 @@ const Home = () => {
       <FeaturedProducts />
       <LatestNews />
       <Testimonials />
+      <Brands />
     </>
   );
 };
