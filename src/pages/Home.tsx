@@ -6,6 +6,7 @@ import BannerGroup from "components/sections/home/banner-group";
 import HotDeals from "components/sections/home/HotDeals";
 import CTA from "components/sections/home/CTA";
 import FeaturedProducts from "components/sections/home/FeaturedProducts";
+import LatestNews from "components/sections/home/LatestNews";
 
 const Home = () => {
   return (
@@ -18,6 +19,7 @@ const Home = () => {
       <HotDeals />
       <CTA />
       <FeaturedProducts />
+      <LatestNews />
     </>
   );
 };
