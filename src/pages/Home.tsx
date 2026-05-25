@@ -9,6 +9,7 @@ import FeaturedProducts from "components/sections/home/FeaturedProducts";
 import LatestNews from "components/sections/home/LatestNews";
 import Testimonials from "components/sections/home/testimonials";
 import Brands from "components/sections/home/Brands";
+import InstaFeed from "components/sections/home/InstaFeed";
 
 const Home = () => {
   return (
@@ -24,6 +25,7 @@ const Home = () => {
       <LatestNews />
       <Testimonials />
       <Brands />
+      <InstaFeed />
     </>
   );
 };
