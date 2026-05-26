@@ -17,9 +17,9 @@ const Newsletter = () => {
   return (
     <Stack sx={{ bgcolor: "grey.100" }}>
       <SectionWrapper
+        component={Stack}
         sx={{
           py: 3.5,
-          display: "flex",
           alignItems: "center",
           justifyContent: "space-between",
           flexDirection: { xs: "column", md: "row" },
