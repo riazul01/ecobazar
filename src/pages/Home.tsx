@@ -10,6 +10,7 @@ import LatestNews from "components/sections/home/LatestNews";
 import Testimonials from "components/sections/home/testimonials";
 import Brands from "components/sections/home/Brands";
 import InstaFeed from "components/sections/home/InstaFeed";
+import DessertBanners from "components/sections/home/dessert-banners";
 
 const Home = () => {
   return (
@@ -22,6 +23,7 @@ const Home = () => {
       <HotDeals />
       <CTA />
       <FeaturedProducts />
+      <DessertBanners />
       <LatestNews />
       <Testimonials />
       <Brands />
