@@ -1,7 +1,7 @@
+import SectionWrapper from "components/sections/SectionWrapper";
 import ProductSlider from "components/common/ProductSlider";
 import ProductCard from "components/common/ProductCard";
 import { products } from "data/products";
-import SectionWrapper from "components/sections/SectionWrapper";
 
 const FeaturedProducts = () => {
   return (

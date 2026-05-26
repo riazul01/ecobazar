@@ -2,9 +2,9 @@ import Hero from "components/sections/home/hero";
 import Categories from "components/sections/home/categories";
 import Services from "components/sections/home/Services";
 import PopularProducts from "components/sections/home/PopularProducts";
-import BannerGroup from "components/sections/home/banner-group";
+import PromoBanners from "components/sections/home/promo-banners";
 import HotDeals from "components/sections/home/HotDeals";
-import CTA from "components/sections/home/CTA";
+import CTABanner from "components/sections/home/CTABanner";
 import FeaturedProducts from "components/sections/home/FeaturedProducts";
 import LatestNews from "components/sections/home/LatestNews";
 import Testimonials from "components/sections/home/testimonials";
@@ -19,11 +19,11 @@ const Home = () => {
       <Services />
       <Categories />
       <PopularProducts />
-      <BannerGroup />
+      <PromoBanners />
       <HotDeals />
-      <CTA />
+      <DessertBanners /> 
       <FeaturedProducts />
-      <DessertBanners />
+      <CTABanner />
       <LatestNews />
       <Testimonials />
       <Brands />

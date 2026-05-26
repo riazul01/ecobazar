@@ -13,8 +13,8 @@ const ArrowIcon = (props: SvgIconProps) => {
       <path
         d="M7.5 0.5L4 4L0.5 0.5"
         stroke="currentColor"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeLinecap="round"
+        strokeLinejoin="round"
         fill="none"
       />
     </SvgIcon>

@@ -1,4 +1,6 @@
-import { Typography, Stack, Button } from "@mui/material";
+import Stack from "@mui/material/Stack";
+import Button from "@mui/material/Button";
+import Typography from "@mui/material/Typography";
 import Banner from "components/common/Banner";
 import Iconify from "components/base/Iconify";
 import { VegetablesBg } from "data/images";

@@ -1,3 +1,4 @@
+import Stack from "@mui/material/Stack";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import Iconify from "components/base/Iconify";
@@ -7,10 +8,10 @@ import { BestDealBg } from "data/images";
 const BestDeal = () => {
   return (
     <Banner
+      component={Stack}
       bgImage={BestDealBg}
       sx={{
         flexGrow: 1,
-        display: "flex",
         flexDirection: "column",
         alignItems: "center",
         justifyContent: "center",

@@ -4,7 +4,7 @@ import BestDealBg from "assets/backgrounds/best-deal.webp";
 import VegetablesBg from "assets/backgrounds/vegetables.webp";
 import FruitsBg from "assets/backgrounds/fruits.webp";
 import MeatBg from "assets/backgrounds/meat.webp";
-import CtaBg from 'assets/backgrounds/discount-banner.webp';
+import CtaBg from 'assets/backgrounds/cta-banner.webp';
 import FreshMilkBg from "assets/backgrounds/milk.webp";
 import DryFruitsBg from "assets/backgrounds/dry-fruits.webp";
 import SoftDrinkBg from "assets/backgrounds/drinks.webp";

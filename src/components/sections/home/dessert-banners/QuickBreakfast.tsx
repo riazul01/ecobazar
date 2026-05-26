@@ -6,10 +6,13 @@ import { DryFruitsBg } from "data/images";
 
 const QuickBreakfast = () => {
   return (
-    <Banner bgImage={DryFruitsBg} sx={{ flexGrow: 1, p: 4, height: 255 }}>
+    <Banner
+      bgImage={DryFruitsBg}
+      sx={{ flexGrow: 1, p: 4, height: 255, minWidth: { xs: 1, sm: 400 } }}
+    >
       <Typography
         variant="subtitle2"
-        sx={{ mt: 2, mb: 1, textTransform: "uppercase" }}
+        sx={{ my: 1, textTransform: "uppercase" }}
       >
         100% Organic
       </Typography>

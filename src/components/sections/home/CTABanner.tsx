@@ -8,7 +8,7 @@ import Iconify from "components/base/Iconify";
 import Banner from "components/common/Banner";
 import { CtaBg } from "data/images";
 
-const CTA = () => {
+const CTABanner = () => {
   return (
     <SectionWrapper>
       <Banner
@@ -89,4 +89,4 @@ const CTA = () => {
   );
 };
 
-export default CTA;
+export default CTABanner;

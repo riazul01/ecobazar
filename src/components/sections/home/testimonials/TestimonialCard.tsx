@@ -1,5 +1,9 @@
-import { Avatar, CardContent, Rating, Stack, Typography } from "@mui/material";
+import Stack from "@mui/material/Stack";
+import Typography from "@mui/material/Typography";
+import Avatar from "@mui/material/Avatar";
 import Card from "@mui/material/Card";
+import CardContent from "@mui/material/CardContent";
+import Rating from "@mui/material/Rating";
 import Iconify from "components/base/Iconify";
 import customShadows from "theme/shadows";
 import type { Testimonial } from "data/testimonials";

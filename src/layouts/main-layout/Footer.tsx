@@ -66,7 +66,7 @@ const Footer = () => {
           </Grid>
 
           {footerLinks.map((item) => (
-            <Grid size={{ xs: 6, sm: 4, md: 3, lg: 2 }}>
+            <Grid key={item.id} size={{ xs: 6, sm: 4, md: 3, lg: 2 }}>
               <Box key={item.id} sx={{ flex: 1, minWidth: 190 }}>
                 <Typography
                   variant="subtitle1"
@@ -84,7 +84,11 @@ const Footer = () => {
                       mb: 1.5,
                       display: "block",
                       color: "text.disabled",
-                      transition: "all 0.3s ease",
+                      transition: (theme) =>
+                        theme.transitions.create("all", {
+                          duration: 300,
+                          easing: theme.transitions.easing.easeInOut,
+                        }),
                       "&:hover": { color: "success.main" },
                     }}
                   >

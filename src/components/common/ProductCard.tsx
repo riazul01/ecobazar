@@ -54,7 +54,10 @@ const ProductCard = () => {
             borderTopRightRadius: 6,
             borderTopLeftRadius: 6,
             opacity: 0,
-            transition: "all 0.2s ease-in-out",
+            transition: theme.transitions.create("all", {
+              duration: 200,
+              easing: theme.transitions.easing.easeInOut,
+            }),
             "&:hover": {
               opacity: 1,
             },

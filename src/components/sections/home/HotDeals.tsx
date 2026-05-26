@@ -1,4 +1,7 @@
-import { Box, Stack, Grid, Typography } from "@mui/material";
+import Box from "@mui/material/Box";
+import Grid from "@mui/material/Grid";
+import Stack from "@mui/material/Stack";
+import Typography from "@mui/material/Typography";
 import ProductCard from "components/common/ProductCard";
 import SectionWrapper from "components/sections/SectionWrapper";
 import { products } from "data/products";

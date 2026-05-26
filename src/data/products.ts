@@ -44,7 +44,7 @@ const product: ProductData = {
 const products: ProductData[] = [];
 
 for (let i = 0; i <= 24; i++) {
-  products.push(product);
+  products.push({ ...product, id: i + 1 });
 }
 
 export { products };

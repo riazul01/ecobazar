@@ -38,9 +38,19 @@ const Services = () => {
               key={item.id}
               spacing={2}
               direction="column"
-              sx={{ alignItems: "center" }}
+              sx={{
+                alignItems: "center",
+                "&:hover .icon-wrapper": {
+                  bgcolor: "primary.main",
+                  transform: "scale(1.05)",
+                },
+                "&:hover .icon-wrapper svg": {
+                  color: "white",
+                },
+              }}
             >
               <Stack
+                className="icon-wrapper"
                 sx={(theme) => ({
                   height: 75,
                   width: 75,
@@ -48,11 +58,21 @@ const Services = () => {
                   justifyContent: "center",
                   bgcolor: alpha(theme.palette.primary.light, 0.2),
                   borderRadius: "50%",
+                  transition: theme.transitions.create(
+                    ["background-color", "transform"],
+                    {
+                      duration: theme.transitions.duration.shorter,
+                    },
+                  ),
                 })}
               >
                 <Iconify
                   icon={item.icon}
-                  sx={{ color: "primary.main", fontSize: "h2.fontSize" }}
+                  sx={(theme) => ({
+                    color: "primary.main",
+                    fontSize: "h2.fontSize",
+                    transition: theme.transitions.create("color"),
+                  })}
                 />
               </Stack>
               <Box>

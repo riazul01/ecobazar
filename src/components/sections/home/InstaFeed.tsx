@@ -1,4 +1,9 @@
-import { alpha, Box, Grid, Link, Stack, Typography } from "@mui/material";
+import { alpha } from "@mui/material";
+import Box from "@mui/material/Box";
+import Grid from "@mui/material/Grid";
+import Link from "@mui/material/Link";
+import Stack from "@mui/material/Stack";
+import Typography from "@mui/material/Typography";
 import SectionWrapper from "components/sections/SectionWrapper";
 import Iconify from "components/base/Iconify";
 import Image from "components/base/Image";

@@ -7,7 +7,10 @@ import { FreshMilkBg } from "data/images";
 
 const FreshMilk = () => {
   return (
-    <Banner bgImage={FreshMilkBg} sx={{ flexGrow: 1, p: 3, height: 255 }}>
+    <Banner
+      bgImage={FreshMilkBg}
+      sx={{ flexGrow: 1, p: 3, height: 255, minWidth: { xs: 1, sm: 400 } }}
+    >
       <Typography
         variant="h2"
         sx={{ mt: 2, mb: 1, color: "white", letterSpacing: 0.5 }}

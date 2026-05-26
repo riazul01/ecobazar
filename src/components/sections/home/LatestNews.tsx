@@ -35,7 +35,7 @@ const LatestNews = () => {
         }}
       >
         {blogs.slice(0, 3).map((item) => (
-          <BlogCard data={item} />
+          <BlogCard key={item.id} data={item} />
         ))}
       </Stack>
     </SectionWrapper>

@@ -10,7 +10,13 @@ const SoftDrink = () => {
     <Banner
       component={Stack}
       bgImage={SoftDrinkBg}
-      sx={{ flexGrow: 1, p: 3, height: 255, justifyContent: "flex-end" }}
+      sx={{
+        flexGrow: 1,
+        p: 3,
+        height: 255,
+        minWidth: { xs: 1, sm: 400 },
+        justifyContent: "flex-end",
+      }}
     >
       <Box sx={{ mt: 2, maxWidth: 240 }}>
         <Typography

@@ -1,7 +1,10 @@
-import { Typography, Stack, Button, Chip, chipClasses } from "@mui/material";
+import Chip, { chipClasses } from "@mui/material/Chip";
+import Typography from "@mui/material/Typography";
+import Stack from "@mui/material/Stack";
+import Button from "@mui/material/Button";
 import Banner from "components/common/Banner";
-import { FruitsBg } from "data/images";
 import Iconify from "components/base/Iconify";
+import { FruitsBg } from "data/images";
 import { yellow } from "theme/colors";
 
 const SummerSale = () => {

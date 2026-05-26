@@ -1,6 +1,6 @@
 import SectionWrapper from "components/sections/SectionWrapper";
-import FreshMilk from "./FreshMilk";
 import Stack from "@mui/material/Stack";
+import FreshMilk from "./FreshMilk";
 import SoftDrink from "./SoftDrink";
 import QuickBreakfast from "./QuickBreakfast";
 
@@ -11,7 +11,7 @@ const DessertBanners = () => {
       sx={{
         mb: 8,
         justifyContent: { xs: "center", xl: "space-between" },
-        flexWrap: "wrap",
+        flexWrap: {xs: "wrap", xl: "nowrap" },
         gap: 2,
       }}
     >

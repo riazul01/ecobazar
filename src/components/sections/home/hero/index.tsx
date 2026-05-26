@@ -7,11 +7,11 @@ import BestDeal from "./BestDeal";
 const Hero = () => {
   return (
     <SectionWrapper
+      component={Stack}
       sx={{
         my: 2.5,
         mx: "auto",
         width: 1,
-        display: "flex",
         flexDirection: { xs: "column", md: "row" },
         gap: 2.5,
       }}
