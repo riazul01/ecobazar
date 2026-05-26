@@ -4,8 +4,13 @@ import Typography from "@mui/material/Typography";
 import Banner from "components/common/Banner";
 import Iconify from "components/base/Iconify";
 import { VegetablesBg } from "data/images";
+import { useCountdown } from "hooks/useCountdown";
 
 const BestDeals = () => {
+  const { days, hours, minutes, seconds } = useCountdown(
+    30 * 24 * 60 * 60 * 1000,
+  );
+
   return (
     <Banner
       bgImage={VegetablesBg}
@@ -40,103 +45,42 @@ const BestDeals = () => {
         spacing={2}
         sx={{ mt: 2, alignItems: "flex-start", justifyContent: "center" }}
       >
-        <div>
-          <Typography
-            variant="h3"
-            sx={{ color: "white", textAlign: "center", fontWeight: 400 }}
-          >
-            00
-          </Typography>
-          <Typography
-            variant="body2"
-            sx={{
-              mt: 0.5,
-              color: "grey.200",
-              textAlign: "center",
-              textTransform: "uppercase",
-            }}
-          >
-            Days
-          </Typography>
-        </div>
-        <Typography
-          variant="h3"
-          sx={{ mt: -0.25, color: "white", fontWeight: 300 }}
-        >
-          :
-        </Typography>
-
-        <div>
-          <Typography
-            variant="h3"
-            sx={{ color: "white", textAlign: "center", fontWeight: 400 }}
-          >
-            00
-          </Typography>
-          <Typography
-            variant="body2"
-            sx={{
-              mt: 0.5,
-              color: "grey.200",
-              textAlign: "center",
-              textTransform: "uppercase",
-            }}
-          >
-            Hours
-          </Typography>
-        </div>
-        <Typography
-          variant="h3"
-          sx={{ mt: -0.25, color: "white", fontWeight: 300 }}
-        >
-          :
-        </Typography>
-
-        <div>
-          <Typography
-            variant="h3"
-            sx={{ color: "white", textAlign: "center", fontWeight: 400 }}
-          >
-            00
-          </Typography>
-          <Typography
-            variant="body2"
-            sx={{
-              mt: 0.5,
-              color: "grey.200",
-              textAlign: "center",
-              textTransform: "uppercase",
-            }}
-          >
-            Mins
-          </Typography>
-        </div>
-        <Typography
-          variant="h3"
-          sx={{ mt: -0.25, color: "white", fontWeight: 300 }}
-        >
-          :
-        </Typography>
-
-        <div>
-          <Typography
-            variant="h3"
-            sx={{ color: "white", textAlign: "center", fontWeight: 400 }}
-          >
-            00
-          </Typography>
-          <Typography
-            variant="body2"
-            sx={{
-              mt: 0.5,
-              color: "grey.200",
-              textAlign: "center",
-              textTransform: "uppercase",
-            }}
-          >
-            Secs
-          </Typography>
-        </div>
+        {[
+          { value: days, label: "Days" },
+          { value: hours, label: "Hours" },
+          { value: minutes, label: "Minutes" },
+          { value: seconds, label: "Seconds" },
+        ].map((item, index) => (
+          <>
+            <div>
+              <Typography
+                variant="h3"
+                sx={{ color: "white", textAlign: "center", fontWeight: 400 }}
+              >
+                {item.value}
+              </Typography>
+              <Typography
+                variant="body2"
+                sx={{
+                  mt: 0.5,
+                  color: "grey.200",
+                  textAlign: "center",
+                  textTransform: "uppercase",
+                }}
+              >
+                Days
+              </Typography>
+            </div>
+            {index !== 3 && (
+              <Typography
+                variant="h3"
+                sx={{ mt: -0.25, color: "white", fontWeight: 300 }}
+              >
+                :
+              </Typography>
+            )}
+          </>
+        ))}
       </Stack>
 
       <Stack sx={{ mt: 4, justifyContent: "center" }}>

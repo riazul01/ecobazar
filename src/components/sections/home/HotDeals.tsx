@@ -5,8 +5,13 @@ import Typography from "@mui/material/Typography";
 import ProductCard from "components/common/ProductCard";
 import SectionWrapper from "components/sections/SectionWrapper";
 import { products } from "data/products";
+import { useCountdown } from "hooks/useCountdown";
 
 const HotDeals = () => {
+  const { days, hours, minutes, seconds } = useCountdown(
+    7 * 24 * 60 * 60 * 1000,
+  );
+
   return (
     <SectionWrapper>
       <Box sx={{ mb: 8 }}>
@@ -46,101 +51,37 @@ const HotDeals = () => {
               borderRadius: 8,
             }}
           >
-            <Box sx={{ width: 80 }}>
-              <Typography
-                variant="h3"
-                sx={{
-                  mb: 0.5,
-                  color: "error.light",
-                  textAlign: "center",
-                  fontWeight: 500,
-                }}
-              >
-                00
-              </Typography>
-              <Typography
-                variant="body2"
-                sx={{
-                  color: "error.light",
-                  textAlign: "center",
-                  textTransform: "uppercase",
-                }}
-              >
-                Days
-              </Typography>
-            </Box>
+            {[
+              { value: days, label: "Days" },
+              { value: hours, label: "Hours" },
+              { value: minutes, label: "Minutes" },
+              { value: seconds, label: "Seconds" },
+            ].map((item) => (
+              <Box key={item.label} sx={{ width: 80 }}>
+                <Typography
+                  variant="h3"
+                  sx={{
+                    mb: 0.5,
+                    color: "error.light",
+                    textAlign: "center",
+                    fontWeight: 500,
+                  }}
+                >
+                  {item.value}
+                </Typography>
 
-            <Box sx={{ width: 80 }}>
-              <Typography
-                variant="h3"
-                sx={{
-                  mb: 0.5,
-                  color: "error.light",
-                  textAlign: "center",
-                  fontWeight: 500,
-                }}
-              >
-                00
-              </Typography>
-              <Typography
-                variant="body2"
-                sx={{
-                  color: "error.light",
-                  textAlign: "center",
-                  textTransform: "uppercase",
-                }}
-              >
-                Hours
-              </Typography>
-            </Box>
-
-            <Box sx={{ width: 80 }}>
-              <Typography
-                variant="h3"
-                sx={{
-                  mb: 0.5,
-                  color: "error.light",
-                  textAlign: "center",
-                  fontWeight: 500,
-                }}
-              >
-                00
-              </Typography>
-              <Typography
-                variant="body2"
-                sx={{
-                  color: "error.light",
-                  textAlign: "center",
-                  textTransform: "uppercase",
-                }}
-              >
-                Minutes
-              </Typography>
-            </Box>
-
-            <Box sx={{ width: 80 }}>
-              <Typography
-                variant="h3"
-                sx={{
-                  mb: 0.5,
-                  color: "error.light",
-                  textAlign: "center",
-                  fontWeight: 500,
-                }}
-              >
-                00
-              </Typography>
-              <Typography
-                variant="body2"
-                sx={{
-                  color: "error.light",
-                  textAlign: "center",
-                  textTransform: "uppercase",
-                }}
-              >
-                Seconds
-              </Typography>
-            </Box>
+                <Typography
+                  variant="body2"
+                  sx={{
+                    color: "error.light",
+                    textAlign: "center",
+                    textTransform: "uppercase",
+                  }}
+                >
+                  {item.label}
+                </Typography>
+              </Box>
+            ))}
           </Stack>
         </Stack>
 
