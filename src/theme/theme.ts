@@ -40,6 +40,7 @@ import CardActions from "./components/card/CardActions";
 
 import Link from "./components/navigation/Link";
 import Drawer from "./components/navigation/Drawer";
+import PaginationItem from "./components/navigation/PaginationItem";
 
 export const theme = createTheme({
   typography,
@@ -91,6 +92,7 @@ export const theme = createTheme({
     MuiBadge: Badge,
     MuiChip: Chip,
 
+    MuiPaginationItem: PaginationItem,
     MuiCssBaseline: CssBaseline,
   },
 });

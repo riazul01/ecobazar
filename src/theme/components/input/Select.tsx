@@ -1,10 +1,14 @@
 import type { Theme, Components } from "@mui/material/styles";
+import ArrowDownIcon from "components/icons/ArrowDownIcon";
 
 const Select: Components<Theme>["MuiSelect"] = {
+  defaultProps: {
+    IconComponent: ArrowDownIcon,
+  },
   styleOverrides: {
     root: ({ theme }) => ({
-      padding: 0,
       border: "none",
+      padding: theme.spacing(1, 2),
       "&.MuiInputBase-root": {
         backgroundColor: "transparent !important",
       },
@@ -12,10 +16,12 @@ const Select: Components<Theme>["MuiSelect"] = {
         color: theme.palette.text.secondary,
         fontSize: theme.typography.h5.fontSize,
       },
+      "& .MuiOutlinedInput-notchedOutline": {
+        border: `1px solid ${theme.palette.divider} !important`,
+      }
     }),
     select: ({ theme }) => ({
-      padding: theme.spacing(0),
-      paddingRight: "0 !important",
+      padding: 0,
       color: theme.palette.text.secondary,
       fontSize: theme.typography.body2.fontSize,
       backgroundColor: "transparent !important",
