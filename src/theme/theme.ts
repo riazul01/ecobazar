@@ -26,6 +26,8 @@ import InputAdornment from "./components/input/InputAdornment";
 import FormControlLabel from "./components/input/FormControlLabel";
 import Checkbox from "./components/input/Checkbox";
 import Select from "./components/input/Select";
+import Radio from "./components/input/Radio";
+import Slider from "./components/input/Slider";
 
 import Badge from "./components/data-display/Badge";
 import Chip from "./components/data-display/Chip";
@@ -77,6 +79,8 @@ export const theme = createTheme({
     MuiFormControlLabel: FormControlLabel,
     MuiCheckbox: Checkbox,
     MuiSelect: Select,
+    MuiRadio: Radio,
+    MuiSlider: Slider,
 
     MuiCard: Card,
     MuiCardMedia: CardMedia,

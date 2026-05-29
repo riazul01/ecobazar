@@ -20,7 +20,7 @@ export const navLinks: NavLink[] = [
     id: "shop",
     name: "Shop",
     icon: "material-symbols:shopping-cart-outline-rounded",
-    path: paths.products,
+    path: paths.shop,
   },
   {
     id: "blog",
