@@ -1,10 +1,10 @@
+import Stack from "@mui/material/Stack";
+import Typography from "@mui/material/Typography";
+import Checkbox from "@mui/material/Checkbox";
+import Rating from "@mui/material/Rating";
 import FormGroup from "@mui/material/FormGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
-import Checkbox from "@mui/material/Checkbox";
 import FilterCollapse from "./FilterCollapse";
-import Rating from "@mui/material/Rating";
-import Stack from "@mui/material/Stack";
-import { Typography } from "@mui/material";
 
 const ratings = [
   { value: 5, label: "5.0" },

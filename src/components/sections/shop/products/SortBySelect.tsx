@@ -3,6 +3,12 @@ import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select, { type SelectChangeEvent } from "@mui/material/Select";
 
+const sortCategories = [
+  { label: "Latest", value: "Latest" },
+  { label: "Price: Low to High", value: "Price: Low to High" },
+  { label: "Price: High to Low", value: "Price: High to Low" },
+];
+
 const SortBySelect = () => {
   const [age, setAge] = React.useState("Latest");
 
@@ -17,9 +23,15 @@ const SortBySelect = () => {
         onChange={handleChange}
         inputProps={{ "aria-label": "Without label" }}
       >
-        <MenuItem value="Latest">Latest</MenuItem>
-        <MenuItem value="Price: Low to High">Price: Low to High</MenuItem>
-        <MenuItem value="Price: High to Low">Price: High to Low</MenuItem>
+        {sortCategories.map((category) => (
+          <MenuItem
+            key={category.value}
+            value={category.value}
+            sx={{ mb: 0.25 }}
+          >
+            {category.label}
+          </MenuItem>
+        ))}
       </Select>
     </FormControl>
   );

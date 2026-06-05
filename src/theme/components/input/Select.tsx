@@ -1,4 +1,9 @@
 import type { Theme, Components } from "@mui/material/styles";
+import {
+  boxClasses,
+  inputBaseClasses,
+  outlinedInputClasses,
+} from "@mui/material";
 import ArrowDownIcon from "components/icons/ArrowDownIcon";
 
 const Select: Components<Theme>["MuiSelect"] = {
@@ -8,20 +13,20 @@ const Select: Components<Theme>["MuiSelect"] = {
   styleOverrides: {
     root: ({ theme }) => ({
       border: "none",
-      padding: theme.spacing(1, 2),
-      "&.MuiInputBase-root": {
+      [`&.${inputBaseClasses.root}`]: {
+        padding: 0,
         backgroundColor: "transparent !important",
       },
-      "& .MuiBox-root": {
+      [`& .${boxClasses.root}`]: {
         color: theme.palette.text.secondary,
         fontSize: theme.typography.h5.fontSize,
       },
-      "& .MuiOutlinedInput-notchedOutline": {
+      [`& .${outlinedInputClasses.notchedOutline}`]: {
         border: `1px solid ${theme.palette.divider} !important`,
-      }
+      },
     }),
     select: ({ theme }) => ({
-      padding: 0,
+      padding: theme.spacing(1, 2),
       color: theme.palette.text.secondary,
       fontSize: theme.typography.body2.fontSize,
       backgroundColor: "transparent !important",

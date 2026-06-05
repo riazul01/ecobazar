@@ -1,7 +1,9 @@
 import Card from "@mui/material/Card";
 import CardMedia from "@mui/material/CardMedia";
 import CardContent from "@mui/material/CardContent";
-import { Rating, Stack, Typography } from "@mui/material";
+import Typography from "@mui/material/Typography";
+import Stack from "@mui/material/Stack";
+import Rating from "@mui/material/Rating";
 
 const productData = [
   {

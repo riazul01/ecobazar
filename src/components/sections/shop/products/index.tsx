@@ -1,10 +1,14 @@
-import { Box, Button, Pagination, Stack, Typography } from "@mui/material";
-import SortBySelect from "./SortBySelect";
-import { Grid } from "@mui/material";
-import ProductCard from "components/common/ProductCard";
-import { products } from "data/products";
-import FilterIcon from "components/icons/FilterIcon";
 import { useBreakpoints } from "providers/BreakpointProvider";
+import Button from "@mui/material/Button";
+import Stack from "@mui/material/Stack";
+import Grid from "@mui/material/Grid";
+import Box from "@mui/material/Box";
+import Typography from "@mui/material/Typography";
+import Pagination from "@mui/material/Pagination";
+import ProductCard from "components/common/ProductCard";
+import FilterIcon from "components/icons/FilterIcon";
+import SortBySelect from "./SortBySelect";
+import { products } from "data/products";
 
 interface ProductItemsProps {
   toggleDrawer: () => void;

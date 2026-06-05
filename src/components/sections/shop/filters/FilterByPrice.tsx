@@ -1,10 +1,10 @@
 import { useState } from "react";
-import FilterCollapse from "./FilterCollapse";
 import Slider from "@mui/material/Slider";
-import { Typography } from "@mui/material";
+import Typography from "@mui/material/Typography";
+import FilterCollapse from "./FilterCollapse";
 
 function valuetext(value: number) {
-  return `${value}°C`;
+  return `${value} $`;
 }
 
 const FilterByPrice = () => {
@@ -17,7 +17,7 @@ const FilterByPrice = () => {
   return (
     <FilterCollapse title="Price" defaultOpen>
       <Slider
-        getAriaLabel={() => "Temperature range"}
+        getAriaLabel={() => "Price range"}
         value={value}
         onChange={handleChange}
         valueLabelDisplay="auto"

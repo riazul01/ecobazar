@@ -1,6 +1,6 @@
 import { useState, type ReactNode } from "react";
 import Collapse from "@mui/material/Collapse";
-import ListItemText from "@mui/material/ListItemText";
+import ListItemText, { listItemTextClasses } from "@mui/material/ListItemText";
 import ListItemButton from "@mui/material/ListItemButton";
 import Iconify from "components/base/Iconify";
 
@@ -35,7 +35,7 @@ const FilterCollapse = ({
         <ListItemText
           primary={title}
           sx={{
-            "& .MuiListItemText-primary": {
+            [`& .${listItemTextClasses.primary}`]: {
               color: "text.primary",
               fontSize: "h6.fontSize",
               fontWeight: 500,

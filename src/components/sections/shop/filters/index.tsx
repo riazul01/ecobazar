@@ -1,13 +1,13 @@
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
+import Divider from "@mui/material/Divider";
 import FilterIcon from "components/icons/FilterIcon";
 import FilterByCategory from "./FilterByCategory";
-import PriceRange from "./FilterByPrice";
 import FilterByRating from "./FilterByRating";
+import PriceRange from "./FilterByPrice";
 import FilterByTag from "./FilterByTag";
 import FilterBanner from "./FilterBanner";
 import SaleProducts from "./SaleProducts";
-import Divider from "@mui/material/Divider";
 
 const Filters = () => {
   return (

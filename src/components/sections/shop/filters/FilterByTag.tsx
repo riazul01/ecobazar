@@ -1,6 +1,6 @@
+import Stack from "@mui/material/Stack";
 import Chip from "@mui/material/Chip";
 import FilterCollapse from "./FilterCollapse";
-import Stack from "@mui/material/Stack";
 
 const tags = [
   "Healthy",
@@ -20,7 +20,7 @@ const tags = [
 
 const FilterByTag = () => {
   return (
-    <FilterCollapse title="Price" defaultOpen>
+    <FilterCollapse title="Popular Tags" defaultOpen>
       <Stack sx={{ gap: 1, flexWrap: "wrap" }}>
         {tags.map((tag) => (
           <Chip
