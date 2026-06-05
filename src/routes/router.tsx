@@ -5,6 +5,7 @@ import MainLayout from "layouts/main-layout";
 
 const App = lazy(() => import("App"));
 const Home = lazy(() => import("pages/Home"));
+const Shop = lazy(() => import("pages/Shop"));
 
 const router = createBrowserRouter([
   {
@@ -27,6 +28,10 @@ const router = createBrowserRouter([
           {
             index: true,
             element: <Home />,
+          },
+          {
+            path: "shop",
+            element: <Shop />,
           },
         ],
       },
