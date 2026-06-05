@@ -11,7 +11,7 @@ import Divider from "@mui/material/Divider";
 
 const Filters = () => {
   return (
-    <Box sx={{ width: 312 }}>
+    <Box sx={{ width: { xs: 1, lg: 312 } }}>
       <Button
         variant="contained"
         size="medium"
