@@ -5,16 +5,16 @@ import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Pagination from "@mui/material/Pagination";
-import ProductCard from "components/common/ProductCard";
 import FilterIcon from "components/icons/FilterIcon";
 import SortBySelect from "components/common/SortBySelect";
-import { products } from "data/products";
+import BlogCard from "components/common/BlogCard";
+import { blogs } from "data/blogs";
 
 interface ProductItemsProps {
   toggleDrawer: () => void;
 }
 
-const ProductItems = ({ toggleDrawer }: ProductItemsProps) => {
+const Blogs = ({ toggleDrawer }: ProductItemsProps) => {
   const { downLg } = useBreakpoints();
 
   return (
@@ -64,9 +64,9 @@ const ProductItems = ({ toggleDrawer }: ProductItemsProps) => {
       </Stack>
 
       <Grid container spacing={2} sx={{ mb: 4 }}>
-        {products.slice(0, 12).map((item) => (
-          <Grid key={item.id} size={{ xs: 12, sm: 6, md: 4 }}>
-            <ProductCard />
+        {blogs.slice(0, 10).map((item) => (
+          <Grid key={item.id} size={{ xs: 12, md: 6 }}>
+            <BlogCard key={item.id} data={item} />
           </Grid>
         ))}
         <Pagination
@@ -80,4 +80,4 @@ const ProductItems = ({ toggleDrawer }: ProductItemsProps) => {
   );
 };
 
-export default ProductItems;
+export default Blogs;

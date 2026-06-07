@@ -12,7 +12,11 @@ import ListItemButton from "@mui/material/ListItemButton";
 import ListItemText from "@mui/material/ListItemText";
 import Iconify from "components/base/Iconify";
 
-const SearchBox = () => {
+interface SearchBoxProps {
+  showSearchButton?: boolean;
+}
+
+const SearchBox = ({ showSearchButton }: SearchBoxProps) => {
   const [query, setQuery] = useState("");
   const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
   const containerRef = useRef<HTMLDivElement | null>(null);
@@ -47,7 +51,7 @@ const SearchBox = () => {
           sx={{
             width: 1,
             height: { xs: 40, md: 46 },
-            maxWidth: { xs: 398, lg: 498 },
+            maxWidth: showSearchButton ? { xs: 398, lg: 498 } : "unset",
             alignItems: "center",
             justifyContent: "center",
             overflow: "hidden",
@@ -59,16 +63,24 @@ const SearchBox = () => {
             placeholder="Search products..."
             value={query}
             onChange={handleChange}
-            sx={{
-              flex: 1,
-              height: 1,
-              [`& .${inputBaseClasses.root}`]: {
-                borderRight: "none",
-                borderTopRightRadius: 0,
-                borderBottomRightRadius: 0,
+            sx={[
+              {
+                flex: 1,
                 height: 1,
+                [`& .${inputBaseClasses.root}`]: {
+                  height: 1,
+                },
               },
-            }}
+              showSearchButton
+                ? {
+                    [`& .${inputBaseClasses.root}`]: {
+                      borderRight: "none",
+                      borderTopRightRadius: 0,
+                      borderBottomRightRadius: 0,
+                    },
+                  }
+                : {},
+            ]}
             slotProps={{
               input: {
                 sx: {
@@ -85,23 +97,25 @@ const SearchBox = () => {
               },
             }}
           />
-          <Button
-            variant="contained"
-            color="primary"
-            onClick={() => alert(`Searching for: ${query}`)}
-            sx={{
-              height: 1,
-              borderRadius: 1.5,
-              borderTopLeftRadius: 0,
-              borderBottomLeftRadius: 0,
-            }}
-          >
-            {downLg ? (
-              <Iconify icon="prime:search" sx={{ fontSize: 24 }} />
-            ) : (
-              "Search"
-            )}
-          </Button>
+          {showSearchButton && (
+            <Button
+              variant="contained"
+              color="primary"
+              onClick={() => alert(`Searching for: ${query}`)}
+              sx={{
+                height: 1,
+                borderRadius: 1.5,
+                borderTopLeftRadius: 0,
+                borderBottomLeftRadius: 0,
+              }}
+            >
+              {downLg ? (
+                <Iconify icon="prime:search" sx={{ fontSize: 24 }} />
+              ) : (
+                "Search"
+              )}
+            </Button>
+          )}
         </Stack>
 
         <Popover
