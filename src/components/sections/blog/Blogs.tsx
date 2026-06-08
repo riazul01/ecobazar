@@ -65,7 +65,11 @@ const Blogs = ({ toggleDrawer }: ProductItemsProps) => {
 
       <Grid container spacing={2} sx={{ mb: 4 }}>
         {blogs.slice(0, 10).map((item) => (
-          <Grid key={item.id} size={{ xs: 12, md: 6 }}>
+          <Grid
+            key={item.id}
+            size={{ xs: 12, md: 6 }}
+            sx={{ placeItems: "center" }}
+          >
             <BlogCard key={item.id} data={item} />
           </Grid>
         ))}

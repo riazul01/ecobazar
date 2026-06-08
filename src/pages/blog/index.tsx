@@ -3,9 +3,9 @@ import Stack from "@mui/material/Stack";
 import Breadcrumb, { type BreadcrumbItem } from "components/common/BreadCrumb";
 import Filters from "components/sections/blog/filters";
 import SectionWrapper from "components/sections/SectionWrapper";
-import FiltersDrawer from "components/sections/shop/FiltersDrawer";
 import { useBreakpoints } from "providers/BreakpointProvider";
 import Blogs from "components/sections/blog/Blogs";
+import FiltersDrawer from "components/common/FiltersDrawer";
 
 const breadcrumbs: BreadcrumbItem[] = [
   {
@@ -36,7 +36,13 @@ const Blog = () => {
         {!downLg ? <Filters /> : null}
         <Blogs toggleDrawer={toggleDrawer} />
       </SectionWrapper>
-      <FiltersDrawer drawerOpen={drawerOpen} toggleDrawer={toggleDrawer} />
+      <FiltersDrawer
+        drawerOpen={drawerOpen}
+        toggleDrawer={toggleDrawer}
+        width={{ xs: 360, sm: 460 }}
+      >
+        <Filters />
+      </FiltersDrawer>
     </>
   );
 };

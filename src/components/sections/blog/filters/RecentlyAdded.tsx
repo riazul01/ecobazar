@@ -59,6 +59,7 @@ const RecentlyAdded = () => {
               className="title"
               sx={{
                 color: "text.primary",
+                textWrapMode: "wrap",
                 lineHeight: 1.4,
                 fontWeight: 500,
                 transition: (theme) =>

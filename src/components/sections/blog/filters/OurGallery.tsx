@@ -33,7 +33,7 @@ const OurGallery = () => {
             key={item.id}
             component={Link}
             href="#"
-            size={3}
+            size={{ xs: 4, sm: 3 }}
             sx={{ height: 100 }}
           >
             <Image
