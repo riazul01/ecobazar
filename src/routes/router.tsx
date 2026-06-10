@@ -3,6 +3,7 @@ import { Outlet, createBrowserRouter } from "react-router";
 
 import MainLayout from "layouts/main-layout";
 import Blog from "pages/blog";
+import Error404 from "pages/Error404";
 
 const App = lazy(() => import("App"));
 const Home = lazy(() => import("pages/Home"));
@@ -48,7 +49,7 @@ const router = createBrowserRouter([
       },
       {
         path: "*",
-        element: <h1>Error 404 | Page not found!!</h1>,
+        element: <Error404/>,
       },
     ],
   },
