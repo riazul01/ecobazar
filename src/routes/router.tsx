@@ -2,6 +2,7 @@ import { Suspense, lazy } from "react";
 import { Outlet, createBrowserRouter } from "react-router";
 
 import MainLayout from "layouts/main-layout";
+import Blog from "pages/blog";
 
 const App = lazy(() => import("App"));
 const Home = lazy(() => import("pages/Home"));
@@ -32,6 +33,16 @@ const router = createBrowserRouter([
           {
             path: "shop",
             element: <Shop />,
+          },
+          {
+            path: "blog",
+            element: <Outlet />,
+            children: [
+              {
+                index: true,
+                element: <Blog />,
+              },
+            ],
           },
         ],
       },

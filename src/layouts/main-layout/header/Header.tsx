@@ -12,7 +12,7 @@ import ShoppingBagLightIcon from "components/icons/ShoppingBagLightIcon";
 import HeartLightIcon from "components/icons/HeartLightIcon";
 import Iconify from "components/base/Iconify";
 import Logo from "components/common/Logo";
-import SearchBox from "./SearchBox";
+import SearchBox from "components/common/SearchBox";
 
 const Header = () => {
   const [openSearch, setOpenSearch] = useState(false);
@@ -30,7 +30,7 @@ const Header = () => {
         }}
       >
         <Logo />
-        {!downSm && <SearchBox />}
+        {!downSm && <SearchBox showSearchButton={true} />}
 
         <Stack sx={{ gap: 1.75, alignItems: "center" }}>
           <ButtonBase
@@ -118,7 +118,7 @@ const Header = () => {
           >
             <Iconify icon="mdi:close" sx={{ color: "white", fontSize: 18 }} />
           </IconButton>
-          <SearchBox />
+          <SearchBox showSearchButton={true} />
         </Dialog>
       )}
     </>

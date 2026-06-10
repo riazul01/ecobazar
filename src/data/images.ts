@@ -10,6 +10,15 @@ import DryFruitsBg from "assets/backgrounds/dry-fruits.webp";
 import SoftDrinkBg from "assets/backgrounds/drinks.webp";
 import FilterBannerBg from "assets/backgrounds/filter-banner.webp";
 
+import gallery1 from "assets/gallery/img1.webp";
+import gallery2 from "assets/gallery/img2.webp";
+import gallery3 from "assets/gallery/img3.webp";
+import gallery4 from "assets/gallery/img4.webp";
+import gallery5 from "assets/gallery/img5.webp";
+import gallery6 from "assets/gallery/img6.webp";
+import gallery7 from "assets/gallery/img7.webp";
+import gallery8 from "assets/gallery/img8.webp";
+
 import fruits from "assets/categories/fruits.png";
 import vegetables from "assets/categories/vegetables.png";
 import proteins from "assets/categories/proteins.png";
@@ -41,6 +50,14 @@ export {
   DryFruitsBg,
   SoftDrinkBg,
   FilterBannerBg,
+  gallery1,
+  gallery2,
+  gallery3,
+  gallery4,
+  gallery5,
+  gallery6,
+  gallery7,
+  gallery8,
   visa,
   mastercard,
   discover,

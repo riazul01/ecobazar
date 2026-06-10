@@ -48,7 +48,7 @@ export const blogs: Blog[] = [
     tags: ["Diet", "Vegan"],
     author: "John Doe",
     comments: 120,
-    publishDate: "12 Nov, 2024",
+    publishDate: "12 Nov 2024",
     link: "#!",
   },
   {
@@ -58,7 +58,7 @@ export const blogs: Blog[] = [
     tags: ["Health", "Superfoods"],
     author: "Jane Smith",
     comments: 45,
-    publishDate: "15 Nov, 2024",
+    publishDate: "15 Nov 2024",
     link: "#!",
   },
   {
@@ -68,7 +68,7 @@ export const blogs: Blog[] = [
     tags: ["Sustainability", "Eco-Friendly"],
     author: "Lucy Brown",
     comments: 85,
-    publishDate: "10 Nov, 2024",
+    publishDate: "10 Nov 2024",
     link: "#!",
   },
   {
@@ -78,7 +78,7 @@ export const blogs: Blog[] = [
     tags: ["Weight Loss", "Snacks"],
     author: "Admin",
     comments: 67,
-    publishDate: "8 Nov, 2024",
+    publishDate: "8 Nov 2024",
     link: "#!",
   },
   {
@@ -88,7 +88,7 @@ export const blogs: Blog[] = [
     tags: ["Budget", "Clean Eating"],
     author: "Mark Thompson",
     comments: 54,
-    publishDate: "7 Nov, 2024",
+    publishDate: "7 Nov 2024",
     link: "#!",
   },
   {
@@ -98,7 +98,7 @@ export const blogs: Blog[] = [
     tags: ["Fiber", "Diet"],
     author: "Admin",
     comments: 43,
-    publishDate: "5 Nov, 2024",
+    publishDate: "5 Nov 2024",
     link: "#!",
   },
   {
@@ -108,7 +108,7 @@ export const blogs: Blog[] = [
     tags: ["Mediterranean", "Healthy"],
     author: "Paul Williams",
     comments: 33,
-    publishDate: "4 Nov, 2024",
+    publishDate: "4 Nov 2024",
     link: "#!",
   },
   {
@@ -118,7 +118,7 @@ export const blogs: Blog[] = [
     tags: ["Healthy Eating", "Lifestyle"],
     author: "Jane Doe",
     comments: 100,
-    publishDate: "2 Nov, 2024",
+    publishDate: "2 Nov 2024",
     link: "#!",
   },
   {
@@ -128,7 +128,7 @@ export const blogs: Blog[] = [
     tags: ["Nutrition", "Myths"],
     author: "Admin",
     comments: 71,
-    publishDate: "30 Oct, 2024",
+    publishDate: "30 Oct 2024",
     link: "#!",
   },
   {
@@ -138,7 +138,7 @@ export const blogs: Blog[] = [
     tags: ["Breakfast", "Energy"],
     author: "Laura Green",
     comments: 44,
-    publishDate: "28 Oct, 2024",
+    publishDate: "28 Oct 2024",
     link: "#!",
   },
   {
@@ -148,7 +148,7 @@ export const blogs: Blog[] = [
     tags: ["Protein", "Vegetarian"],
     author: "Mike Turner",
     comments: 53,
-    publishDate: "25 Oct, 2024",
+    publishDate: "25 Oct 2024",
     link: "#!",
   },
   {
@@ -158,7 +158,7 @@ export const blogs: Blog[] = [
     tags: ["Emotional Eating", "Mental Health"],
     author: "Sarah Jones",
     comments: 61,
-    publishDate: "22 Oct, 2024",
+    publishDate: "22 Oct 2024",
     link: "#!",
   },
   {
@@ -168,7 +168,7 @@ export const blogs: Blog[] = [
     tags: ["Carbs", "Proteins"],
     author: "James Carter",
     comments: 36,
-    publishDate: "19 Oct, 2024",
+    publishDate: "19 Oct 2024",
     link: "#!",
   },
   {
@@ -178,7 +178,7 @@ export const blogs: Blog[] = [
     tags: ["Nutrition", "Labels"],
     author: "Admin",
     comments: 87,
-    publishDate: "16 Oct, 2024",
+    publishDate: "16 Oct 2024",
     link: "#!",
   },
   {
@@ -188,7 +188,7 @@ export const blogs: Blog[] = [
     tags: ["Snacks", "Healthy Eating"],
     author: "Emily White",
     comments: 59,
-    publishDate: "12 Oct, 2024",
+    publishDate: "12 Oct 2024",
     link: "#!",
   },
   {
@@ -198,7 +198,7 @@ export const blogs: Blog[] = [
     tags: ["Anti-inflammatory", "Diet"],
     author: "Admin",
     comments: 46,
-    publishDate: "10 Oct, 2024",
+    publishDate: "10 Oct 2024",
     link: "#!",
   },
   {
@@ -208,7 +208,7 @@ export const blogs: Blog[] = [
     tags: ["Portion Control", "Weight Management"],
     author: "Anna Brown",
     comments: 78,
-    publishDate: "7 Oct, 2024",
+    publishDate: "7 Oct 2024",
     link: "#!",
   },
 ];
