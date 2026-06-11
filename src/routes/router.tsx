@@ -1,6 +1,5 @@
 import { Suspense, lazy } from "react";
 import { Outlet, createBrowserRouter } from "react-router";
-
 import MainLayout from "layouts/main-layout";
 import Blog from "pages/blog";
 import Error404 from "pages/Error404";
@@ -8,6 +7,8 @@ import Error404 from "pages/Error404";
 const App = lazy(() => import("App"));
 const Home = lazy(() => import("pages/Home"));
 const Shop = lazy(() => import("pages/Shop"));
+const SignIn = lazy(() => import("pages/authentication/SignIn"));
+const SignUp = lazy(() => import("pages/authentication/SignUp"));
 
 const router = createBrowserRouter([
   {
@@ -45,11 +46,25 @@ const router = createBrowserRouter([
               },
             ],
           },
+          {
+            path: "auth",
+            element: <Outlet />,
+            children: [
+              {
+                path: "signin",
+                element: <SignIn />,
+              },
+              {
+                path: "signup",
+                element: <SignUp />,
+              },
+            ],
+          },
         ],
       },
       {
         path: "*",
-        element: <Error404/>,
+        element: <Error404 />,
       },
     ],
   },
