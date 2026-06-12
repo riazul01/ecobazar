@@ -34,14 +34,17 @@ const typography: TypographyVariantsOptions = {
   display1: {
     fontSize: "4rem",
     fontWeight: 600,
+    lineHeight: 1.2,
   },
   display2: {
     fontSize: "3.5rem",
     fontWeight: 600,
+    lineHeight: 1.2,
   },
   display3: {
     fontSize: "3rem",
     fontWeight: 600,
+    lineHeight: 1.2,
   },
   h1: {
     fontSize: "2.5rem",
