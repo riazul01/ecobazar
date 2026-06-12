@@ -19,6 +19,10 @@ import gallery6 from "assets/gallery/img6.webp";
 import gallery7 from "assets/gallery/img7.webp";
 import gallery8 from "assets/gallery/img8.webp";
 
+import IntroImg from "assets/about/intro.webp";
+import FeaturesImg from "assets/about/features.webp";
+import DeliveryImg from "assets/about/delivery.webp";
+
 import fruits from "assets/categories/fruits.png";
 import vegetables from "assets/categories/vegetables.png";
 import proteins from "assets/categories/proteins.png";
@@ -58,6 +62,9 @@ export {
   gallery6,
   gallery7,
   gallery8,
+  IntroImg,
+  FeaturesImg,
+  DeliveryImg,
   visa,
   mastercard,
   discover,
