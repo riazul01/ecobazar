@@ -41,6 +41,7 @@ import CardActions from "./components/card/CardActions";
 import Link from "./components/navigation/Link";
 import Drawer from "./components/navigation/Drawer";
 import PaginationItem from "./components/navigation/PaginationItem";
+import TextField from "./components/input/TextField";
 
 export const theme = createTheme({
   typography,
@@ -78,6 +79,7 @@ export const theme = createTheme({
     MuiOutlinedInput: OutlinedInput,
     MuiInputAdornment: InputAdornment,
     MuiFormControlLabel: FormControlLabel,
+    MuiTextField: TextField,
     MuiCheckbox: Checkbox,
     MuiSelect: Select,
     MuiRadio: Radio,
