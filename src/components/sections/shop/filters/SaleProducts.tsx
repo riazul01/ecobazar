@@ -4,6 +4,7 @@ import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
 import Stack from "@mui/material/Stack";
 import Rating from "@mui/material/Rating";
+import Link from "@mui/material/Link";
 
 const productData = [
   {
@@ -47,6 +48,8 @@ const SaleProducts = () => {
       {productData.map((product, index) => (
         <Card
           key={product.id}
+          component={Link}
+          href="#!"
           sx={(theme) => ({
             display: "flex",
             alignItems: "center",

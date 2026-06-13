@@ -2,7 +2,7 @@ import { useState } from "react";
 import Stack from "@mui/material/Stack";
 import Breadcrumb, { type BreadcrumbItem } from "components/common/BreadCrumb";
 import Filters from "components/sections/shop/filters";
-import Products from "components/sections/shop/products";
+import Products from "components/sections/shop/Products";
 import SectionWrapper from "components/sections/SectionWrapper";
 import FiltersDrawer from "components/sections/shop/FiltersDrawer";
 import { useBreakpoints } from "providers/BreakpointProvider";

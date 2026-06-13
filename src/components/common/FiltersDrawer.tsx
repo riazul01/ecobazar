@@ -42,8 +42,7 @@ const FiltersDrawer = ({
       >
         <Iconify
           icon="mdi:close"
-          color="text.primary"
-          sx={{ pointerEvents: "none" }}
+          sx={{ color: "text.primary", pointerEvents: "none" }}
         />
       </IconButton>
 

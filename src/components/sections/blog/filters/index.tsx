@@ -10,7 +10,7 @@ import RecentlyAdded from "./RecentlyAdded";
 
 const Filters = () => {
   return (
-    <Box sx={{ width: { xs: 1, lg: 424 } }}>
+    <Box sx={{ width: { xs: 1, lg: 424 }, flexShrink: 0 }}>
       <Button
         variant="contained"
         size="medium"

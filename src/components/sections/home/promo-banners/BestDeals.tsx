@@ -1,10 +1,11 @@
+import React from "react";
 import Stack from "@mui/material/Stack";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import Banner from "components/common/Banner";
 import Iconify from "components/base/Iconify";
-import { VegetablesBg } from "data/images";
 import { useCountdown } from "hooks/useCountdown";
+import { VegetablesBg } from "data/images";
 
 const BestDeals = () => {
   const { days, hours, minutes, seconds } = useCountdown(
@@ -46,12 +47,12 @@ const BestDeals = () => {
         sx={{ mt: 2, alignItems: "flex-start", justifyContent: "center" }}
       >
         {[
-          { value: days, label: "Days" },
-          { value: hours, label: "Hours" },
-          { value: minutes, label: "Minutes" },
-          { value: seconds, label: "Seconds" },
+          { id: 1, value: days, label: "Days" },
+          { id: 2, value: hours, label: "Hours" },
+          { id: 3, value: minutes, label: "Minutes" },
+          { id: 4, value: seconds, label: "Seconds" },
         ].map((item, index) => (
-          <>
+          <React.Fragment key={item.id}>
             <div>
               <Typography
                 variant="h3"
@@ -79,7 +80,7 @@ const BestDeals = () => {
                 :
               </Typography>
             )}
-          </>
+          </React.Fragment>
         ))}
       </Stack>
 
