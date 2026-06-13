@@ -50,8 +50,8 @@ const Features = () => {
           fresh, nutritious food every day.
         </Typography>
         <Grid container spacing={3}>
-          {features.map((item) => (
-            <Grid size={{ xs: 12, md: 6 }}>
+          {features.map((item, index) => (
+            <Grid key={item.id} size={{ xs: 12, md: 6 }}>
               <Stack sx={{ alignItems: "center", gap: 2 }}>
                 <Stack
                   sx={(theme) => ({
@@ -63,7 +63,14 @@ const Features = () => {
                     borderRadius: "50%",
                   })}
                 >
-                  {<item.icon sx={{ fontSize: 32, color: "primary.main" }} />}
+                  {
+                    <item.icon
+                      sx={{
+                        fontSize: index % 2 ? 36 : 40,
+                        color: "primary.main",
+                      }}
+                    />
+                  }
                 </Stack>
                 <div>
                   <Typography variant="h6">{item.title}</Typography>

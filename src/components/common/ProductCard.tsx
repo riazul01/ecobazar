@@ -96,7 +96,7 @@ const ProductCard = () => {
             component={Link}
             href="#!"
             variant="h6"
-            color="primary.dark"
+            sx={{ color: "primary.dark" }}
           >
             Chinese cabbage
           </Typography>
@@ -122,16 +122,16 @@ const ProductCard = () => {
             <Typography
               component="ins"
               variant="h6"
-              sx={{ textDecoration: "none" }}
+              sx={{ textDecoration: "none", fontWeight: 500 }}
             >
-              $60
+              $60.00
             </Typography>
             <Typography
               component="del"
               variant="h6"
-              sx={{ color: "grey.400", fontWeight: 500 }}
+              sx={{ color: "grey.400", fontWeight: 400 }}
             >
-              $80
+              $80.00
             </Typography>
           </Stack>
         </Stack>

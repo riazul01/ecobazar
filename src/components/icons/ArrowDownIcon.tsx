@@ -14,9 +14,9 @@ const ArrowDownIcon = (props: SvgIconProps) => {
       <path
         d="M2.91634 4.95834L6.99967 9.04168L11.083 4.95834"
         stroke="currentColor"
-        stroke-width="1.5"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
         fill="none"
       />
     </SvgIcon>

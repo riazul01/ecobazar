@@ -10,11 +10,11 @@ import FilterIcon from "components/icons/FilterIcon";
 import SortBySelect from "components/common/SortBySelect";
 import { products } from "data/products";
 
-interface ProductItemsProps {
+interface ProductsProps {
   toggleDrawer: () => void;
 }
 
-const ProductItems = ({ toggleDrawer }: ProductItemsProps) => {
+const Products = ({ toggleDrawer }: ProductsProps) => {
   const { downLg } = useBreakpoints();
 
   return (
@@ -80,4 +80,4 @@ const ProductItems = ({ toggleDrawer }: ProductItemsProps) => {
   );
 };
 
-export default ProductItems;
+export default Products;

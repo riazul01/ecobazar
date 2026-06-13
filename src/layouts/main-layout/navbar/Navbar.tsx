@@ -9,9 +9,11 @@ import IconButton from "@mui/material/IconButton";
 import SectionWrapper from "components/sections/SectionWrapper";
 import Iconify from "components/base/Iconify";
 import Sidebar from "./Sidebar";
+import { useLocation } from "react-router";
 
 const Navbar = () => {
   const [drawerOpen, setDrawerOpen] = useState(false);
+  const { pathname } = useLocation();
 
   const toggleDrawer = () => {
     setDrawerOpen(!drawerOpen);
@@ -23,20 +25,26 @@ const Navbar = () => {
         <SectionWrapper>
           <Toolbar sx={{ width: 1, justifyContent: "space-between" }}>
             <Box sx={{ display: { xs: "none", md: "block" } }}>
-              {navLinks.map((item) => (
-                <Typography
-                  key={item.id}
-                  variant="subtitle1"
-                  component={Link}
-                  href={item.path}
-                  sx={{
-                    mr: 4,
-                    color: item.active ? "white" : "text.disabled",
-                  }}
-                >
-                  {item.name}
-                </Typography>
-              ))}
+              {navLinks.map((item) => {
+                const isActive =
+                  item.path === "/"
+                    ? pathname === "/"
+                    : pathname.startsWith(item.path);
+                return (
+                  <Typography
+                    key={item.id}
+                    variant="subtitle1"
+                    component={Link}
+                    href={item.path}
+                    sx={{
+                      mr: 4,
+                      color: isActive ? "white" : "text.disabled",
+                    }}
+                  >
+                    {item.name}
+                  </Typography>
+                );
+              })}
             </Box>
 
             <Stack

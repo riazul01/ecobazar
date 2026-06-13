@@ -1,12 +1,12 @@
 import { Suspense, lazy } from "react";
 import { Outlet, createBrowserRouter } from "react-router";
 import MainLayout from "layouts/main-layout";
-import Blog from "pages/blog";
 import Error404 from "pages/Error404";
 
 const App = lazy(() => import("App"));
 const Home = lazy(() => import("pages/Home"));
 const Shop = lazy(() => import("pages/Shop"));
+const Blog = lazy(() => import("pages/Blog"));
 const About = lazy(() => import("pages/About"));
 const Contact = lazy(() => import("pages/Contact"));
 const SignIn = lazy(() => import("pages/authentication/SignIn"));

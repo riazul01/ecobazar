@@ -18,7 +18,7 @@ const RadioCheckedIcon = (props: SvgIconProps) => {
         rx="9.25"
         fill="white"
         stroke="currentColor"
-        stroke-width="1.5"
+        strokeWidth="1.5"
       />
       <rect x="4" y="4" width="12" height="12" rx="6" fill="currentColor" />
     </SvgIcon>

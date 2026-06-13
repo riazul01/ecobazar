@@ -100,7 +100,7 @@ const Newsletter = () => {
               component={Link}
               href={item.link}
             >
-              <Iconify icon={item.icon} color="grey.500" />
+              <Iconify icon={item.icon} sx={{color: 'grey.500'}} />
             </IconButton>
           ))}
         </Stack>

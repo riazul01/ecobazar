@@ -1,4 +1,4 @@
-import * as React from "react";
+import { useState } from "react";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select, { type SelectChangeEvent } from "@mui/material/Select";
@@ -10,7 +10,7 @@ const sortCategories = [
 ];
 
 const SortBySelect = () => {
-  const [age, setAge] = React.useState("Latest");
+  const [age, setAge] = useState("Latest");
 
   const handleChange = (event: SelectChangeEvent) => {
     setAge(event.target.value as string);

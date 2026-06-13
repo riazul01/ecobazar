@@ -10,14 +10,20 @@ const BoxIcon = (props: SvgIconProps) => {
       xmlns="http://www.w3.org/2000/svg"
       {...props}
     >
-      <g clip-path="url(#clip0_460_40930)">
-        <rect opacity="0.1" width="20" height="20" rx="10" fill="currentColor" />
+      <g clipPath="url(#clip0_460_40930)">
+        <rect
+          opacity="0.1"
+          width="20"
+          height="20"
+          rx="10"
+          fill="currentColor"
+        />
         <path
           d="M14.4168 7.125L8.68766 12.8542L6.0835 10.25"
           stroke="currentColor"
-          stroke-width="1.5"
-          stroke-linecap="round"
-          stroke-linejoin="round"
+          strokeWidth="1.5"
+          strokeLinecap="round"
+          strokeLinejoin="round"
           fill="none"
         />
       </g>

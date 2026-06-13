@@ -13,23 +13,23 @@ const FilterIcon = (props: SvgIconProps) => {
       <path
         d="M17.75 4.75H8.75"
         stroke="currentColor"
-        stroke-width="1.5"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
       <path
         d="M12.75 13.75H3.75"
         stroke="currentColor"
-        stroke-width="1.5"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
       <circle
         cx="4.75"
         cy="4.75"
         r="4"
         stroke="currentColor"
-        stroke-width="1.5"
+        strokeWidth="1.5"
         fill="none"
       />
       <circle
@@ -37,7 +37,7 @@ const FilterIcon = (props: SvgIconProps) => {
         cy="13.75"
         r="4"
         stroke="currentColor"
-        stroke-width="1.5"
+        strokeWidth="1.5"
         fill="none"
       />
     </SvgIcon>

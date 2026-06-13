@@ -18,7 +18,7 @@ const Blogs = ({ toggleDrawer }: ProductItemsProps) => {
   const { downLg } = useBreakpoints();
 
   return (
-    <Box sx={{ flex: 1 }}>
+    <Box sx={{ width: 1 }}>
       <Stack
         sx={{
           mb: 3,
@@ -74,7 +74,7 @@ const Blogs = ({ toggleDrawer }: ProductItemsProps) => {
           </Grid>
         ))}
         <Pagination
-          count={10}
+          count={3}
           color="primary"
           size="medium"
           sx={{ mt: 2, mx: "auto" }}
