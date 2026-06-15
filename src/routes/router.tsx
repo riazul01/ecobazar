@@ -1,6 +1,7 @@
 import { Suspense, lazy } from "react";
 import { Outlet, createBrowserRouter } from "react-router";
-import MainLayout from "layouts/main-layout";
+import PageLoader from "components/loader/PageLoader";
+import Splash from "components/loader/Splash";
 import Error404 from "pages/Error404";
 
 const App = lazy(() => import("App"));
@@ -11,11 +12,12 @@ const About = lazy(() => import("pages/About"));
 const Contact = lazy(() => import("pages/Contact"));
 const SignIn = lazy(() => import("pages/authentication/SignIn"));
 const SignUp = lazy(() => import("pages/authentication/SignUp"));
+const MainLayout = lazy(() => import("layouts/main-layout"));
 
 const router = createBrowserRouter([
   {
     element: (
-      <Suspense fallback={<h1>Loading...</h1>}>
+      <Suspense fallback={<Splash />}>
         <App />
       </Suspense>
     ),
@@ -23,7 +25,7 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: (
-          <Suspense fallback={<h1>Loading...</h1>}>
+          <Suspense fallback={<PageLoader />}>
             <MainLayout>
               <Outlet />
             </MainLayout>
