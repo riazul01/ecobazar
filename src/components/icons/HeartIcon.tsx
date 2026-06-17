@@ -1,6 +1,6 @@
 import { SvgIcon, type SvgIconProps } from "@mui/material";
 
-const ShoppingBagIcon = (props: SvgIconProps) => {
+const DashboardIcon = (props: SvgIconProps) => {
   return (
     <SvgIcon
       width="24"
@@ -11,15 +11,13 @@ const ShoppingBagIcon = (props: SvgIconProps) => {
       {...props}
     >
       <path
-        d="M8 10H5L3 21H21L19 10H16M8 10V7C8 4.79086 9.79086 3 12 3C14.2091 3 16 4.79086 16 7V10M8 10H16M8 10V13M16 10V13"
+        d="M11.9997 21.0538C-7.99987 9.99967 6.00011 -2.00033 11.9997 5.58772C18.0001 -2.00034 32.0001 9.99967 11.9997 21.0538Z"
         stroke="currentColor"
         stroke-width="1.5"
-        stroke-linecap="round"
-        stroke-linejoin="round"
         fill="none"
       />
     </SvgIcon>
   );
 };
 
-export default ShoppingBagIcon;
+export default DashboardIcon;

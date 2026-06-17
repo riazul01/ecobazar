@@ -3,6 +3,9 @@ import { Outlet, createBrowserRouter } from "react-router";
 import PageLoader from "components/loader/PageLoader";
 import Splash from "components/loader/Splash";
 import Error404 from "pages/Error404";
+import AccountLayout from "layouts/account-layout";
+import Dashboard from "pages/account/Dashboard";
+import { accountPaths, paths } from "./paths";
 
 const App = lazy(() => import("App"));
 const Home = lazy(() => import("pages/Home"));
@@ -69,6 +72,24 @@ const router = createBrowserRouter([
               {
                 path: "signup",
                 element: <SignUp />,
+              },
+            ],
+          },
+          {
+            path: paths.account,
+            element: (
+              <AccountLayout>
+                <Outlet />
+              </AccountLayout>
+            ),
+            children: [
+              {
+                index: true,
+                element: <Dashboard />,
+              },
+              {
+                path: accountPaths.dashboard,
+                element: <Dashboard />,
               },
             ],
           },
