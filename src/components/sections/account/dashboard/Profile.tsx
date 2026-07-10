@@ -1,4 +1,7 @@
-import { Avatar, Link, Stack, Typography } from "@mui/material";
+import Avatar from "@mui/material/Avatar";
+import Link from "@mui/material/Link";
+import Stack from "@mui/material/Stack";
+import Typography from "@mui/material/Typography";
 import ProfileImg from "assets/profiles/user2.webp";
 
 const Profile = () => {

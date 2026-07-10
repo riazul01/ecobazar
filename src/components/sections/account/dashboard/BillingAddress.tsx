@@ -1,4 +1,6 @@
-import { Box, Link, Typography } from "@mui/material";
+import Box from "@mui/material/Box";
+import Link from "@mui/material/Link";
+import Typography from "@mui/material/Typography";
 
 const BillingAddress = () => {
   return (
@@ -26,7 +28,7 @@ const BillingAddress = () => {
         4140 Parker Rd. Allentown, New Mexico 31134
       </Typography>
       <Typography variant="body1" sx={{ mb: 1 }}>
-        dainne.ressell@gmail.com
+        ressell@example.com
       </Typography>
       <Typography variant="body1" sx={{ mb: 2 }}>
         (671) 555-0110

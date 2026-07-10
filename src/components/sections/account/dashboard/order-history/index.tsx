@@ -1,5 +1,5 @@
-import { Typography } from "@mui/material";
 import Box from "@mui/material/Box";
+import Typography from "@mui/material/Typography";
 import OrderHistoryTable from "./OrderHistoryTable";
 
 const OrderHistory = () => {
@@ -9,8 +9,6 @@ const OrderHistory = () => {
         border: 1,
         borderColor: "divider",
         borderRadius: 2,
-        flexDirection: "column",
-        alignItems: "center",
         overflow: "hidden",
       }}
     >

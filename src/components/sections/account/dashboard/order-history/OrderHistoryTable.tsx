@@ -2,6 +2,7 @@ import Chip from "@mui/material/Chip";
 import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
 import { DataGrid, type GridColDef } from "@mui/x-data-grid";
+import DataTableFooter from "components/common/DataTableFooter";
 import ActionMenu from "./ActionMenu";
 import { rows } from "./temp";
 
@@ -121,9 +122,9 @@ const OrderHistoryTable = () => {
         outliersFactor: 1,
         expand: true,
       }}
-      //   slots={{
-      //     pagination: DataGridFooter,
-      //   }}
+      slots={{
+        pagination: DataTableFooter,
+      }}
       // checkboxSelection
       pageSizeOptions={[5]}
     />

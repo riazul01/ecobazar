@@ -7,6 +7,7 @@ import IconButton from "@mui/material/IconButton";
 import ListItemText from "@mui/material/ListItemText";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import IconifyIcon from "components/base/Iconify";
+import { listClasses } from "@mui/material";
 
 interface Action {
   id: number;
@@ -67,7 +68,7 @@ const ActionMenu = () => {
         onClick={handleActionMenuClose}
         sx={{
           mt: 0.5,
-          "& .MuiList-root": {
+          [`& .${listClasses.root}`]: {
             width: 140,
           },
         }}
