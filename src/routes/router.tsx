@@ -6,6 +6,8 @@ import Error404 from "pages/Error404";
 import AccountLayout from "layouts/account-layout";
 import Dashboard from "pages/account/Dashboard";
 import { accountPaths, paths } from "./paths";
+import OrderHistory from "pages/account/OrderHistory";
+import OrderDetails from "pages/account/OrderDetails";
 
 const App = lazy(() => import("App"));
 const Home = lazy(() => import("pages/Home"));
@@ -90,6 +92,14 @@ const router = createBrowserRouter([
               {
                 path: accountPaths.dashboard,
                 element: <Dashboard />,
+              },
+              {
+                path: accountPaths.orderHistory,
+                element: <OrderHistory />,
+              },
+              {
+                path: accountPaths.orderDetails,
+                element: <OrderDetails />,
               },
             ],
           },

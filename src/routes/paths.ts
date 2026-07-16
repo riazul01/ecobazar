@@ -14,4 +14,6 @@ export const paths = {
 
 export const accountPaths = {
   dashboard: `${paths.account}/dashboard`,
+  orderHistory: `${paths.account}/order-history`,
+  orderDetails: `${paths.account}/order-history/:id`,
 };
