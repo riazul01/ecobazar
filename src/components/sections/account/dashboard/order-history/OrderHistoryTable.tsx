@@ -3,10 +3,10 @@ import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
 import { DataGrid, type GridColDef } from "@mui/x-data-grid";
 import DataTableFooter from "components/common/DataTableFooter";
-import ActionMenu from "./ActionMenu";
-import { rows } from "./temp";
+import ActionMenu from "components/sections/common/ActionMenu";
+import { orderHistory } from "data/order-history";
 
-const columns: GridColDef<(typeof rows)[number]>[] = [
+const columns: GridColDef<(typeof orderHistory)[number]>[] = [
   {
     field: "id",
     headerName: "Order Id",
@@ -106,7 +106,7 @@ const OrderHistoryTable = () => {
       //   apiRef={apiRef}
       density="standard"
       columns={columns}
-      rows={rows}
+      rows={orderHistory}
       rowHeight={50}
       columnHeaderHeight={36}
       disableColumnResize
@@ -125,7 +125,6 @@ const OrderHistoryTable = () => {
       slots={{
         pagination: DataTableFooter,
       }}
-      // checkboxSelection
       pageSizeOptions={[5]}
     />
   );
