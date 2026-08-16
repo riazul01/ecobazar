@@ -8,6 +8,7 @@ import Dashboard from "pages/account/Dashboard";
 import { accountPaths, paths } from "./paths";
 import OrderHistory from "pages/account/OrderHistory";
 import OrderDetails from "pages/account/OrderDetails";
+import Settings from "pages/account/Settings";
 
 const App = lazy(() => import("App"));
 const Home = lazy(() => import("pages/Home"));
@@ -100,6 +101,10 @@ const router = createBrowserRouter([
               {
                 path: accountPaths.orderDetails,
                 element: <OrderDetails />,
+              },
+              {
+                path: accountPaths.settings,
+                element: <Settings />,
               },
             ],
           },
