@@ -206,11 +206,7 @@ const AccountSettings = ({ initialData = {} }: AccountSettingsProps) => {
             />
           </Box>
 
-          <Button
-            type="submit"
-            variant="contained"
-            sx={{ minWidth: { xs: 1, sm: 200 } }}
-          >
+          <Button type="submit" variant="contained" sx={{ width: 200 }}>
             Save Changes
           </Button>
         </Box>
