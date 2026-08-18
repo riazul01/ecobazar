@@ -26,7 +26,6 @@ const Select: Components<Theme>["MuiSelect"] = {
       },
     }),
     select: ({ theme }) => ({
-      padding: theme.spacing(1, 2),
       color: theme.palette.text.secondary,
       fontSize: theme.typography.body2.fontSize,
       backgroundColor: "transparent !important",

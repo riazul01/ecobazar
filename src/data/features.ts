@@ -1,7 +1,7 @@
 import BoxIcon from "components/icons/BoxIcon";
 import HeadsetIcon from "components/icons/HeadsetIcon";
 import LeafIcon from "components/icons/LeafIcon";
-import ShoppingBagIcon from "components/icons/ShoppingBagIcon";
+import ShoppingBagIcon from "components/icons/ShoppingBagCheckIcon";
 import SparkleIcon from "components/icons/SparkleIcon";
 import TruckIcon from "components/icons/TruckIcon";
 

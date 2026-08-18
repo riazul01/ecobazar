@@ -25,6 +25,12 @@ const Button: Components<Theme>["MuiButton"] = {
         background: theme.palette.common.white,
       },
     }),
+    outlined: ({ theme }) => ({
+      "&.MuiButton-colorPrimary": {
+        color: theme.palette.primary.main,
+        border: `1.5px solid ${theme.palette.primary.main} !important`,
+      },
+    }),
     sizeLarge: ({ theme }) => ({
       padding: theme.spacing(1.5, 3.5),
       fontSize: theme.typography.body1.fontSize,
