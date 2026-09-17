@@ -5,6 +5,7 @@ import Header from "./header/Header";
 import Navbar from "./navbar/Navbar";
 import Newsletter from "./Newsletter";
 import Footer from "./Footer";
+import CartDrawer from "components/common/CartDrawer";
 
 const MainLayout = ({ children }: PropsWithChildren) => {
   return (
@@ -15,6 +16,7 @@ const MainLayout = ({ children }: PropsWithChildren) => {
       {children}
       <Newsletter />
       <Footer />
+      <CartDrawer />
     </Box>
   );
 };

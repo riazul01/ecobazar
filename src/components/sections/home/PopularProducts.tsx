@@ -16,7 +16,7 @@ const PopularProducts = () => {
             size={{ xs: 12, sm: 6, md: 4, lg: 3 }}
             sx={{ mx: "auto", maxWidth: { xs: 320, sm: 1 } }}
           >
-            <ProductCard />
+            <ProductCard data={item} />
           </Grid>
         ))}
       </Grid>

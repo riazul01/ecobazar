@@ -66,7 +66,7 @@ const Products = ({ toggleDrawer }: ProductsProps) => {
       <Grid container spacing={2} sx={{ mb: 4 }}>
         {products.slice(0, 12).map((item) => (
           <Grid key={item.id} size={{ xs: 12, sm: 6, md: 4 }}>
-            <ProductCard />
+            <ProductCard data={item} />
           </Grid>
         ))}
         <Pagination

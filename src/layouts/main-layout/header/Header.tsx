@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useBreakpoints } from "providers/BreakpointProvider";
+import { useCart } from "providers/CartProvider";
 import Link from "@mui/material/Link";
 import Stack from "@mui/material/Stack";
 import Badge from "@mui/material/Badge";
@@ -17,6 +18,7 @@ import SearchBox from "components/common/SearchBox";
 const Header = () => {
   const [openSearch, setOpenSearch] = useState(false);
   const { downSm } = useBreakpoints();
+  const { openCart, totalCount, subtotal } = useCart();
 
   return (
     <>
@@ -63,14 +65,30 @@ const Header = () => {
           >
             |
           </Typography>
-          <Stack
-            component={Link}
-            href="/cart"
-            sx={{ gap: 1.5, alignItems: "center", flexShrink: 0 }}
+          <ButtonBase
+            onClick={openCart}
+            disableRipple
+            aria-label="Open shopping cart"
+            sx={{
+              display: "flex",
+              gap: 1.5,
+              alignItems: "center",
+              flexShrink: 0,
+              cursor: "pointer",
+              textAlign: "left",
+              "&:hover .shopping-bag-icon": {
+                transform: "scale(1.08)",
+              },
+            }}
           >
-            <Badge badgeContent={20} color="success">
+            <Badge badgeContent={totalCount} color="success">
               <ShoppingBagLightIcon
-                sx={{ color: "text.primary", fontSize: { xs: 28, md: 36 } }}
+                className="shopping-bag-icon"
+                sx={{
+                  color: "text.primary",
+                  fontSize: { xs: 28, md: 36 },
+                  transition: "transform 0.2s ease-in-out",
+                }}
               />
             </Badge>
             <Stack
@@ -83,11 +101,11 @@ const Header = () => {
               <Typography variant="caption" sx={{ color: "text.secondary" }}>
                 Shopping cart:
               </Typography>
-              <Typography variant="subtitle1" sx={{ color: "text.primary" }}>
-                $120
+              <Typography variant="subtitle1" sx={{ color: "text.primary", fontWeight: 600 }}>
+                ${subtotal.toFixed(2)}
               </Typography>
             </Stack>
-          </Stack>
+          </ButtonBase>
         </Stack>
       </SectionWrapper>
 

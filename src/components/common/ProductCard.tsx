@@ -12,9 +12,68 @@ import CardActions from "@mui/material/CardActions";
 import Typography from "@mui/material/Typography";
 import IconButton from "@mui/material/IconButton";
 import Iconify from "components/base/Iconify";
+import { useCart } from "providers/CartProvider";
+import type { ProductData } from "data/products";
 
-const ProductCard = () => {
-  const addedToCart = false;
+export interface ProductCardProps {
+  data?: ProductData;
+  product?: ProductData;
+}
+
+const defaultProduct: ProductData = {
+  id: 1,
+  name: "Chinese cabbage",
+  weight: 1,
+  unit: "kg",
+  price: 60,
+  discountInPercent: 10,
+  rating: 4.5,
+  ratingCount: 4200,
+  image:
+    "https://images.pexels.com/photos/35974369/pexels-photo-35974369/free-photo-of-fresh-organic-vegetables-and-fruits-display.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+  desc: "",
+  category: "vegetables",
+  subCategory: "featured",
+  tags: ["vegetable", "green", "organic"],
+  inStock: true,
+  stockCount: 1200,
+  sales: 124032,
+  brandName: "freshfirm",
+  brandLink: "",
+};
+
+const ProductCard = ({ data, product }: ProductCardProps) => {
+  const currentProduct = data || product || defaultProduct;
+  const { items, addToCart, updateQuantity } = useCart();
+
+  const productId = currentProduct.id;
+  const cartItem = items.find(
+    (item) => String(item.id) === String(productId),
+  );
+  const quantity = cartItem ? cartItem.quantity : 0;
+
+  const handleAddToCart = () => {
+    addToCart(
+      {
+        id: productId,
+        name: currentProduct.name,
+        price: currentProduct.price,
+        image: currentProduct.image,
+        unit: currentProduct.unit,
+        weight: `${currentProduct.weight} ${currentProduct.unit}`,
+      },
+      1,
+      false,
+    );
+  };
+
+  const originalPrice =
+    currentProduct.discountInPercent > 0
+      ? (
+          currentProduct.price /
+          (1 - currentProduct.discountInPercent / 100)
+        ).toFixed(2)
+      : null;
 
   return (
     <Card
@@ -23,22 +82,32 @@ const ProductCard = () => {
         outline: 1,
         outlineColor: "divider",
         borderRadius: 2,
+        // height: "100%",
+        // display: "flex",
+        // flexDirection: "column",
+        // justifyContent: "space-between",
       }}
     >
       <Box sx={{ position: "relative", cursor: "pointer" }}>
         <CardMedia
           component="img"
-          image={`https://images.pexels.com/photos/35974369/pexels-photo-35974369/free-photo-of-fresh-organic-vegetables-and-fruits-display.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1`}
-          alt="product_image"
+          image={currentProduct.image}
+          alt={currentProduct.name}
           height={240}
-          sx={{ borderTopLeftRadius: 6, borderTopRightRadius: 6 }}
+          sx={{
+            borderTopLeftRadius: 6,
+            borderTopRightRadius: 6,
+            objectFit: "cover",
+          }}
         />
-        <Chip
-          label="30% OFF"
-          size="small"
-          color="error"
-          sx={{ position: "absolute", top: 10, right: 10 }}
-        />
+        {currentProduct.discountInPercent > 0 && (
+          <Chip
+            label={`${currentProduct.discountInPercent}% OFF`}
+            size="small"
+            color="error"
+            sx={{ position: "absolute", top: 10, right: 10, fontWeight: 700 }}
+          />
+        )}
         <Stack
           sx={(theme) => ({
             position: "absolute",
@@ -86,7 +155,7 @@ const ProductCard = () => {
         </Stack>
       </Box>
 
-      <CardContent>
+      <CardContent sx={{ flex: 1 }}>
         <Stack
           spacing={1}
           direction="column"
@@ -96,15 +165,19 @@ const ProductCard = () => {
             component={Link}
             href="#!"
             variant="h6"
-            sx={{ color: "primary.dark" }}
+            sx={{
+              color: "primary.dark",
+              textAlign: "center",
+              lineHeight: 1.3,
+            }}
           >
-            Chinese cabbage
+            {currentProduct.name}
           </Typography>
           <Stack spacing={1} sx={{ alignItems: "center" }}>
             <Rating
-              name="half-rating-read"
+              name={`rating-${productId}`}
               size="small"
-              defaultValue={4.5}
+              defaultValue={currentProduct.rating || 4.5}
               precision={0.5}
               readOnly
             />
@@ -112,36 +185,43 @@ const ProductCard = () => {
               variant="body2"
               sx={{ color: "neutral.lighter", fontWeight: 500 }}
             >
-              (4.2k)
+              (
+              {currentProduct.ratingCount >= 1000
+                ? `${(currentProduct.ratingCount / 1000).toFixed(1)}k`
+                : currentProduct.ratingCount}
+              )
             </Typography>
           </Stack>
           <Typography variant="subtitle2" color="neutral.lighter">
-            1 kg
+            {currentProduct.weight} {currentProduct.unit}
           </Typography>
           <Stack spacing={1} sx={{ alignItems: "center" }}>
             <Typography
               component="ins"
               variant="h6"
-              sx={{ textDecoration: "none", fontWeight: 500 }}
+              sx={{ textDecoration: "none", fontWeight: 600 }}
             >
-              $60.00
+              ${currentProduct.price.toFixed(2)}
             </Typography>
-            <Typography
-              component="del"
-              variant="h6"
-              sx={{ color: "grey.400", fontWeight: 400 }}
-            >
-              $80.00
-            </Typography>
+            {originalPrice && (
+              <Typography
+                component="del"
+                variant="h6"
+                sx={{ color: "grey.400", fontWeight: 400 }}
+              >
+                ${originalPrice}
+              </Typography>
+            )}
           </Stack>
         </Stack>
       </CardContent>
 
       <CardActions disableSpacing>
-        {!addedToCart ? (
+        {quantity === 0 ? (
           <Button
             variant="contained"
             size="medium"
+            onClick={handleAddToCart}
             startIcon={
               <Iconify icon="material-symbols:shopping-cart-outline-rounded" />
             }
@@ -153,6 +233,7 @@ const ProductCard = () => {
         ) : (
           <Stack
             spacing={1}
+            direction="row"
             sx={{
               width: 1,
               alignItems: "center",
@@ -161,8 +242,16 @@ const ProductCard = () => {
           >
             <IconButton
               size="large"
+              onClick={() => updateQuantity(productId, quantity - 1)}
+              aria-label="Decrease quantity"
               sx={(theme) => ({
                 background: `${theme.palette.grey[100]} !important`,
+                color: "text.primary",
+                transition: "all 0.2s ease-in-out",
+                "&:hover": {
+                  background: `${theme.palette.grey[200]} !important`,
+                  color: "error.main",
+                },
               })}
             >
               <Iconify icon="mingcute:minimize-line" />
@@ -171,17 +260,32 @@ const ProductCard = () => {
               variant="text"
               sx={(theme) => ({
                 px: 0,
+                flex: 1,
+                fontWeight: 600,
+                color: "text.primary",
                 bgcolor: `${theme.palette.grey[100]} !important`,
+                cursor: "default",
+                "&:hover": {
+                  bgcolor: `${theme.palette.grey[100]} !important`,
+                },
               })}
               fullWidth
               disableRipple
             >
-              10 in Cart
+              {quantity} in Cart
             </Button>
             <IconButton
               size="large"
+              onClick={() => updateQuantity(productId, quantity + 1)}
+              aria-label="Increase quantity"
               sx={(theme) => ({
                 background: `${theme.palette.grey[100]} !important`,
+                color: "text.primary",
+                transition: "all 0.2s ease-in-out",
+                "&:hover": {
+                  background: `${theme.palette.grey[200]} !important`,
+                  color: "primary.main",
+                },
               })}
             >
               <Iconify icon="mingcute:add-line" />
