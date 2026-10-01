@@ -34,44 +34,11 @@ interface CartContextType {
   totalCount: number;
 }
 
-const initialCartItems: CartItem[] = [
-  {
-    id: 1,
-    name: "Fresh Green Apple",
-    price: 14.99,
-    quantity: 2,
-    image:
-      "https://images.unsplash.com/photo-1560806887-1e4cd0b6cbd6?auto=format&fit=crop&w=600&q=80",
-    unit: "kg",
-    weight: "1 kg",
-  },
-  {
-    id: 2,
-    name: "Chinese Cabbage",
-    price: 12.0,
-    quantity: 1,
-    image:
-      "https://images.unsplash.com/photo-1598170845058-32b9d6a5da37?auto=format&fit=crop&w=600&q=80",
-    unit: "kg",
-    weight: "1 kg",
-  },
-  {
-    id: 3,
-    name: "Fresh Orange",
-    price: 9.5,
-    quantity: 3,
-    image:
-      "https://images.unsplash.com/photo-1547514701-42782101795e?auto=format&fit=crop&w=600&q=80",
-    unit: "kg",
-    weight: "1 kg",
-  },
-];
-
 const CartContext = createContext<CartContextType | undefined>(undefined);
 
 export const CartProvider = ({ children }: { children: ReactNode }) => {
   const [cartOpen, setCartOpen] = useState(false);
-  const [items, setItems] = useState<CartItem[]>(initialCartItems);
+  const [items, setItems] = useState<CartItem[]>([]);
 
   const openCart = () => setCartOpen(true);
   const closeCart = () => setCartOpen(false);
