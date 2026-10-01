@@ -16,8 +16,7 @@ const Chip: Components<Theme>["MuiChip"] = {
       background: theme.palette.grey[900],
     }),
     label: {
-      padding: "0px 16px",
-      color: "white",
+      padding: "0px 12px",
       fontWeight: 500,
     },
   },

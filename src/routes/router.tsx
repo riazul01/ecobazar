@@ -9,6 +9,7 @@ import { accountPaths, paths } from "./paths";
 import OrderHistory from "pages/account/OrderHistory";
 import OrderDetails from "pages/account/OrderDetails";
 import Settings from "pages/account/Settings";
+import ProductDetails from "pages/ProductDetails";
 
 const App = lazy(() => import("App"));
 const Home = lazy(() => import("pages/Home"));
@@ -45,6 +46,10 @@ const router = createBrowserRouter([
           {
             path: "shop",
             element: <Shop />,
+          },
+          {
+            path: "product-details",
+            element: <ProductDetails/>,
           },
           {
             path: "blog",

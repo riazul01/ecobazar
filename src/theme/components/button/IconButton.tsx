@@ -6,7 +6,7 @@ const IconButton: Components<Theme>["MuiIconButton"] = {
       marginLeft: 0,
       padding: theme.spacing(1),
       color: theme.palette.text.secondary,
-      background: "transparent !important",
+      background: "transparent",
     }),
     sizeLarge: ({ theme }) => ({
       padding: theme.spacing(1),

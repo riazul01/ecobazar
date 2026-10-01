@@ -19,7 +19,7 @@ export interface ProductData {
   brandLink: string;
 }
 
-const sampleProducts: ProductData[] = [
+const products: ProductData[] = [
   {
     id: 1,
     name: "Fresh Green Apple",
@@ -75,7 +75,7 @@ const sampleProducts: ProductData[] = [
       "https://images.unsplash.com/photo-1547514701-42782101795e?auto=format&fit=crop&w=600&q=80",
     desc: "Sun-ripened juicy citrus oranges rich in Vitamin C.",
     category: "fruits",
-    subCategory: "hot deals",
+    subCategory: "featured",
     tags: ["orange", "fruit", "citrus"],
     inStock: true,
     stockCount: 650,
@@ -264,7 +264,7 @@ const sampleProducts: ProductData[] = [
       "https://images.unsplash.com/photo-1587049352846-4a222e784d38?auto=format&fit=crop&w=600&q=80",
     desc: "Extra sweet and refreshing summer watermelon.",
     category: "fruits",
-    subCategory: "popular",
+    subCategory: "featured",
     tags: ["watermelon", "fruit", "summer"],
     inStock: true,
     stockCount: 390,
@@ -272,17 +272,294 @@ const sampleProducts: ProductData[] = [
     brandName: "TropiFruit",
     brandLink: "",
   },
+  {
+    id: 13,
+    name: "Fresh Organic Spinach",
+    weight: 500,
+    unit: "g",
+    price: 4.99,
+    discountInPercent: 0,
+    rating: 4.7,
+    ratingCount: 4300,
+    image:
+      "https://images.unsplash.com/photo-1576045057995-568f588f82fb?auto=format&fit=crop&w=600&q=80",
+    desc: "Tender, iron-rich fresh organic baby spinach leaves.",
+    category: "vegetables",
+    subCategory: "popular",
+    tags: ["spinach", "organic", "green"],
+    inStock: true,
+    stockCount: 980,
+    sales: 78000,
+    brandName: "EcoGreens",
+    brandLink: "",
+  },
+  {
+    id: 14,
+    name: "Fresh Blueberries",
+    weight: 250,
+    unit: "g",
+    price: 12.5,
+    discountInPercent: 25,
+    rating: 4.9,
+    ratingCount: 8100,
+    image:
+      "https://images.unsplash.com/photo-1498557850523-fd3d118b962e?auto=format&fit=crop&w=600&q=80",
+    desc: "Antioxidant-rich plump organic blueberries.",
+    category: "fruits",
+    subCategory: "hot deals",
+    tags: ["blueberries", "berries", "fruit"],
+    inStock: true,
+    stockCount: 620,
+    sales: 91400,
+    brandName: "BerryBest",
+    brandLink: "",
+  },
+  {
+    id: 15,
+    name: "Organic Red Bell Pepper",
+    weight: 1,
+    unit: "kg",
+    price: 8.5,
+    discountInPercent: 0,
+    rating: 4.5,
+    ratingCount: 3200,
+    image:
+      "https://images.unsplash.com/photo-1525607551316-4a8e16d1f9ba?auto=format&fit=crop&w=600&q=80",
+    desc: "Sweet, crunchy and vitamin-loaded red bell peppers.",
+    category: "vegetables",
+    subCategory: "popular",
+    tags: ["peppers", "vegetable", "organic"],
+    inStock: true,
+    stockCount: 750,
+    sales: 46200,
+    brandName: "FreshFarm",
+    brandLink: "",
+  },
+  {
+    id: 16,
+    name: "Fresh Organic Kiwi",
+    weight: 1,
+    unit: "kg",
+    price: 10.99,
+    discountInPercent: 30,
+    rating: 4.8,
+    ratingCount: 4600,
+    image:
+      "https://images.unsplash.com/photo-1585059895524-72359e06133a?auto=format&fit=crop&w=600&q=80",
+    desc: "Tangy-sweet fresh organic green kiwis.",
+    category: "fruits",
+    subCategory: "hot deals",
+    tags: ["kiwi", "fruit", "organic"],
+    inStock: true,
+    stockCount: 580,
+    sales: 64200,
+    brandName: "TropiFruit",
+    brandLink: "",
+  },
+  {
+    id: 17,
+    name: "Fresh Hass Avocado",
+    weight: 1,
+    unit: "kg",
+    price: 9.99,
+    discountInPercent: 15,
+    rating: 4.9,
+    ratingCount: 11200,
+    image:
+      "https://images.unsplash.com/photo-1523049673857-eb18f1d7b578?auto=format&fit=crop&w=600&q=80",
+    desc: "Creamy, nutrient-packed ripe Hass avocados.",
+    category: "fruits",
+    subCategory: "popular",
+    tags: ["avocado", "fruit", "healthy"],
+    inStock: true,
+    stockCount: 1100,
+    sales: 145000,
+    brandName: "EcoGreens",
+    brandLink: "",
+  },
+  {
+    id: 18,
+    name: "Organic Fresh Cauliflower",
+    weight: 1,
+    unit: "kg",
+    price: 7.99,
+    discountInPercent: 20,
+    rating: 4.4,
+    ratingCount: 2700,
+    image:
+      "https://images.unsplash.com/photo-1568584711075-3d021a7c3ca3?auto=format&fit=crop&w=600&q=80",
+    desc: "Tender, snow-white fresh organic cauliflower head.",
+    category: "vegetables",
+    subCategory: "hot deals",
+    tags: ["cauliflower", "vegetables", "organic"],
+    inStock: true,
+    stockCount: 690,
+    sales: 38400,
+    brandName: "FreshFarm",
+    brandLink: "",
+  },
+  {
+    id: 19,
+    name: "Sweet Honey Mango",
+    weight: 1,
+    unit: "kg",
+    price: 15.0,
+    discountInPercent: 35,
+    rating: 4.9,
+    ratingCount: 10500,
+    image:
+      "https://images.unsplash.com/photo-1553279768-865429fa0078?auto=format&fit=crop&w=600&q=80",
+    desc: "Luscious, aromatic and sweet honey mangoes.",
+    category: "fruits",
+    subCategory: "hot deals",
+    tags: ["mango", "fruit", "tropical"],
+    inStock: true,
+    stockCount: 420,
+    sales: 128000,
+    brandName: "TropiFruit",
+    brandLink: "",
+  },
+  {
+    id: 20,
+    name: "Fresh Red Radish",
+    weight: 500,
+    unit: "g",
+    price: 5.49,
+    discountInPercent: 10,
+    rating: 4.3,
+    ratingCount: 1800,
+    image:
+      "https://images.unsplash.com/photo-1593105544559-ecb03bf76f82?auto=format&fit=crop&w=600&q=80",
+    desc: "Crisp and peppery garden-fresh red radishes.",
+    category: "vegetables",
+    subCategory: "popular",
+    tags: ["radish", "vegetable", "fresh"],
+    inStock: true,
+    stockCount: 840,
+    sales: 29500,
+    brandName: "FreshFarm",
+    brandLink: "",
+  },
+  {
+    id: 21,
+    name: "Organic Seedless Grapes",
+    weight: 500,
+    unit: "g",
+    price: 13.5,
+    discountInPercent: 20,
+    rating: 4.7,
+    ratingCount: 5900,
+    image:
+      "https://images.unsplash.com/photo-1537640538966-79f369143f8f?auto=format&fit=crop&w=600&q=80",
+    desc: "Sweet and juicy cluster of organic red seedless grapes.",
+    category: "fruits",
+    subCategory: "popular",
+    tags: ["grapes", "fruit", "organic"],
+    inStock: true,
+    stockCount: 770,
+    sales: 82000,
+    brandName: "BerryBest",
+    brandLink: "",
+  },
+  {
+    id: 22,
+    name: "Fresh Organic Mushrooms",
+    weight: 400,
+    unit: "g",
+    price: 8.5,
+    discountInPercent: 0,
+    rating: 4.6,
+    ratingCount: 3900,
+    image:
+      "https://images.unsplash.com/photo-1504544750208-dc0358e63f7f?auto=format&fit=crop&w=600&q=80",
+    desc: "Earthy and firm organic button mushrooms.",
+    category: "vegetables",
+    subCategory: "featured",
+    tags: ["mushrooms", "vegetable", "organic"],
+    inStock: true,
+    stockCount: 910,
+    sales: 54000,
+    brandName: "EcoGreens",
+    brandLink: "",
+  },
+  {
+    id: 23,
+    name: "Sweet Green Cucumber",
+    weight: 1,
+    unit: "kg",
+    price: 4.5,
+    discountInPercent: 15,
+    rating: 4.5,
+    ratingCount: 3400,
+    image:
+      "https://images.unsplash.com/photo-1449300079323-02e209d9d3a6?auto=format&fit=crop&w=600&q=80",
+    desc: "Hydrating and crisp farm fresh green cucumbers.",
+    category: "vegetables",
+    subCategory: "featured",
+    tags: ["cucumber", "vegetables", "fresh"],
+    inStock: true,
+    stockCount: 1500,
+    sales: 97000,
+    brandName: "FreshFarm",
+    brandLink: "",
+  },
+  {
+    id: 24,
+    name: "Fresh Lemon Box",
+    weight: 1,
+    unit: "kg",
+    price: 6.99,
+    discountInPercent: 25,
+    rating: 4.7,
+    ratingCount: 4800,
+    image:
+      "https://images.unsplash.com/photo-1534723452862-4c874018d66d?auto=format&fit=crop&w=600&q=80",
+    desc: "Zesty, aromatic fresh yellow lemons full of natural juice.",
+    category: "fruits",
+    subCategory: "hot deals",
+    tags: ["lemon", "citrus", "fruit"],
+    inStock: true,
+    stockCount: 880,
+    sales: 73000,
+    brandName: "CitrusGrove",
+    brandLink: "",
+  },
 ];
 
-const products: ProductData[] = [...sampleProducts];
+// Curated collections for different home sections
+export const popularProducts: ProductData[] = [
+  products[0], // Fresh Green Apple
+  products[8], // Ripe Yellow Bananas
+  products[3], // Organic Red Tomato
+  products[6], // Organic Sweet Corn
+  products[16], // Fresh Hass Avocado
+  products[20], // Organic Seedless Grapes
+  products[12], // Fresh Organic Spinach
+  products[19], // Fresh Red Radish
+];
 
-// Populate up to 24 items with repeated variations
-while (products.length < 24) {
-  const base = sampleProducts[products.length % sampleProducts.length];
-  products.push({
-    ...base,
-    id: products.length + 1,
-  });
-}
+export const hotDealsProducts: ProductData[] = [
+  products[18], // Sweet Honey Mango (35% off)
+  products[5], // Sweet Red Strawberries (30% off)
+  products[15], // Fresh Organic Kiwi (30% off)
+  products[13], // Fresh Blueberries (25% off)
+  products[23], // Fresh Lemon Box (25% off)
+  products[10], // Purple Eggplant (20% off)
+  products[17], // Organic Fresh Cauliflower (20% off)
+  products[0], // Fresh Green Apple (20% off)
+];
+
+export const featuredProducts: ProductData[] = [
+  products[1], // Chinese Cabbage
+  products[4], // Fresh Broccoli Florets
+  products[7], // Fresh Bell Peppers
+  products[9], // Fresh Carrots Bunch
+  products[11], // Juicy Red Watermelon
+  products[21], // Fresh Organic Mushrooms
+  products[2], // Fresh Orange
+  products[22], // Sweet Green Cucumber
+  products[16], // Fresh Hass Avocado
+  products[13], // Fresh Blueberries
+];
 
 export { products };

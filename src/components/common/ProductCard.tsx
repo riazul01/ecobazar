@@ -14,6 +14,7 @@ import IconButton from "@mui/material/IconButton";
 import Iconify from "components/base/Iconify";
 import { useCart } from "providers/CartProvider";
 import type { ProductData } from "data/products";
+import { paths } from "routes/paths";
 
 export interface ProductCardProps {
   data?: ProductData;
@@ -133,6 +134,8 @@ const ProductCard = ({ data, product }: ProductCardProps) => {
           })}
         >
           <IconButton
+            component={Link}
+            href={paths.productDetails}
             size="large"
             sx={{ background: `rgba(0, 0, 0, 0.45) !important` }}
           >
@@ -163,12 +166,17 @@ const ProductCard = ({ data, product }: ProductCardProps) => {
         >
           <Typography
             component={Link}
-            href="#!"
+            href={paths.productDetails}
             variant="h6"
             sx={{
               color: "primary.dark",
               textAlign: "center",
               lineHeight: 1.3,
+              textDecoration: "none",
+              "&:hover": {
+                color: "primary.main",
+                textDecoration: "underline",
+              },
             }}
           >
             {currentProduct.name}
