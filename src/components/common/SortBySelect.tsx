@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useSearchParams } from "react-router";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select, { type SelectChangeEvent } from "@mui/material/Select";
@@ -8,21 +8,32 @@ const sortCategories = [
   { label: "Latest", value: "Latest" },
   { label: "Price: Low to High", value: "Price: Low to High" },
   { label: "Price: High to Low", value: "Price: High to Low" },
+  { label: "Rating: High to Low", value: "Rating: High to Low" },
+  { label: "Popular", value: "Popular" },
 ];
 
 const SortBySelect = () => {
-  const [sortBy, setSortBy] = useState("Latest");
+  const [searchParams, setSearchParams] = useSearchParams();
+  const currentSort = searchParams.get("sort") || "Latest";
 
   const handleChange = (event: SelectChangeEvent) => {
-    setSortBy(event.target.value as string);
+    const nextSort = event.target.value as string;
+    const newParams = new URLSearchParams(searchParams);
+    if (nextSort === "Latest") {
+      newParams.delete("sort");
+    } else {
+      newParams.set("sort", nextSort);
+    }
+    newParams.delete("page");
+    setSearchParams(newParams);
   };
 
   return (
     <FormControl sx={{ minWidth: 120 }}>
       <Select
-        value={sortBy}
+        value={currentSort}
         onChange={handleChange}
-        inputProps={{ "aria-label": "Without label" }}
+        inputProps={{ "aria-label": "Sort products" }}
         sx={{ [`&.${inputBaseClasses.root}`]: { px: 1.25, py: 0.75 } }}
       >
         {sortCategories.map((category) => (

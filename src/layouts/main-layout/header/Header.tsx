@@ -136,7 +136,10 @@ const Header = () => {
           >
             <Iconify icon="mdi:close" sx={{ color: "white", fontSize: 18 }} />
           </IconButton>
-          <SearchBox showSearchButton={true} />
+          <SearchBox
+            showSearchButton={true}
+            onSearchSubmit={() => setOpenSearch(false)}
+          />
         </Dialog>
       )}
     </>
