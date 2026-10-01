@@ -5,12 +5,16 @@ const PaginationItem: Components<Theme>["MuiPaginationItem"] = {
     root: ({ theme }) => ({
       height: 36,
       minWidth: 36,
-      borderRadius: "18px",
+      borderRadius: "50%",
       "&.Mui-selected": {
         color: "white",
         backgroundColor: `${theme.palette.primary.main} !important`,
       },
     }),
+    sizeSmall: {
+      height: 30,
+      minWidth: 30,
+    },
   },
 };
 

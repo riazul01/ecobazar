@@ -6,12 +6,12 @@ const Drawer: Components<Theme>["MuiDrawer"] = {
     root: {
       flexShrink: 0,
       overflowX: "hidden",
-      whiteSpace: "nowrap",
 
       [`& .${drawerClasses.paper}`]: {
         height: "100vh",
         boxSizing: "border-box",
         borderRadius: 0,
+        whiteSpace: "normal",
       },
     },
   },

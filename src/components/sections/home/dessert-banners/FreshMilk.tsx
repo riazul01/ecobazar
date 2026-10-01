@@ -1,9 +1,11 @@
+import { Link as RouterLink } from "react-router";
 import { alpha } from "@mui/material";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import Iconify from "components/base/Iconify";
 import Banner from "components/common/Banner";
 import { FreshMilkBg } from "data/images";
+import { paths } from "routes/paths";
 
 const FreshMilk = () => {
   return (
@@ -34,6 +36,8 @@ const FreshMilk = () => {
         </Typography>
       </Typography>
       <Button
+        component={RouterLink}
+        to={paths.shop}
         variant="contained"
         color="secondary"
         size="medium"

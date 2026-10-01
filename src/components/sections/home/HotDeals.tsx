@@ -4,7 +4,7 @@ import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
 import ProductCard from "components/common/ProductCard";
 import SectionWrapper from "components/sections/SectionWrapper";
-import { products } from "data/products";
+import { hotDealsProducts } from "data/products";
 import { useCountdown } from "hooks/useCountdown";
 
 const HotDeals = () => {
@@ -86,13 +86,13 @@ const HotDeals = () => {
         </Stack>
 
         <Grid container spacing={2}>
-          {products.slice(0, 8).map((item) => (
+          {hotDealsProducts.map((item) => (
             <Grid
               key={item.id}
               size={{ xs: 12, sm: 6, md: 4, lg: 3 }}
               sx={{ mx: "auto", maxWidth: { xs: 320, sm: 1 } }}
             >
-              <ProductCard />
+              <ProductCard data={item} />
             </Grid>
           ))}
         </Grid>

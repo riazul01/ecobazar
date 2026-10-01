@@ -1,3 +1,4 @@
+import { Link as RouterLink } from "react-router";
 import Box from "@mui/material/Box";
 import Chip, { chipClasses } from "@mui/material/Chip";
 import Stack from "@mui/material/Stack";
@@ -6,6 +7,7 @@ import Typography from "@mui/material/Typography";
 import Banner from "components/common/Banner";
 import Iconify from "components/base/Iconify";
 import { HeroBg } from "data/images";
+import { paths } from "routes/paths";
 
 const MainBannar = () => {
   return (
@@ -61,6 +63,8 @@ const MainBannar = () => {
       </Box>
 
       <Button
+        component={RouterLink}
+        to={paths.shop}
         variant="contained"
         color="secondary"
         size="medium"

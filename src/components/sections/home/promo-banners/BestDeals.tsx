@@ -1,4 +1,5 @@
 import React from "react";
+import { Link as RouterLink } from "react-router";
 import Stack from "@mui/material/Stack";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
@@ -6,6 +7,7 @@ import Banner from "components/common/Banner";
 import Iconify from "components/base/Iconify";
 import { useCountdown } from "hooks/useCountdown";
 import { VegetablesBg } from "data/images";
+import { paths } from "routes/paths";
 
 const BestDeals = () => {
   const { days, hours, minutes, seconds } = useCountdown(
@@ -86,6 +88,8 @@ const BestDeals = () => {
 
       <Stack sx={{ mt: 4, justifyContent: "center" }}>
         <Button
+          component={RouterLink}
+          to={paths.shop}
           variant="contained"
           color="secondary"
           size="medium"

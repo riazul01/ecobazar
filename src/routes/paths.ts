@@ -1,7 +1,10 @@
 export const paths = {
   home: "/",
   shop: "/shop",
-  productDetails: "/products/details",
+  productDetails: (id: string | number = ":id") =>
+    `/shop/product-details/${id}`,
+  cart: "/cart",
+  checkout: "/checkout",
   wishlist: "/wishlist",
   about: "/about",
   blog: "/blog",
@@ -14,4 +17,7 @@ export const paths = {
 
 export const accountPaths = {
   dashboard: `${paths.account}/dashboard`,
+  orderHistory: `${paths.account}/order-history`,
+  orderDetails: `${paths.account}/order-history/:id`,
+  settings: `${paths.account}/settings`,
 };

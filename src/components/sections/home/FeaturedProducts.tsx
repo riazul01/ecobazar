@@ -1,7 +1,7 @@
 import SectionWrapper from "components/sections/SectionWrapper";
 import ProductSlider from "components/common/ProductSlider";
 import ProductCard from "components/common/ProductCard";
-import { products } from "data/products";
+import { featuredProducts } from "data/products";
 
 const FeaturedProducts = () => {
   return (
@@ -9,7 +9,7 @@ const FeaturedProducts = () => {
       <ProductSlider
         title="Featured Products"
         SliderCard={ProductCard}
-        data={products}
+        data={featuredProducts}
       />
     </SectionWrapper>
   );

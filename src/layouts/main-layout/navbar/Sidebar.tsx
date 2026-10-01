@@ -6,6 +6,7 @@ import ListItemButton from "@mui/material/ListItemButton";
 import ListItemText, { listItemTextClasses } from "@mui/material/ListItemText";
 import Drawer, { drawerClasses } from "@mui/material/Drawer";
 import IconButton from "@mui/material/IconButton";
+import Stack from "@mui/material/Stack";
 import Iconify from "components/base/Iconify";
 import Logo from "components/common/Logo";
 
@@ -29,25 +30,34 @@ const Sidebar = ({ drawerOpen, toggleDrawer }: SidebarProps) => {
       }}
       sx={{
         width: 260,
-        position: "relative",
         display: { xs: "block", lg: "none" },
         [`& .${drawerClasses.paper}`]: { width: 260 },
       }}
     >
-      <IconButton
-        size="small"
-        onClick={toggleDrawer}
-        sx={{ position: "absolute", top: 12, right: 12 }}
+      <Stack
+        sx={{
+          alignItems: "center",
+          justifyContent: "space-between",
+          // py: 2,
+          mb: 3,
+        }}
       >
-        <Iconify
-          icon="mdi:close"
-          sx={{ color: "text.primary", pointerEvents: "none" }}
-        />
-      </IconButton>
-      <Logo sx={{ mb: 3, justifyContent: "flex-start" }} />
+        <Logo sx={{ justifyContent: "flex-start" }} />
+        <IconButton
+          size="small"
+          onClick={toggleDrawer}
+          aria-label="Close sidebar"
+        >
+          <Iconify
+            icon="mdi:close"
+            sx={{ color: "text.primary", pointerEvents: "none" }}
+          />
+        </IconButton>
+      </Stack>
       <List component="nav" sx={{ p: 0 }}>
         {navLinks.map((item) => (
           <ListItemButton
+            key={item.id}
             component={Link}
             href={item.path}
             sx={{ mb: 0.5, bgcolor: item.active ? "grey.100" : null }}

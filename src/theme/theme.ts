@@ -1,3 +1,4 @@
+import type {} from "@mui/x-data-grid/themeAugmentation";
 import { createTheme } from "@mui/material/styles";
 import customShadows from "./shadows";
 import typography from "./typography";
@@ -24,6 +25,7 @@ import FilledInput from "./components/input/FilledInput";
 import OutlinedInput from "./components/input/OutlinedInput";
 import InputAdornment from "./components/input/InputAdornment";
 import FormControlLabel from "./components/input/FormControlLabel";
+import TextField from "./components/input/TextField";
 import Checkbox from "./components/input/Checkbox";
 import Select from "./components/input/Select";
 import Radio from "./components/input/Radio";
@@ -41,7 +43,7 @@ import CardActions from "./components/card/CardActions";
 import Link from "./components/navigation/Link";
 import Drawer from "./components/navigation/Drawer";
 import PaginationItem from "./components/navigation/PaginationItem";
-import TextField from "./components/input/TextField";
+import DataGrid from "./components/data-grid/DataGrid";
 
 export const theme = createTheme({
   typography,
@@ -90,6 +92,7 @@ export const theme = createTheme({
     MuiCardHeader: CardHeader,
     MuiCardContent: CardContent,
     MuiCardActions: CardActions,
+    MuiDataGrid: DataGrid,
 
     MuiBadge: Badge,
     MuiChip: Chip,

@@ -1,3 +1,4 @@
+import { Link as RouterLink } from "react-router";
 import Box from "@mui/material/Box";
 import Stack from "@mui/material/Stack";
 import Button from "@mui/material/Button";
@@ -7,6 +8,7 @@ import CheckLightIcon from "components/icons/CheckLightIcon";
 import Iconify from "components/base/Iconify";
 import Image from "components/base/Image";
 import { DeliveryImg } from "data/images";
+import { paths } from "routes/paths";
 
 const deliveryBenefits = [
   { id: 1, text: "Fast and reliable delivery right to your doorstep." },
@@ -50,6 +52,8 @@ const FastDelivery = () => {
           </Stack>
         ))}
         <Button
+          component={RouterLink}
+          to={paths.shop}
           variant="contained"
           color="primary"
           size="medium"

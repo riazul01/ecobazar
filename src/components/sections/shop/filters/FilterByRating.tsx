@@ -1,3 +1,4 @@
+import { useSearchParams } from "react-router";
 import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
 import Checkbox from "@mui/material/Checkbox";
@@ -15,27 +16,57 @@ const ratings = [
 ];
 
 const FilterByRating = () => {
+  const [searchParams, setSearchParams] = useSearchParams();
+  const currentRating = searchParams.get("rating")
+    ? Number(searchParams.get("rating"))
+    : null;
+
+  const handleToggleRating = (ratingValue: number) => {
+    const newParams = new URLSearchParams(searchParams);
+    if (currentRating === ratingValue) {
+      newParams.delete("rating");
+    } else {
+      newParams.set("rating", String(ratingValue));
+    }
+    newParams.delete("page");
+    setSearchParams(newParams);
+  };
+
   return (
     <FilterCollapse title="Rating" defaultOpen>
       <FormGroup sx={{ gap: 1 }}>
-        {ratings.map((rating) => (
-          <FormControlLabel
-            control={<Checkbox defaultChecked={false} />}
-            label={
-              <Stack sx={{ alignItems: "center", gap: 1 }}>
-                <Rating
-                  name="half-rating"
-                  size="small"
-                  defaultValue={rating.value}
-                  readOnly
+        {ratings.map((rating) => {
+          const isChecked = currentRating === rating.value;
+          return (
+            <FormControlLabel
+              key={rating.value}
+              control={
+                <Checkbox
+                  checked={isChecked}
+                  onChange={() => handleToggleRating(rating.value)}
                 />
-                <Typography variant="body2" sx={{ color: "text.primary" }}>
-                  {rating.label}
-                </Typography>
-              </Stack>
-            }
-          />
-        ))}
+              }
+              label={
+                <Stack sx={{ alignItems: "center", gap: 1 }}>
+                  <Rating
+                    name={`rating-filter-${rating.value}`}
+                    size="small"
+                    value={rating.value}
+                    readOnly
+                  />
+                  <Typography
+                    variant="body2"
+                    sx={{
+                      color: "text.primary",
+                    }}
+                  >
+                    {rating.label}
+                  </Typography>
+                </Stack>
+              }
+            />
+          );
+        })}
       </FormGroup>
     </FilterCollapse>
   );

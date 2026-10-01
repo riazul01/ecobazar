@@ -1,7 +1,13 @@
 import { Outlet } from "react-router";
+import ScrollToTop from "components/common/ScrollToTop";
 
 const App = () => {
-  return <Outlet />;
+  return (
+    <>
+      <ScrollToTop />
+      <Outlet />
+    </>
+  );
 };
 
 export default App;

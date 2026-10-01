@@ -21,7 +21,7 @@ const Home = () => {
       <PopularProducts />
       <PromoBanners />
       <HotDeals />
-      <DessertBanners /> 
+      <DessertBanners />
       <FeaturedProducts />
       <CTABanner />
       <LatestNews />
