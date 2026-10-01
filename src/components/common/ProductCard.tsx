@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import { alpha } from "@mui/material";
 import Box from "@mui/material/Box";
 import Chip from "@mui/material/Chip";
@@ -12,6 +13,7 @@ import CardActions from "@mui/material/CardActions";
 import Typography from "@mui/material/Typography";
 import IconButton from "@mui/material/IconButton";
 import Iconify from "components/base/Iconify";
+import ProductQuickViewModal from "components/common/ProductQuickViewModal";
 import { useCart } from "providers/CartProvider";
 import type { ProductData } from "data/products";
 import { paths } from "routes/paths";
@@ -46,12 +48,42 @@ const defaultProduct: ProductData = {
 const ProductCard = ({ data, product }: ProductCardProps) => {
   const currentProduct = data || product || defaultProduct;
   const { items, addToCart, updateQuantity } = useCart();
+  const [quickViewOpen, setQuickViewOpen] = useState(false);
 
   const productId = currentProduct.id;
   const cartItem = items.find(
     (item) => String(item.id) === String(productId),
   );
   const quantity = cartItem ? cartItem.quantity : 0;
+
+  const handleOpenQuickView = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    window.history.pushState(
+      { quickView: true, prevUrl: window.location.pathname + window.location.search },
+      "",
+      paths.productDetails(productId),
+    );
+    setQuickViewOpen(true);
+  };
+
+  const handleCloseQuickView = () => {
+    setQuickViewOpen(false);
+    if (window.history.state?.quickView) {
+      window.history.back();
+    } else {
+      window.history.replaceState(null, "", window.history.state?.prevUrl || window.location.pathname);
+    }
+  };
+
+  useEffect(() => {
+    if (!quickViewOpen) return;
+    const handlePopState = () => {
+      setQuickViewOpen(false);
+    };
+    window.addEventListener("popstate", handlePopState);
+    return () => window.removeEventListener("popstate", handlePopState);
+  }, [quickViewOpen]);
 
   const handleAddToCart = () => {
     addToCart(
@@ -134,8 +166,8 @@ const ProductCard = ({ data, product }: ProductCardProps) => {
           })}
         >
           <IconButton
-            component={Link}
-            href={paths.productDetails}
+            onClick={handleOpenQuickView}
+            aria-label="Quick view product"
             size="large"
             sx={{ background: `rgba(0, 0, 0, 0.45) !important` }}
           >
@@ -166,7 +198,7 @@ const ProductCard = ({ data, product }: ProductCardProps) => {
         >
           <Typography
             component={Link}
-            href={paths.productDetails}
+            href={paths.productDetails(productId)}
             variant="h6"
             sx={{
               color: "primary.dark",
@@ -231,76 +263,114 @@ const ProductCard = ({ data, product }: ProductCardProps) => {
             size="medium"
             onClick={handleAddToCart}
             startIcon={
-              <Iconify icon="material-symbols:shopping-cart-outline-rounded" />
+              <Iconify
+                icon="material-symbols:shopping-cart-outline-rounded"
+                sx={{ fontSize: 18 }}
+              />
             }
-            sx={{ px: 0, border: "none" }}
+            sx={{ height: 40, border: "none", whiteSpace: "nowrap" }}
             fullWidth
           >
-            Add To Cart
+            Add to Cart
           </Button>
         ) : (
           <Stack
-            spacing={1}
-            direction="row"
             sx={{
-              width: 1,
+              p: "3px",
               alignItems: "center",
               justifyContent: "space-between",
+              border: 1,
+              borderColor: "divider",
+              borderRadius: 8,
+              bgcolor: "grey.50",
+              width: 1,
+              height: 40,
+              boxSizing: "border-box",
             }}
           >
             <IconButton
-              size="large"
+              size="small"
               onClick={() => updateQuantity(productId, quantity - 1)}
               aria-label="Decrease quantity"
               sx={(theme) => ({
-                background: `${theme.palette.grey[100]} !important`,
+                width: 32,
+                height: 32,
+                minWidth: 32,
+                minHeight: 32,
+                borderRadius: "50%",
+                bgcolor: theme.palette.common.white,
                 color: "text.primary",
-                transition: "all 0.2s ease-in-out",
+                border: 1,
+                borderColor: "divider",
+                boxSizing: "border-box",
+                p: 0,
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
                 "&:hover": {
-                  background: `${theme.palette.grey[200]} !important`,
-                  color: "error.main",
+                  bgcolor: theme.palette.grey[100],
+                  color: quantity === 1 ? "error.main" : "text.primary",
                 },
               })}
             >
-              <Iconify icon="mingcute:minimize-line" />
+              <Iconify
+                icon={quantity === 1 ? "solar:trash-bin-trash-bold" : "solar:minus-bold"}
+                sx={{ fontSize: 15 }}
+              />
             </IconButton>
-            <Button
-              variant="text"
-              sx={(theme) => ({
-                px: 0,
-                flex: 1,
-                // fontWeight: 600,
+
+            <Typography
+              variant="body2"
+              sx={{
+                textAlign: "center",
+                fontWeight: 500,
+                fontSize: "0.875rem",
                 color: "text.primary",
-                bgcolor: `${theme.palette.grey[100]} !important`,
-                cursor: "default",
-                "&:hover": {
-                  bgcolor: `${theme.palette.grey[100]} !important`,
-                },
-              })}
-              fullWidth
-              disableRipple
+                userSelect: "none",
+                fontVariantNumeric: "tabular-nums",
+              }}
             >
               {quantity} in Cart
-            </Button>
+            </Typography>
+
             <IconButton
-              size="large"
+              size="small"
               onClick={() => updateQuantity(productId, quantity + 1)}
               aria-label="Increase quantity"
               sx={(theme) => ({
-                background: `${theme.palette.grey[100]} !important`,
+                width: 32,
+                height: 32,
+                minWidth: 32,
+                minHeight: 32,
+                borderRadius: "50%",
+                bgcolor: theme.palette.common.white,
                 color: "text.primary",
-                transition: "all 0.2s ease-in-out",
+                border: 1,
+                borderColor: "divider",
+                boxSizing: "border-box",
+                p: 0,
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
                 "&:hover": {
-                  background: `${theme.palette.grey[200]} !important`,
+                  bgcolor: theme.palette.grey[100],
                   color: "primary.main",
                 },
               })}
             >
-              <Iconify icon="mingcute:add-line" />
+              <Iconify icon="solar:add-bold" sx={{ fontSize: 15 }} />
             </IconButton>
           </Stack>
         )}
       </CardActions>
+
+      {quickViewOpen && (
+        <ProductQuickViewModal
+          open={quickViewOpen}
+          onClose={handleCloseQuickView}
+          product={currentProduct}
+        />
+      )}
     </Card>
   );
 };

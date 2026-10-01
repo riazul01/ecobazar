@@ -33,6 +33,8 @@ interface ProductSummaryProps {
     inStock?: boolean;
     stockCount?: number;
     tags?: string[];
+    unit?: string;
+    weight?: number | string;
   };
 }
 
@@ -45,6 +47,8 @@ const defaultProduct = {
   rating: 4.8,
   ratingCount: 3800,
   sku: "ECO-251594",
+  unit: "kg",
+  weight: 1,
   image:
     "https://images.unsplash.com/photo-1598170845058-32b9d6a5da37?auto=format&fit=crop&w=600&q=80",
   desc: "Farm fresh organic Chinese cabbage harvested with care. Crisp, nutritious, and tender leaves packed with antioxidants, Vitamin C, and essential minerals for healthy daily meals.",
@@ -57,27 +61,35 @@ const defaultProduct = {
 
 const ProductSummary = ({ product = defaultProduct }: ProductSummaryProps) => {
   const currentProduct = { ...defaultProduct, ...product };
-  const [quantity, setQuantity] = useState(1);
   const [isWishlisted, setIsWishlisted] = useState(false);
-  const { addToCart } = useCart();
+  const { items, addToCart, updateQuantity } = useCart();
 
-  const handleIncrement = () => setQuantity((prev) => prev + 1);
-  const handleDecrement = () => setQuantity((prev) => (prev > 1 ? prev - 1 : 1));
+  const productId = currentProduct.id;
+  const cartItem = items.find(
+    (item) => String(item.id) === String(productId),
+  );
+  const quantity = cartItem ? cartItem.quantity : 0;
 
   const handleAddToCart = () => {
     addToCart(
       {
-        id: currentProduct.id,
+        id: productId,
         name: currentProduct.name,
         price: currentProduct.price,
         image: currentProduct.image,
-        unit: "kg",
-        weight: "1 kg",
+        unit: currentProduct.unit || "kg",
+        weight: `${currentProduct.weight || 1} ${currentProduct.unit || "kg"}`,
       },
-      quantity,
-      true,
+      1,
+      false,
     );
   };
+
+  const originalPrice =
+    currentProduct.originalPrice ??
+    (currentProduct.discountInPercent && currentProduct.discountInPercent > 0
+      ? Number((currentProduct.price / (1 - currentProduct.discountInPercent / 100)).toFixed(2))
+      : undefined);
 
   return (
     <Box sx={{ flex: 1 }}>
@@ -85,7 +97,6 @@ const ProductSummary = ({ product = defaultProduct }: ProductSummaryProps) => {
       <Stack
         sx={{
           alignItems: "center",
-          justifyContent: "space-between",
           flexWrap: "wrap",
           gap: 1.5,
           mb: 1.5,
@@ -143,13 +154,13 @@ const ProductSummary = ({ product = defaultProduct }: ProductSummaryProps) => {
         />
 
         <Typography variant="body2" sx={{ color: "text.secondary" }}>
-          <strong>SKU:</strong> {currentProduct.sku}
+          <strong>SKU:</strong> {currentProduct.sku || `ECO-${currentProduct.id}251`}
         </Typography>
       </Stack>
 
       {/* Price Section */}
       <Stack sx={{ alignItems: "center", gap: 1.5, mb: 2.5 }}>
-        {currentProduct.originalPrice && (
+        {originalPrice && (
           <Typography
             component="span"
             variant="h5"
@@ -159,7 +170,7 @@ const ProductSummary = ({ product = defaultProduct }: ProductSummaryProps) => {
               fontWeight: 400,
             }}
           >
-            ${currentProduct.originalPrice.toFixed(2)}
+            ${originalPrice.toFixed(2)}
           </Typography>
         )}
         <Typography
@@ -251,111 +262,131 @@ const ProductSummary = ({ product = defaultProduct }: ProductSummaryProps) => {
 
       <Divider sx={{ my: 2 }} />
 
-      {/* Quantity & Actions */}
+      {/* Actions Section */}
       <Stack
         sx={{
           py: 1,
           gap: 1.5,
           alignItems: "center",
-          flexWrap: "wrap",
+          flexWrap: "nowrap",
           width: 1,
         }}
       >
-        {/* Quantity Controls */}
-        <Stack
-          sx={{
-            order: 1,
-            p: "4px",
-            alignItems: "center",
-            justifyContent: "space-between",
-            border: 1,
-            borderColor: "divider",
-            borderRadius: 8,
-            bgcolor: "grey.50",
-            width: { xs: "calc(100% - 60px)", sm: 124 },
-            height: 48,
-            boxSizing: "border-box",
-            flexShrink: 0,
-          }}
-        >
-          <IconButton
-            size="small"
-            onClick={handleDecrement}
-            disabled={quantity <= 1}
-            aria-label="Decrease quantity"
-            sx={(theme) => ({
-              width: 34,
-              height: 34,
-              minWidth: 34,
-              minHeight: 34,
-              borderRadius: "50%",
-              bgcolor: theme.palette.common.white,
-              color: "text.primary",
-              border: 1,
-              borderColor: "divider",
-              boxSizing: "border-box",
-              p: 0,
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              "&:hover": {
-                bgcolor: theme.palette.grey[100],
-              },
-              "&.Mui-disabled": {
-                opacity: 0.4,
-                bgcolor: theme.palette.grey[50],
-              },
-            })}
-          >
-            <Iconify icon="solar:minus-bold" sx={{ fontSize: 14 }} />
-          </IconButton>
-          <Typography
-            variant="body1"
+        {quantity === 0 ? (
+          <Button
+            variant="contained"
+            size="large"
+            onClick={handleAddToCart}
+            startIcon={
+              <Iconify
+                icon="material-symbols:shopping-cart-outline-rounded"
+                sx={{ fontSize: 20 }}
+              />
+            }
             sx={{
-              textAlign: "center",
-              fontWeight: 400,
-              fontSize: "1rem",
-              color: "text.primary",
-              userSelect: "none",
-              fontVariantNumeric: "tabular-nums",
+              flex: 1,
+              height: 48,
+              minWidth: 140,
+              whiteSpace: "nowrap",
             }}
           >
-            {quantity}
-          </Typography>
-          <IconButton
-            size="small"
-            onClick={handleIncrement}
-            aria-label="Increase quantity"
-            sx={(theme) => ({
-              width: 34,
-              height: 34,
-              minWidth: 34,
-              minHeight: 34,
-              borderRadius: "50%",
-              bgcolor: theme.palette.common.white,
-              color: "text.primary",
+            Add to Cart
+          </Button>
+        ) : (
+          <Stack
+            sx={{
+              p: "4px",
+              alignItems: "center",
+              justifyContent: "space-between",
               border: 1,
               borderColor: "divider",
+              borderRadius: 8,
+              bgcolor: "grey.50",
+              flex: 1,
+              height: 48,
               boxSizing: "border-box",
-              p: 0,
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              "&:hover": {
-                bgcolor: theme.palette.grey[100],
-              },
-            })}
+            }}
           >
-            <Iconify icon="solar:add-bold" sx={{ fontSize: 14 }} />
-          </IconButton>
-        </Stack>
+            <IconButton
+              size="small"
+              onClick={() => updateQuantity(productId, quantity - 1)}
+              aria-label="Decrease quantity"
+              sx={(theme) => ({
+                width: 36,
+                height: 36,
+                minWidth: 36,
+                minHeight: 36,
+                borderRadius: "50%",
+                bgcolor: theme.palette.common.white,
+                color: "text.primary",
+                border: 1,
+                borderColor: "divider",
+                boxSizing: "border-box",
+                p: 0,
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                "&:hover": {
+                  bgcolor: theme.palette.grey[100],
+                  color: quantity === 1 ? "error.main" : "text.primary",
+                },
+              })}
+            >
+              <Iconify
+                icon={quantity === 1 ? "solar:trash-bin-trash-bold" : "solar:minus-bold"}
+                sx={{ fontSize: 16 }}
+              />
+            </IconButton>
+
+            <Typography
+              variant="body1"
+              sx={{
+                textAlign: "center",
+                fontWeight: 500,
+                fontSize: "1rem",
+                color: "text.primary",
+                userSelect: "none",
+                fontVariantNumeric: "tabular-nums",
+              }}
+            >
+              {quantity} in Cart
+            </Typography>
+
+            <IconButton
+              size="small"
+              onClick={() => updateQuantity(productId, quantity + 1)}
+              aria-label="Increase quantity"
+              sx={(theme) => ({
+                width: 36,
+                height: 36,
+                minWidth: 36,
+                minHeight: 36,
+                borderRadius: "50%",
+                bgcolor: theme.palette.common.white,
+                color: "text.primary",
+                border: 1,
+                borderColor: "divider",
+                boxSizing: "border-box",
+                p: 0,
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                "&:hover": {
+                  bgcolor: theme.palette.grey[100],
+                  color: "primary.main",
+                },
+              })}
+            >
+              <Iconify icon="solar:add-bold" sx={{ fontSize: 16 }} />
+            </IconButton>
+          </Stack>
+        )}
 
         {/* Wishlist Button - Soft Variant */}
         <IconButton
           onClick={() => setIsWishlisted((prev) => !prev)}
           aria-label="Add to wishlist"
           sx={(theme) => ({
-            order: { xs: 2, sm: 3 },
             width: 48,
             height: 48,
             minWidth: 48,
@@ -381,24 +412,6 @@ const ProductSummary = ({ product = defaultProduct }: ProductSummaryProps) => {
             }}
           />
         </IconButton>
-
-        {/* Add to Cart Button */}
-        <Button
-          variant="contained"
-          size="large"
-          onClick={handleAddToCart}
-          startIcon={<Iconify icon="solar:bag-3-bold" sx={{ fontSize: 20 }} />}
-          sx={{
-            order: { xs: 3, sm: 2 },
-            flex: { xs: "1 1 100%", sm: 1 },
-            width: { xs: 1, sm: "auto" },
-            height: 48,
-            minWidth: 140,
-            whiteSpace: "nowrap",
-          }}
-        >
-          Add to Cart
-        </Button>
       </Stack>
 
       <Divider sx={{ my: 2.5 }} />

@@ -6,8 +6,9 @@ import Image from "components/base/Image";
 
 interface ImageSliderProps {
   images?: string[];
-  discount?: number;
+  badge?: string;
   productName?: string;
+  imageHeight?: number | string | Record<string, number | string>;
 }
 
 const defaultImages = [
@@ -19,8 +20,9 @@ const defaultImages = [
 
 const ImageSlider = ({
   images = defaultImages,
-  discount = 15,
+  badge = "100% Organic",
   productName = "Chinese Cabbage",
+  imageHeight = { xs: 300, sm: 400, md: 460 },
 }: ImageSliderProps) => {
   const [selectedImage, setSelectedImage] = useState(0);
 
@@ -31,7 +33,7 @@ const ImageSlider = ({
         sx={{
           position: "relative",
           width: 1,
-          height: { xs: 300, sm: 400, md: 460 },
+          height: imageHeight,
           borderRadius: 3,
           overflow: "hidden",
           bgcolor: "grey.50",
@@ -52,11 +54,11 @@ const ImageSlider = ({
           }}
         />
 
-        {discount > 0 && (
+        {badge && (
           <Chip
-            label={`${discount}% Off`}
+            label={badge}
             size="small"
-            color="error"
+            color="primary"
             sx={{
               position: "absolute",
               top: 16,

@@ -30,6 +30,7 @@ const CartDrawer = () => {
         },
       }}
       sx={{
+        zIndex: (theme) => theme.zIndex.modal + 100,
         [`& .${drawerClasses.paper}`]: {
           width: { xs: 1, sm: 400, md: 420 },
           maxWidth: "100vw",

@@ -45,11 +45,28 @@ const router = createBrowserRouter([
           },
           {
             path: "shop",
-            element: <Shop />,
+            children: [
+              {
+                index: true,
+                element: <Shop />,
+              },
+              {
+                path: "product-details/:id",
+                element: <ProductDetails />,
+              },
+              {
+                path: "product-details",
+                element: <ProductDetails />,
+              },
+            ],
+          },
+          {
+            path: "product-details/:id",
+            element: <ProductDetails />,
           },
           {
             path: "product-details",
-            element: <ProductDetails/>,
+            element: <ProductDetails />,
           },
           {
             path: "blog",

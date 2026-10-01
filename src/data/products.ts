@@ -8,6 +8,7 @@ export interface ProductData {
   rating: number;
   ratingCount: number;
   image: string;
+  images?: string[];
   desc: string;
   category: string;
   subCategory: string;
@@ -30,8 +31,13 @@ const products: ProductData[] = [
     rating: 4.8,
     ratingCount: 5200,
     image:
-      "https://images.unsplash.com/photo-1560806887-1e4cd0b6cbd6?auto=format&fit=crop&w=600&q=80",
-    desc: "Crisp, sweet, and juicy organic green apples.",
+      "https://images.unsplash.com/photo-1560806887-1e4cd0b6cbd6?auto=format&fit=crop&w=800&q=80",
+    images: [
+      "https://images.unsplash.com/photo-1619546813926-a78fa6372cd2?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1570913149827-d2ac84ab3f9a?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1579613832125-5d34a13ffe0a?auto=format&fit=crop&w=800&q=80",
+    ],
+    desc: "Crisp, sweet, and juicy organic green apples fresh from mountain orchards.",
     category: "fruits",
     subCategory: "popular",
     tags: ["apple", "fruit", "organic"],
@@ -51,8 +57,13 @@ const products: ProductData[] = [
     rating: 4.5,
     ratingCount: 3800,
     image:
-      "https://images.unsplash.com/photo-1598170845058-32b9d6a5da37?auto=format&fit=crop&w=600&q=80",
-    desc: "Farm fresh organic Chinese cabbage.",
+      "https://images.unsplash.com/photo-1598170845058-32b9d6a5da37?auto=format&fit=crop&w=800&q=80",
+    images: [
+      "https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1566385101042-1a0aa0c1268c?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1576045057995-568f588f82fb?auto=format&fit=crop&w=800&q=80",
+    ],
+    desc: "Farm fresh organic Chinese cabbage harvested with crisp, tender leaves.",
     category: "vegetables",
     subCategory: "featured",
     tags: ["vegetable", "cabbage", "green"],
@@ -72,8 +83,13 @@ const products: ProductData[] = [
     rating: 4.7,
     ratingCount: 4100,
     image:
-      "https://images.unsplash.com/photo-1547514701-42782101795e?auto=format&fit=crop&w=600&q=80",
-    desc: "Sun-ripened juicy citrus oranges rich in Vitamin C.",
+      "https://images.unsplash.com/photo-1547514701-42782101795e?auto=format&fit=crop&w=800&q=80",
+    images: [
+      "https://images.unsplash.com/photo-1611080626919-7cf5a9dbab5b?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1582979512210-99b6a53386f9?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1587132137056-bfbf0166836e?auto=format&fit=crop&w=800&q=80",
+    ],
+    desc: "Sun-ripened juicy citrus oranges rich in natural Vitamin C.",
     category: "fruits",
     subCategory: "featured",
     tags: ["orange", "fruit", "citrus"],
@@ -93,8 +109,14 @@ const products: ProductData[] = [
     rating: 4.6,
     ratingCount: 6200,
     image:
-      "https://images.unsplash.com/photo-1592924357228-91a4daadcfea?auto=format&fit=crop&w=600&q=80",
-    desc: "Plump, vine-ripened red organic tomatoes.",
+      "https://images.unsplash.com/photo-1592924357228-91a4daadcfea?auto=format&fit=crop&w=800&q=80",
+    images: [
+      "https://images.unsplash.com/photo-1546470427-0d4db154ceb7?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1561136594-7f68413baa99?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1518977676601-b53f82aba655?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1582284540020-eacfac83edda?auto=format&fit=crop&w=800&q=80",
+    ],
+    desc: "Plump, vine-ripened red organic tomatoes bursting with flavor.",
     category: "vegetables",
     subCategory: "popular",
     tags: ["tomato", "organic", "vegetable"],
@@ -114,8 +136,13 @@ const products: ProductData[] = [
     rating: 4.4,
     ratingCount: 2900,
     image:
-      "https://images.unsplash.com/photo-1459411621453-7b03977f4bfc?auto=format&fit=crop&w=600&q=80",
-    desc: "Crisp and nutritious fresh organic broccoli.",
+      "https://images.unsplash.com/photo-1459411621453-7b03977f4bfc?auto=format&fit=crop&w=800&q=80",
+    images: [
+      "https://images.unsplash.com/photo-1584270359004-20b13bafe906?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1583663848850-46af132dc08e?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1524179091875-bf99a9a6af57?auto=format&fit=crop&w=800&q=80",
+    ],
+    desc: "Crisp and nutritious fresh organic broccoli florets.",
     category: "vegetables",
     subCategory: "featured",
     tags: ["broccoli", "green", "healthy"],
@@ -135,8 +162,14 @@ const products: ProductData[] = [
     rating: 4.9,
     ratingCount: 7800,
     image:
-      "https://images.unsplash.com/photo-1464965911861-746a04b4bca6?auto=format&fit=crop&w=600&q=80",
-    desc: "Handpicked premium sweet organic strawberries.",
+      "https://images.unsplash.com/photo-1464965911861-746a04b4bca6?auto=format&fit=crop&w=800&q=80",
+    images: [
+      "https://images.unsplash.com/photo-1587393855524-087f83d95bc9?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1518635017480-d66bc99e6931?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1543528176-61b239494933?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1601004890684-d8cbf643f5f2?auto=format&fit=crop&w=800&q=80",
+    ],
+    desc: "Handpicked premium sweet organic strawberries bursting with sweetness.",
     category: "fruits",
     subCategory: "hot deals",
     tags: ["strawberry", "berries", "fruit"],
@@ -156,8 +189,13 @@ const products: ProductData[] = [
     rating: 4.3,
     ratingCount: 2100,
     image:
-      "https://images.unsplash.com/photo-1551754655-cd27e38d2076?auto=format&fit=crop&w=600&q=80",
-    desc: "Golden sweet corn freshly harvested.",
+      "https://images.unsplash.com/photo-1551754655-cd27e38d2076?auto=format&fit=crop&w=800&q=80",
+    images: [
+      "https://images.unsplash.com/photo-1525607551316-4a8e16d1f9ba?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1534483509719-3feaee7c30da?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1563565375-f3fdfdbefa83?auto=format&fit=crop&w=800&q=80",
+    ],
+    desc: "Golden sweet corn freshly harvested from the farm.",
     category: "vegetables",
     subCategory: "popular",
     tags: ["corn", "organic", "vegetables"],
@@ -177,8 +215,13 @@ const products: ProductData[] = [
     rating: 4.6,
     ratingCount: 3500,
     image:
-      "https://images.unsplash.com/photo-1563565375-f3fdfdbefa83?auto=format&fit=crop&w=600&q=80",
-    desc: "Crisp and colorful tri-color bell peppers.",
+      "https://images.unsplash.com/photo-1563565375-f3fdfdbefa83?auto=format&fit=crop&w=800&q=80",
+    images: [
+      "https://images.unsplash.com/photo-1525607551316-4a8e16d1f9ba?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1589927986089-35812388d1f4?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?auto=format&fit=crop&w=800&q=80",
+    ],
+    desc: "Crisp and colorful tri-color organic bell peppers.",
     category: "vegetables",
     subCategory: "featured",
     tags: ["peppers", "vegetable", "fresh"],
@@ -198,7 +241,12 @@ const products: ProductData[] = [
     rating: 4.8,
     ratingCount: 8900,
     image:
-      "https://images.unsplash.com/photo-1571771894821-ce9b6c11b08e?auto=format&fit=crop&w=600&q=80",
+      "https://images.unsplash.com/photo-1571771894821-ce9b6c11b08e?auto=format&fit=crop&w=800&q=80",
+    images: [
+      "https://images.unsplash.com/photo-1603833665858-e61d17a86224?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1528825871115-3581a5387919?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1543218024-57a70143c369?auto=format&fit=crop&w=800&q=80",
+    ],
     desc: "Naturally ripened, sweet and energy-packed bananas.",
     category: "fruits",
     subCategory: "popular",
@@ -219,8 +267,13 @@ const products: ProductData[] = [
     rating: 4.5,
     ratingCount: 3100,
     image:
-      "https://images.unsplash.com/photo-1598170845058-32b9d6a5da37?auto=format&fit=crop&w=600&q=80",
-    desc: "Crunchy sweet orange farm fresh carrots.",
+      "https://images.unsplash.com/photo-1598170845058-32b9d6a5da37?auto=format&fit=crop&w=800&q=80",
+    images: [
+      "https://images.unsplash.com/photo-1582515073490-39981397c445?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1447175008436-054170c2e979?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1590868309235-ea34bed7bd7f?auto=format&fit=crop&w=800&q=80",
+    ],
+    desc: "Crunchy sweet orange farm fresh carrots full of beta-carotene.",
     category: "vegetables",
     subCategory: "featured",
     tags: ["carrots", "vegetables", "healthy"],
@@ -240,8 +293,13 @@ const products: ProductData[] = [
     rating: 4.2,
     ratingCount: 1900,
     image:
-      "https://images.unsplash.com/photo-1615485290382-441e4d049cb5?auto=format&fit=crop&w=600&q=80",
-    desc: "Glossy and tender fresh organic eggplants.",
+      "https://images.unsplash.com/photo-1615485290382-441e4d049cb5?auto=format&fit=crop&w=800&q=80",
+    images: [
+      "https://images.unsplash.com/photo-1528826299843-41a62d04a6fc?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1594282486552-05b4d80fbb9f?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1565557623262-b51c2513a641?auto=format&fit=crop&w=800&q=80",
+    ],
+    desc: "Glossy and tender fresh organic eggplants ideal for grilling.",
     category: "vegetables",
     subCategory: "hot deals",
     tags: ["eggplant", "vegetables", "organic"],
@@ -261,8 +319,13 @@ const products: ProductData[] = [
     rating: 4.9,
     ratingCount: 9400,
     image:
-      "https://images.unsplash.com/photo-1587049352846-4a222e784d38?auto=format&fit=crop&w=600&q=80",
-    desc: "Extra sweet and refreshing summer watermelon.",
+      "https://images.unsplash.com/photo-1587049352846-4a222e784d38?auto=format&fit=crop&w=800&q=80",
+    images: [
+      "https://images.unsplash.com/photo-1589533610925-1cffc309ebaa?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1563114773-84221bd62daa?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1568651347318-7b98305f6e6e?auto=format&fit=crop&w=800&q=80",
+    ],
+    desc: "Extra sweet and refreshing summer watermelon slice.",
     category: "fruits",
     subCategory: "featured",
     tags: ["watermelon", "fruit", "summer"],
@@ -282,7 +345,12 @@ const products: ProductData[] = [
     rating: 4.7,
     ratingCount: 4300,
     image:
-      "https://images.unsplash.com/photo-1576045057995-568f588f82fb?auto=format&fit=crop&w=600&q=80",
+      "https://images.unsplash.com/photo-1576045057995-568f588f82fb?auto=format&fit=crop&w=800&q=80",
+    images: [
+      "https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1574316071802-0d684efa7cd5?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1566385101042-1a0aa0c1268c?auto=format&fit=crop&w=800&q=80",
+    ],
     desc: "Tender, iron-rich fresh organic baby spinach leaves.",
     category: "vegetables",
     subCategory: "popular",
@@ -303,8 +371,14 @@ const products: ProductData[] = [
     rating: 4.9,
     ratingCount: 8100,
     image:
-      "https://images.unsplash.com/photo-1498557850523-fd3d118b962e?auto=format&fit=crop&w=600&q=80",
-    desc: "Antioxidant-rich plump organic blueberries.",
+      "https://images.unsplash.com/photo-1498557850523-fd3d118b962e?auto=format&fit=crop&w=800&q=80",
+    images: [
+      "https://images.unsplash.com/photo-1568651347318-7b98305f6e6e?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1502741338009-cac2772e18bc?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1464965911861-746a04b4bca6?auto=format&fit=crop&w=800&q=80",
+    ],
+    desc: "Antioxidant-rich plump organic blueberries picked at peak sweetness.",
     category: "fruits",
     subCategory: "hot deals",
     tags: ["blueberries", "berries", "fruit"],
@@ -324,7 +398,12 @@ const products: ProductData[] = [
     rating: 4.5,
     ratingCount: 3200,
     image:
-      "https://images.unsplash.com/photo-1525607551316-4a8e16d1f9ba?auto=format&fit=crop&w=600&q=80",
+      "https://images.unsplash.com/photo-1525607551316-4a8e16d1f9ba?auto=format&fit=crop&w=800&q=80",
+    images: [
+      "https://images.unsplash.com/photo-1563565375-f3fdfdbefa83?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1589927986089-35812388d1f4?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?auto=format&fit=crop&w=800&q=80",
+    ],
     desc: "Sweet, crunchy and vitamin-loaded red bell peppers.",
     category: "vegetables",
     subCategory: "popular",
@@ -345,8 +424,13 @@ const products: ProductData[] = [
     rating: 4.8,
     ratingCount: 4600,
     image:
-      "https://images.unsplash.com/photo-1585059895524-72359e06133a?auto=format&fit=crop&w=600&q=80",
-    desc: "Tangy-sweet fresh organic green kiwis.",
+      "https://images.unsplash.com/photo-1585059895524-72359e06133a?auto=format&fit=crop&w=800&q=80",
+    images: [
+      "https://images.unsplash.com/photo-1518492104633-130d0cc84637?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1618897996318-5a901fa6ca71?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1596704017254-9b121068fb31?auto=format&fit=crop&w=800&q=80",
+    ],
+    desc: "Tangy-sweet fresh organic green kiwis loaded with vitamins.",
     category: "fruits",
     subCategory: "hot deals",
     tags: ["kiwi", "fruit", "organic"],
@@ -366,8 +450,14 @@ const products: ProductData[] = [
     rating: 4.9,
     ratingCount: 11200,
     image:
-      "https://images.unsplash.com/photo-1523049673857-eb18f1d7b578?auto=format&fit=crop&w=600&q=80",
-    desc: "Creamy, nutrient-packed ripe Hass avocados.",
+      "https://images.unsplash.com/photo-1523049673857-eb18f1d7b578?auto=format&fit=crop&w=800&q=80",
+    images: [
+      "https://images.unsplash.com/photo-1590005354167-6da97870c757?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1519162584292-56dfc9eb5db4?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1560155016-bd4879ae8f21?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=800&q=80",
+    ],
+    desc: "Creamy, nutrient-packed ripe Hass avocados for salads and toast.",
     category: "fruits",
     subCategory: "popular",
     tags: ["avocado", "fruit", "healthy"],
@@ -387,7 +477,12 @@ const products: ProductData[] = [
     rating: 4.4,
     ratingCount: 2700,
     image:
-      "https://images.unsplash.com/photo-1568584711075-3d021a7c3ca3?auto=format&fit=crop&w=600&q=80",
+      "https://images.unsplash.com/photo-1568584711075-3d021a7c3ca3?auto=format&fit=crop&w=800&q=80",
+    images: [
+      "https://images.unsplash.com/photo-1584270359004-20b13bafe906?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1583663848850-46af132dc08e?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1459411621453-7b03977f4bfc?auto=format&fit=crop&w=800&q=80",
+    ],
     desc: "Tender, snow-white fresh organic cauliflower head.",
     category: "vegetables",
     subCategory: "hot deals",
@@ -408,8 +503,13 @@ const products: ProductData[] = [
     rating: 4.9,
     ratingCount: 10500,
     image:
-      "https://images.unsplash.com/photo-1553279768-865429fa0078?auto=format&fit=crop&w=600&q=80",
-    desc: "Luscious, aromatic and sweet honey mangoes.",
+      "https://images.unsplash.com/photo-1553279768-865429fa0078?auto=format&fit=crop&w=800&q=80",
+    images: [
+      "https://images.unsplash.com/photo-1591073113125-e46713c829ed?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1605027990121-cbae9e0642df?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1501746877-14782df58970?auto=format&fit=crop&w=800&q=80",
+    ],
+    desc: "Luscious, aromatic and sweet honey mangoes from tropical orchards.",
     category: "fruits",
     subCategory: "hot deals",
     tags: ["mango", "fruit", "tropical"],
@@ -429,8 +529,13 @@ const products: ProductData[] = [
     rating: 4.3,
     ratingCount: 1800,
     image:
-      "https://images.unsplash.com/photo-1593105544559-ecb03bf76f82?auto=format&fit=crop&w=600&q=80",
-    desc: "Crisp and peppery garden-fresh red radishes.",
+      "https://images.unsplash.com/photo-1593105544559-ecb03bf76f82?auto=format&fit=crop&w=800&q=80",
+    images: [
+      "https://images.unsplash.com/photo-1568584711075-3d021a7c3ca3?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1582515073490-39981397c445?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=800&q=80",
+    ],
+    desc: "Crisp and peppery garden-fresh red radishes with leafy greens.",
     category: "vegetables",
     subCategory: "popular",
     tags: ["radish", "vegetable", "fresh"],
@@ -450,7 +555,12 @@ const products: ProductData[] = [
     rating: 4.7,
     ratingCount: 5900,
     image:
-      "https://images.unsplash.com/photo-1537640538966-79f369143f8f?auto=format&fit=crop&w=600&q=80",
+      "https://images.unsplash.com/photo-1537640538966-79f369143f8f?auto=format&fit=crop&w=800&q=80",
+    images: [
+      "https://images.unsplash.com/photo-1596363505729-4190a9506133?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1599819177626-b50f9dd21c9b?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=800&q=80",
+    ],
     desc: "Sweet and juicy cluster of organic red seedless grapes.",
     category: "fruits",
     subCategory: "popular",
@@ -471,8 +581,13 @@ const products: ProductData[] = [
     rating: 4.6,
     ratingCount: 3900,
     image:
-      "https://images.unsplash.com/photo-1504544750208-dc0358e63f7f?auto=format&fit=crop&w=600&q=80",
-    desc: "Earthy and firm organic button mushrooms.",
+      "https://images.unsplash.com/photo-1504544750208-dc0358e63f7f?auto=format&fit=crop&w=800&q=80",
+    images: [
+      "https://images.unsplash.com/photo-1568584711075-3d021a7c3ca3?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1576045057995-568f588f82fb?auto=format&fit=crop&w=800&q=80",
+    ],
+    desc: "Earthy and firm organic button mushrooms for gourmet recipes.",
     category: "vegetables",
     subCategory: "featured",
     tags: ["mushrooms", "vegetable", "organic"],
@@ -492,7 +607,12 @@ const products: ProductData[] = [
     rating: 4.5,
     ratingCount: 3400,
     image:
-      "https://images.unsplash.com/photo-1449300079323-02e209d9d3a6?auto=format&fit=crop&w=600&q=80",
+      "https://images.unsplash.com/photo-1449300079323-02e209d9d3a6?auto=format&fit=crop&w=800&q=80",
+    images: [
+      "https://images.unsplash.com/photo-1604977042946-1eecc30f269e?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1590868309235-ea34bed7bd7f?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=800&q=80",
+    ],
     desc: "Hydrating and crisp farm fresh green cucumbers.",
     category: "vegetables",
     subCategory: "featured",
@@ -513,7 +633,12 @@ const products: ProductData[] = [
     rating: 4.7,
     ratingCount: 4800,
     image:
-      "https://images.unsplash.com/photo-1534723452862-4c874018d66d?auto=format&fit=crop&w=600&q=80",
+      "https://images.unsplash.com/photo-1534723452862-4c874018d66d?auto=format&fit=crop&w=800&q=80",
+    images: [
+      "https://images.unsplash.com/photo-1582979512210-99b6a53386f9?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1587132137056-bfbf0166836e?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1611080626919-7cf5a9dbab5b?auto=format&fit=crop&w=800&q=80",
+    ],
     desc: "Zesty, aromatic fresh yellow lemons full of natural juice.",
     category: "fruits",
     subCategory: "hot deals",
@@ -563,3 +688,4 @@ export const featuredProducts: ProductData[] = [
 ];
 
 export { products };
+export default products;
