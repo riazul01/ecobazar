@@ -17,7 +17,9 @@ const ratings = [
 
 const FilterByRating = () => {
   const [searchParams, setSearchParams] = useSearchParams();
-  const currentRating = searchParams.get("rating") ? Number(searchParams.get("rating")) : null;
+  const currentRating = searchParams.get("rating")
+    ? Number(searchParams.get("rating"))
+    : null;
 
   const handleToggleRating = (ratingValue: number) => {
     const newParams = new URLSearchParams(searchParams);

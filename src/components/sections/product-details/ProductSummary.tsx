@@ -57,7 +57,13 @@ const defaultProduct = {
   brandName: "EcoGreens Farm",
   inStock: true,
   stockCount: 1200,
-  tags: ["Vegetables", "Healthy", "Chinese Cabbage", "Organic", "Fresh Produce"],
+  tags: [
+    "Vegetables",
+    "Healthy",
+    "Chinese Cabbage",
+    "Organic",
+    "Fresh Produce",
+  ],
 };
 
 const ProductSummary = ({ product = defaultProduct }: ProductSummaryProps) => {
@@ -67,9 +73,7 @@ const ProductSummary = ({ product = defaultProduct }: ProductSummaryProps) => {
 
   const productId = currentProduct.id;
   const isWishlisted = isInWishlist(productId);
-  const cartItem = items.find(
-    (item) => String(item.id) === String(productId),
-  );
+  const cartItem = items.find((item) => String(item.id) === String(productId));
   const quantity = cartItem ? cartItem.quantity : 0;
 
   const handleAddToCart = () => {
@@ -90,7 +94,12 @@ const ProductSummary = ({ product = defaultProduct }: ProductSummaryProps) => {
   const originalPrice =
     currentProduct.originalPrice ??
     (currentProduct.discountInPercent && currentProduct.discountInPercent > 0
-      ? Number((currentProduct.price / (1 - currentProduct.discountInPercent / 100)).toFixed(2))
+      ? Number(
+          (
+            currentProduct.price /
+            (1 - currentProduct.discountInPercent / 100)
+          ).toFixed(2),
+        )
       : undefined);
 
   return (
@@ -141,7 +150,10 @@ const ProductSummary = ({ product = defaultProduct }: ProductSummaryProps) => {
             size="small"
             readOnly
           />
-          <Typography variant="body2" sx={{ color: "text.secondary", fontWeight: 500 }}>
+          <Typography
+            variant="body2"
+            sx={{ color: "text.secondary", fontWeight: 500 }}
+          >
             {currentProduct.ratingCount.toLocaleString()} Reviews
           </Typography>
         </Stack>
@@ -156,7 +168,8 @@ const ProductSummary = ({ product = defaultProduct }: ProductSummaryProps) => {
         />
 
         <Typography variant="body2" sx={{ color: "text.secondary" }}>
-          <strong>SKU:</strong> {currentProduct.sku || `ECO-${currentProduct.id}251`}
+          <strong>SKU:</strong>{" "}
+          {currentProduct.sku || `ECO-${currentProduct.id}251`}
         </Typography>
       </Stack>
 
@@ -182,23 +195,24 @@ const ProductSummary = ({ product = defaultProduct }: ProductSummaryProps) => {
         >
           ${currentProduct.price.toFixed(2)}
         </Typography>
-        {currentProduct.discountInPercent && currentProduct.discountInPercent > 0 && (
-          <Chip
-            label={`${currentProduct.discountInPercent}% Off`}
-            size="small"
-            sx={(theme) => ({
-              bgcolor: alpha(theme.palette.error.main, 0.12),
-              color: "error.main",
-              fontWeight: 700,
-              fontSize: "0.8rem",
-              borderRadius: 1.5,
-              "& .MuiChip-label": {
+        {currentProduct.discountInPercent &&
+          currentProduct.discountInPercent > 0 && (
+            <Chip
+              label={`${currentProduct.discountInPercent}% Off`}
+              size="small"
+              sx={(theme) => ({
+                bgcolor: alpha(theme.palette.error.main, 0.12),
                 color: "error.main",
-                px: 1,
-              },
-            })}
-          />
-        )}
+                fontWeight: 700,
+                fontSize: "0.8rem",
+                borderRadius: 1.5,
+                "& .MuiChip-label": {
+                  color: "error.main",
+                  px: 1,
+                },
+              })}
+            />
+          )}
       </Stack>
 
       <Divider sx={{ my: 2 }} />
@@ -214,51 +228,71 @@ const ProductSummary = ({ product = defaultProduct }: ProductSummaryProps) => {
         }}
       >
         <Stack sx={{ gap: 1.25, alignItems: "center" }}>
-          <Typography variant="body2" sx={{ color: "text.secondary", fontWeight: 500 }}>
+          <Typography
+            variant="body2"
+            sx={{ color: "text.secondary", fontWeight: 500 }}
+          >
             Brand:
           </Typography>
-          <Box sx={{ width: 56, height: 56, display: "flex", alignItems: "center", justifyContent: "center" }}>
+          <Box
+            sx={{
+              width: 56,
+              height: 56,
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
             <Farmary />
           </Box>
         </Stack>
 
         <Stack sx={{ gap: 0.5, alignItems: "center" }}>
-          <Typography variant="body2" sx={{ color: "text.secondary", fontWeight: 500, mr: 0.5 }}>
+          <Typography
+            variant="body2"
+            sx={{ color: "text.secondary", fontWeight: 500, mr: 0.5 }}
+          >
             Share:
           </Typography>
           {socialLinks
             .filter((item) => item.name !== "LinkedIn")
             .map((item) => {
-            const brandColor = item.color || "#1877F2";
-            return (
-              <IconButton
-                key={item.id}
-                component={Link}
-                href={item.link}
-                target="_blank"
-                size="small"
-                aria-label={`Share on ${item.name || "social media"}`}
-                sx={(theme) => ({
-                  width: 32,
-                  height: 32,
-                  color: "text.secondary",
-                  borderRadius: "50%",
-                  transition: theme.transitions.create(["color", "background-color"]),
-                  "&:hover": {
-                    color: brandColor,
-                    bgcolor: alpha(brandColor, 0.12),
-                  },
-                })}
-              >
-                <Iconify icon={item.icon} sx={{ fontSize: 16 }} />
-              </IconButton>
-            );
-          })}
+              const brandColor = item.color || "#1877F2";
+              return (
+                <IconButton
+                  key={item.id}
+                  component={Link}
+                  href={item.link}
+                  target="_blank"
+                  size="small"
+                  aria-label={`Share on ${item.name || "social media"}`}
+                  sx={(theme) => ({
+                    width: 32,
+                    height: 32,
+                    color: "text.secondary",
+                    borderRadius: "50%",
+                    transition: theme.transitions.create([
+                      "color",
+                      "background-color",
+                    ]),
+                    "&:hover": {
+                      color: brandColor,
+                      bgcolor: alpha(brandColor, 0.12),
+                    },
+                  })}
+                >
+                  <Iconify icon={item.icon} sx={{ fontSize: 16 }} />
+                </IconButton>
+              );
+            })}
         </Stack>
       </Stack>
 
       {/* Description Preview */}
-      <Typography variant="body2" sx={{ color: "text.secondary", lineHeight: 1.7, mb: 3 }}>
+      <Typography
+        variant="body2"
+        sx={{ color: "text.secondary", lineHeight: 1.7, mb: 3 }}
+      >
         {currentProduct.desc}
       </Typography>
 
@@ -335,7 +369,11 @@ const ProductSummary = ({ product = defaultProduct }: ProductSummaryProps) => {
               })}
             >
               <Iconify
-                icon={quantity === 1 ? "solar:trash-bin-trash-bold" : "solar:minus-bold"}
+                icon={
+                  quantity === 1
+                    ? "solar:trash-bin-trash-bold"
+                    : "solar:minus-bold"
+                }
                 sx={{ fontSize: 16 }}
               />
             </IconButton>
@@ -423,7 +461,10 @@ const ProductSummary = ({ product = defaultProduct }: ProductSummaryProps) => {
       {/* Meta details */}
       <Stack direction="column" sx={{ gap: 1.5 }}>
         <Stack sx={{ alignItems: "center", gap: 1 }}>
-          <Typography variant="body2" sx={{ fontWeight: 600, color: "text.primary", minWidth: 80 }}>
+          <Typography
+            variant="body2"
+            sx={{ fontWeight: 600, color: "text.primary", minWidth: 80 }}
+          >
             Category:
           </Typography>
           <Link
@@ -440,7 +481,15 @@ const ProductSummary = ({ product = defaultProduct }: ProductSummaryProps) => {
         </Stack>
 
         <Stack sx={{ alignItems: "flex-start", gap: 1, flexWrap: "wrap" }}>
-          <Typography variant="body2" sx={{ fontWeight: 600, color: "text.primary", minWidth: 80, mt: 0.5 }}>
+          <Typography
+            variant="body2"
+            sx={{
+              fontWeight: 600,
+              color: "text.primary",
+              minWidth: 80,
+              mt: 0.5,
+            }}
+          >
             Tags:
           </Typography>
           <Stack sx={{ gap: 0.75, flexWrap: "wrap" }}>

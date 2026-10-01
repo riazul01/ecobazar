@@ -103,7 +103,10 @@ const Header = () => {
               <Typography variant="caption" sx={{ color: "text.secondary" }}>
                 Shopping cart:
               </Typography>
-              <Typography variant="subtitle1" sx={{ color: "text.primary", fontWeight: 600 }}>
+              <Typography
+                variant="subtitle1"
+                sx={{ color: "text.primary", fontWeight: 600 }}
+              >
                 ${subtotal.toFixed(2)}
               </Typography>
             </Stack>

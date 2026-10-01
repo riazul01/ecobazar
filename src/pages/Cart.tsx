@@ -264,7 +264,8 @@ const Cart = () => {
                           Congratulations! You have unlocked{" "}
                           <Typography component="span" sx={{ fontWeight: 600 }}>
                             Free Shipping
-                          </Typography>.
+                          </Typography>
+                          .
                         </>
                       ) : (
                         <>
@@ -551,7 +552,10 @@ const Cart = () => {
                                 "&:hover": {
                                   borderColor: "error.main",
                                   color: "error.main",
-                                  bgcolor: alpha(theme.palette.error.main, 0.08),
+                                  bgcolor: alpha(
+                                    theme.palette.error.main,
+                                    0.08,
+                                  ),
                                 },
                               })}
                             >

@@ -6,14 +6,29 @@ import TableContainer from "@mui/material/TableContainer";
 
 const specs = [
   { label: "Weight", value: "1 kg (approx. 2.2 lbs)" },
-  { label: "Color & Appearance", value: "Vibrant pale-green & crisp white leaves" },
+  {
+    label: "Color & Appearance",
+    value: "Vibrant pale-green & crisp white leaves",
+  },
   { label: "Type", value: "100% Organic Leafy Vegetable" },
   { label: "Category", value: "Fresh Farm Greens" },
-  { label: "Stock Status", value: "Available in Stock (1,200 units ready to ship)" },
+  {
+    label: "Stock Status",
+    value: "Available in Stock (1,200 units ready to ship)",
+  },
   { label: "Shelf Life", value: "7 to 10 Days when refrigerated" },
-  { label: "Recommended Storage", value: "Keep chilled between 2°C - 4°C in vegetable crisper" },
-  { label: "Farm Origin", value: "EcoGreens Valley Farm, Certified Organic Lands" },
-  { label: "Certifications", value: "USDA Organic, Non-GMO Project Verified, GlobalGAP" },
+  {
+    label: "Recommended Storage",
+    value: "Keep chilled between 2°C - 4°C in vegetable crisper",
+  },
+  {
+    label: "Farm Origin",
+    value: "EcoGreens Valley Farm, Certified Organic Lands",
+  },
+  {
+    label: "Certifications",
+    value: "USDA Organic, Non-GMO Project Verified, GlobalGAP",
+  },
 ];
 
 const AdditionalInfo = () => {

@@ -94,7 +94,10 @@ const SearchBox = ({ showSearchButton, onSearchSubmit }: SearchBoxProps) => {
 
   const handleSelectCategory = (cat: string) => {
     handleClose();
-    const formatted = cat.toLowerCase().replace(/ & /g, "-").replace(/\s+/g, "-");
+    const formatted = cat
+      .toLowerCase()
+      .replace(/ & /g, "-")
+      .replace(/\s+/g, "-");
     navigate(`${paths.shop}?category=${encodeURIComponent(formatted)}`);
     onSearchSubmit?.();
   };
@@ -142,12 +145,12 @@ const SearchBox = ({ showSearchButton, onSearchSubmit }: SearchBoxProps) => {
               },
               showSearchButton
                 ? {
-                  [`& .${inputBaseClasses.root}`]: {
-                    borderRight: "none",
-                    borderTopRightRadius: 0,
-                    borderBottomRightRadius: 0,
-                  },
-                }
+                    [`& .${inputBaseClasses.root}`]: {
+                      borderRight: "none",
+                      borderTopRightRadius: 0,
+                      borderBottomRightRadius: 0,
+                    },
+                  }
                 : {},
             ]}
             slotProps={{
@@ -230,7 +233,8 @@ const SearchBox = ({ showSearchButton, onSearchSubmit }: SearchBoxProps) => {
           {suggestions.products.length > 0 ? (
             <Box>
               {/* Categories & Tags Suggestions */}
-              {(suggestions.categories.length > 0 || suggestions.tags.length > 0) && (
+              {(suggestions.categories.length > 0 ||
+                suggestions.tags.length > 0) && (
                 <Box sx={{ mb: 1.5 }}>
                   <Typography
                     variant="caption"
@@ -286,7 +290,10 @@ const SearchBox = ({ showSearchButton, onSearchSubmit }: SearchBoxProps) => {
                 {suggestions.products.map((item) => {
                   const originalPrice =
                     item.discountInPercent > 0
-                      ? (item.price / (1 - item.discountInPercent / 100)).toFixed(2)
+                      ? (
+                          item.price /
+                          (1 - item.discountInPercent / 100)
+                        ).toFixed(2)
                       : null;
 
                   return (
@@ -327,9 +334,15 @@ const SearchBox = ({ showSearchButton, onSearchSubmit }: SearchBoxProps) => {
                           </Typography>
                         }
                         secondary={
-                          <Stack sx={{ alignItems: "center", gap: 1, mt: 0.25 }}>
-                            <Typography variant="caption" sx={{ color: "text.secondary" }}>
-                              {item.category.charAt(0).toUpperCase() + item.category.slice(1)}
+                          <Stack
+                            sx={{ alignItems: "center", gap: 1, mt: 0.25 }}
+                          >
+                            <Typography
+                              variant="caption"
+                              sx={{ color: "text.secondary" }}
+                            >
+                              {item.category.charAt(0).toUpperCase() +
+                                item.category.slice(1)}
                             </Typography>
                             <Typography
                               variant="caption"
@@ -376,7 +389,12 @@ const SearchBox = ({ showSearchButton, onSearchSubmit }: SearchBoxProps) => {
                 variant="text"
                 size="small"
                 onClick={() => executeSearch(query)}
-                endIcon={<Iconify icon="solar:arrow-right-linear" sx={{ fontSize: 16 }} />}
+                endIcon={
+                  <Iconify
+                    icon="solar:arrow-right-linear"
+                    sx={{ fontSize: 16 }}
+                  />
+                }
                 sx={{
                   color: "primary.main",
                   justifyContent: "space-between",
@@ -396,7 +414,10 @@ const SearchBox = ({ showSearchButton, onSearchSubmit }: SearchBoxProps) => {
               <Typography variant="subtitle2" sx={{ color: "text.primary" }}>
                 No products found
               </Typography>
-              <Typography variant="caption" sx={{ color: "text.secondary", mt: 0.5, display: "block" }}>
+              <Typography
+                variant="caption"
+                sx={{ color: "text.secondary", mt: 0.5, display: "block" }}
+              >
                 We couldn&apos;t find anything matching &quot;{query}&quot;.
               </Typography>
             </Box>

@@ -43,10 +43,7 @@ const Wishlist = () => {
   const [toastMessage, setToastMessage] = useState("");
   const [toastSeverity, setToastSeverity] = useState<AlertColor>("success");
 
-  const showToast = (
-    message: string,
-    severity: AlertColor = "success",
-  ) => {
+  const showToast = (message: string, severity: AlertColor = "success") => {
     setToastMessage(message);
     setToastSeverity(severity);
     setToastOpen(true);
@@ -665,7 +662,11 @@ const Wishlist = () => {
                           />
                         </Box>
 
-                        <Stack direction="column" spacing={0.5} sx={{ flex: 1 }}>
+                        <Stack
+                          direction="column"
+                          spacing={0.5}
+                          sx={{ flex: 1 }}
+                        >
                           <Stack
                             direction="row"
                             sx={{
@@ -710,10 +711,7 @@ const Wishlist = () => {
                                 },
                               })}
                             >
-                              <Iconify
-                                icon="mdi:close"
-                                sx={{ fontSize: 16 }}
-                              />
+                              <Iconify icon="mdi:close" sx={{ fontSize: 16 }} />
                             </IconButton>
                           </Stack>
 

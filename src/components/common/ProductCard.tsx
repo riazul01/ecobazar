@@ -54,16 +54,17 @@ const ProductCard = ({ data, product }: ProductCardProps) => {
 
   const productId = currentProduct.id;
   const isWishlisted = isInWishlist(productId);
-  const cartItem = items.find(
-    (item) => String(item.id) === String(productId),
-  );
+  const cartItem = items.find((item) => String(item.id) === String(productId));
   const quantity = cartItem ? cartItem.quantity : 0;
 
   const handleOpenQuickView = (e: React.MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();
     window.history.pushState(
-      { quickView: true, prevUrl: window.location.pathname + window.location.search },
+      {
+        quickView: true,
+        prevUrl: window.location.pathname + window.location.search,
+      },
       "",
       paths.productDetails(productId),
     );
@@ -75,7 +76,11 @@ const ProductCard = ({ data, product }: ProductCardProps) => {
     if (window.history.state?.quickView) {
       window.history.back();
     } else {
-      window.history.replaceState(null, "", window.history.state?.prevUrl || window.location.pathname);
+      window.history.replaceState(
+        null,
+        "",
+        window.history.state?.prevUrl || window.location.pathname,
+      );
     }
   };
 
@@ -183,7 +188,9 @@ const ProductCard = ({ data, product }: ProductCardProps) => {
               e.stopPropagation();
               toggleWishlist(currentProduct);
             }}
-            aria-label={isWishlisted ? "Remove from wishlist" : "Add to wishlist"}
+            aria-label={
+              isWishlisted ? "Remove from wishlist" : "Add to wishlist"
+            }
             size="large"
             sx={{ background: `rgba(0, 0, 0, 0.45) !important` }}
           >
@@ -329,7 +336,11 @@ const ProductCard = ({ data, product }: ProductCardProps) => {
               })}
             >
               <Iconify
-                icon={quantity === 1 ? "solar:trash-bin-trash-bold" : "solar:minus-bold"}
+                icon={
+                  quantity === 1
+                    ? "solar:trash-bin-trash-bold"
+                    : "solar:minus-bold"
+                }
                 sx={{ fontSize: 15 }}
               />
             </IconButton>

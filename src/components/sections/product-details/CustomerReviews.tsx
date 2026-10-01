@@ -59,11 +59,20 @@ const CustomerReviews = () => {
   return (
     <Stack direction="column" sx={{ gap: 3.5, width: 1, maxWidth: 900 }}>
       {/* Write a Review Button */}
-      <Box sx={{ display: "flex", justifyContent: { xs: "stretch", sm: "flex-end" }, width: 1, pb: 1 }}>
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: { xs: "stretch", sm: "flex-end" },
+          width: 1,
+          pb: 1,
+        }}
+      >
         <Button
           variant="contained"
           size="medium"
-          startIcon={<Iconify icon="solar:pen-new-square-linear" sx={{ fontSize: 18 }} />}
+          startIcon={
+            <Iconify icon="solar:pen-new-square-linear" sx={{ fontSize: 18 }} />
+          }
           sx={{ px: 2.5, py: 1, width: { xs: 1, sm: "auto" } }}
         >
           Write a Review
@@ -87,7 +96,12 @@ const CustomerReviews = () => {
                 <Avatar
                   src={rev.avatar}
                   alt={rev.name}
-                  sx={{ width: 44, height: 44, border: 1, borderColor: "divider" }}
+                  sx={{
+                    width: 44,
+                    height: 44,
+                    border: 1,
+                    borderColor: "divider",
+                  }}
                 />
                 <Box>
                   <Stack sx={{ alignItems: "center", gap: 1 }}>
@@ -95,19 +109,39 @@ const CustomerReviews = () => {
                       {rev.name}
                     </Typography>
                     {rev.verified && (
-                      <Stack sx={{ alignItems: "center", gap: 0.35, color: "success.main" }}>
-                        <Iconify icon="solar:verified-check-bold" sx={{ fontSize: 15 }} />
-                        <Typography variant="caption" sx={{ color: "success.main", fontWeight: 600 }}>
+                      <Stack
+                        sx={{
+                          alignItems: "center",
+                          gap: 0.35,
+                          color: "success.main",
+                        }}
+                      >
+                        <Iconify
+                          icon="solar:verified-check-bold"
+                          sx={{ fontSize: 15 }}
+                        />
+                        <Typography
+                          variant="caption"
+                          sx={{ color: "success.main", fontWeight: 600 }}
+                        >
                           Verified
                         </Typography>
                       </Stack>
                     )}
                   </Stack>
-                  <Rating value={rev.rating} size="small" readOnly sx={{ mt: 0.25 }} />
+                  <Rating
+                    value={rev.rating}
+                    size="small"
+                    readOnly
+                    sx={{ mt: 0.25 }}
+                  />
                 </Box>
               </Stack>
 
-              <Typography variant="caption" sx={{ color: "text.secondary", fontWeight: 500 }}>
+              <Typography
+                variant="caption"
+                sx={{ color: "text.secondary", fontWeight: 500 }}
+              >
                 {rev.date}
               </Typography>
             </Stack>

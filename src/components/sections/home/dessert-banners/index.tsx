@@ -11,7 +11,7 @@ const DessertBanners = () => {
       sx={{
         mb: 8,
         justifyContent: { xs: "center", xl: "space-between" },
-        flexWrap: {xs: "wrap", xl: "nowrap" },
+        flexWrap: { xs: "wrap", xl: "nowrap" },
         gap: 2,
       }}
     >

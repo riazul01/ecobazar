@@ -22,7 +22,9 @@ const ProductDetails = () => {
     { id: 2, title: "Shop", link: paths.shop },
     {
       id: 3,
-      title: product.category ? product.category.charAt(0).toUpperCase() + product.category.slice(1) : "Vegetables",
+      title: product.category
+        ? product.category.charAt(0).toUpperCase() + product.category.slice(1)
+        : "Vegetables",
       link: paths.shop,
     },
     { id: 4, title: product.name, active: true },
@@ -35,7 +37,11 @@ const ProductDetails = () => {
       <Breadcrumb breadcrumbs={breadcrumbs} />
 
       <SectionWrapper sx={{ py: { xs: 3, md: 6 } }}>
-        <Grid container spacing={{ xs: 4, lg: 6 }} sx={{ mb: { xs: 4, md: 6 } }}>
+        <Grid
+          container
+          spacing={{ xs: 4, lg: 6 }}
+          sx={{ mb: { xs: 4, md: 6 } }}
+        >
           <Grid size={{ xs: 12, md: 6 }}>
             <ImageSlider images={productImages} productName={product.name} />
           </Grid>

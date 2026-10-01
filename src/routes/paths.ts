@@ -1,7 +1,8 @@
 export const paths = {
   home: "/",
   shop: "/shop",
-  productDetails: (id: string | number = ":id") => `/shop/product-details/${id}`,
+  productDetails: (id: string | number = ":id") =>
+    `/shop/product-details/${id}`,
   cart: "/cart",
   checkout: "/checkout",
   wishlist: "/wishlist",

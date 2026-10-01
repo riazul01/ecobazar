@@ -132,7 +132,8 @@ const CartDrawer = () => {
                 mb: 3,
               }}
             >
-              Looks like you haven't added any items to your cart yet. Explore our products and add them here!
+              Looks like you haven't added any items to your cart yet. Explore
+              our products and add them here!
             </Typography>
             <Button
               component={Link}
@@ -191,7 +192,10 @@ const CartDrawer = () => {
                         variant="body1"
                         sx={{
                           mb: 0.5,
-                          fontSize: { xs: "body2.fontSize", sm: "body1.fontSize" },
+                          fontSize: {
+                            xs: "body2.fontSize",
+                            sm: "body1.fontSize",
+                          },
                           fontWeight: 500,
                           overflow: "hidden",
                           textOverflow: "ellipsis",

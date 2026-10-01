@@ -1,9 +1,11 @@
+import { Link as RouterLink } from "react-router";
 import { Box, Stack } from "@mui/material";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import Iconify from "components/base/Iconify";
 import Banner from "components/common/Banner";
 import { SoftDrinkBg } from "data/images";
+import { paths } from "routes/paths";
 
 const SoftDrink = () => {
   return (
@@ -29,6 +31,8 @@ const SoftDrink = () => {
           Water & <br /> Soft Drink
         </Typography>
         <Button
+          component={RouterLink}
+          to={paths.shop}
           variant="contained"
           color="secondary"
           size="medium"

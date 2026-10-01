@@ -1,8 +1,10 @@
+import { Link as RouterLink } from "react-router";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import Iconify from "components/base/Iconify";
 import Banner from "components/common/Banner";
 import { SummerSaleBg } from "data/images";
+import { paths } from "routes/paths";
 
 const SummerSale = () => {
   return (
@@ -31,6 +33,8 @@ const SummerSale = () => {
         Only Fruit & Vegetable
       </Typography>
       <Button
+        component={RouterLink}
+        to={paths.shop}
         variant="text"
         size="medium"
         endIcon={<Iconify icon="fluent:arrow-right-32-filled" />}

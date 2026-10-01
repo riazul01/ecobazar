@@ -50,19 +50,32 @@ const FilterByTag = () => {
                 fontSize: "0.8rem",
                 borderRadius: 20,
                 border: `1px solid ${isSelected ? theme.palette.primary.main : theme.palette.divider}`,
-                bgcolor: isSelected ? theme.palette.primary.main : "transparent",
-                color: isSelected ? theme.palette.common.white : theme.palette.text.primary,
+                bgcolor: isSelected
+                  ? theme.palette.primary.main
+                  : "transparent",
+                color: isSelected
+                  ? theme.palette.common.white
+                  : theme.palette.text.primary,
                 outline: "none",
-                transition: theme.transitions.create(["background-color", "border-color", "color"], {
-                  duration: 150,
-                }),
+                transition: theme.transitions.create(
+                  ["background-color", "border-color", "color"],
+                  {
+                    duration: 150,
+                  },
+                ),
                 "& .MuiChip-label": {
-                  color: isSelected ? theme.palette.common.white : theme.palette.text.primary,
+                  color: isSelected
+                    ? theme.palette.common.white
+                    : theme.palette.text.primary,
                   px: 1.5,
                 },
                 "&:hover, &.MuiChip-clickable:hover": {
-                  bgcolor: isSelected ? theme.palette.primary.dark : theme.palette.primary.main,
-                  borderColor: isSelected ? theme.palette.primary.dark : theme.palette.primary.main,
+                  bgcolor: isSelected
+                    ? theme.palette.primary.dark
+                    : theme.palette.primary.main,
+                  borderColor: isSelected
+                    ? theme.palette.primary.dark
+                    : theme.palette.primary.main,
                   color: theme.palette.common.white,
                   "& .MuiChip-label": {
                     color: theme.palette.common.white,
@@ -71,7 +84,9 @@ const FilterByTag = () => {
                 "&:focus, &:focus-visible, &.Mui-focusVisible": {
                   outline: "none",
                   boxShadow: "none",
-                  borderColor: isSelected ? theme.palette.primary.main : theme.palette.primary.main,
+                  borderColor: isSelected
+                    ? theme.palette.primary.main
+                    : theme.palette.primary.main,
                 },
               })}
             />

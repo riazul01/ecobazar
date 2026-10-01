@@ -28,14 +28,27 @@ const Products = ({ toggleDrawer }: ProductsProps) => {
 
   const query = searchParams.get("search") || "";
   const category = searchParams.get("category") || "";
-  const minPrice = searchParams.get("minPrice") ? Number(searchParams.get("minPrice")) : undefined;
-  const maxPrice = searchParams.get("maxPrice") ? Number(searchParams.get("maxPrice")) : undefined;
-  const rating = searchParams.get("rating") ? Number(searchParams.get("rating")) : undefined;
+  const minPrice = searchParams.get("minPrice")
+    ? Number(searchParams.get("minPrice"))
+    : undefined;
+  const maxPrice = searchParams.get("maxPrice")
+    ? Number(searchParams.get("maxPrice"))
+    : undefined;
+  const rating = searchParams.get("rating")
+    ? Number(searchParams.get("rating"))
+    : undefined;
   const tag = searchParams.get("tag") || "";
   const sortBy = searchParams.get("sort") || "Latest";
   const page = Number(searchParams.get("page") || "1");
 
-  const hasActiveFilters = Boolean(query || category || minPrice !== undefined || maxPrice !== undefined || rating || tag);
+  const hasActiveFilters = Boolean(
+    query ||
+    category ||
+    minPrice !== undefined ||
+    maxPrice !== undefined ||
+    rating ||
+    tag,
+  );
 
   const filteredProducts = useMemo(() => {
     return searchProducts(products, {
@@ -56,7 +69,10 @@ const Products = ({ toggleDrawer }: ProductsProps) => {
     validPage * ITEMS_PER_PAGE,
   );
 
-  const handlePageChange = (_event: React.ChangeEvent<unknown>, newPage: number) => {
+  const handlePageChange = (
+    _event: React.ChangeEvent<unknown>,
+    newPage: number,
+  ) => {
     const newParams = new URLSearchParams(searchParams);
     if (newPage === 1) {
       newParams.delete("page");
@@ -136,7 +152,10 @@ const Products = ({ toggleDrawer }: ProductsProps) => {
             flexWrap: "wrap",
           }}
         >
-          <Typography variant="caption" sx={{ color: "text.secondary", mr: 0.5 }}>
+          <Typography
+            variant="caption"
+            sx={{ color: "text.secondary", mr: 0.5 }}
+          >
             Active filters:
           </Typography>
 
@@ -308,14 +327,18 @@ const Products = ({ toggleDrawer }: ProductsProps) => {
             icon="solar:magnifer-linear"
             sx={{ fontSize: 52, color: "text.disabled", mb: 1.5 }}
           />
-          <Typography variant="h5" sx={{ fontWeight: 600, color: "text.primary", mb: 1 }}>
+          <Typography
+            variant="h5"
+            sx={{ fontWeight: 600, color: "text.primary", mb: 1 }}
+          >
             No products found
           </Typography>
           <Typography
             variant="body2"
             sx={{ color: "text.secondary", maxWidth: 440, mx: "auto", mb: 3 }}
           >
-            We couldn&apos;t find any products matching your search criteria. Try modifying your search term or clearing active filters.
+            We couldn&apos;t find any products matching your search criteria.
+            Try modifying your search term or clearing active filters.
           </Typography>
           <Button variant="contained" onClick={clearAllFilters}>
             Clear All Filters

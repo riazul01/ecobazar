@@ -125,7 +125,10 @@ const ProductQuickViewModal = ({
             },
           }}
         >
-          <Iconify icon="material-symbols:close-rounded" sx={{ fontSize: 22 }} />
+          <Iconify
+            icon="material-symbols:close-rounded"
+            sx={{ fontSize: 22 }}
+          />
         </IconButton>
 
         {/* Modal Content */}

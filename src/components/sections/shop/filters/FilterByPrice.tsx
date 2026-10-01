@@ -10,11 +10,18 @@ function valuetext(value: number) {
 
 const FilterByPrice = () => {
   const [searchParams, setSearchParams] = useSearchParams();
-  const minParam = searchParams.get("minPrice") ? Number(searchParams.get("minPrice")) : 0;
-  const maxParam = searchParams.get("maxPrice") ? Number(searchParams.get("maxPrice")) : 100;
+  const minParam = searchParams.get("minPrice")
+    ? Number(searchParams.get("minPrice"))
+    : 0;
+  const maxParam = searchParams.get("maxPrice")
+    ? Number(searchParams.get("maxPrice"))
+    : 100;
 
   const [value, setValue] = useState<number[]>([minParam, maxParam]);
-  const [prevBounds, setPrevBounds] = useState({ min: minParam, max: maxParam });
+  const [prevBounds, setPrevBounds] = useState({
+    min: minParam,
+    max: maxParam,
+  });
 
   if (prevBounds.min !== minParam || prevBounds.max !== maxParam) {
     setPrevBounds({ min: minParam, max: maxParam });

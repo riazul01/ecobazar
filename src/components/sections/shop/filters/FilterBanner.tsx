@@ -1,9 +1,11 @@
+import { Link as RouterLink } from "react-router";
 import Stack from "@mui/material/Stack";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import Iconify from "components/base/Iconify";
 import Banner from "components/common/Banner";
 import { FilterBannerBg } from "data/images";
+import { paths } from "routes/paths";
 
 const FilterBanner = () => {
   return (
@@ -38,6 +40,8 @@ const FilterBanner = () => {
         on your first order
       </Typography>
       <Button
+        component={RouterLink}
+        to={paths.shop}
         variant="text"
         size="medium"
         endIcon={<Iconify icon="fluent:arrow-right-32-filled" />}

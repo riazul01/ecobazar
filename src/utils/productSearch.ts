@@ -66,7 +66,9 @@ export function searchProducts(
       }
 
       // Token matching in name
-      const matchedTokensInName = queryTokens.filter((t) => name.includes(t)).length;
+      const matchedTokensInName = queryTokens.filter((t) =>
+        name.includes(t),
+      ).length;
       if (matchedTokensInName === queryTokens.length) {
         score += 45;
       } else if (matchedTokensInName > 0) {
@@ -74,7 +76,11 @@ export function searchProducts(
       }
 
       // Category / SubCategory match
-      if (cat === trimmedQuery || cat.includes(trimmedQuery) || trimmedQuery.includes(cat)) {
+      if (
+        cat === trimmedQuery ||
+        cat.includes(trimmedQuery) ||
+        trimmedQuery.includes(cat)
+      ) {
         score += 40;
       }
       if (subCat.includes(trimmedQuery)) {
@@ -83,7 +89,11 @@ export function searchProducts(
 
       // Tags matching
       for (const t of itemTags) {
-        if (t === trimmedQuery || t.includes(trimmedQuery) || trimmedQuery.includes(t)) {
+        if (
+          t === trimmedQuery ||
+          t.includes(trimmedQuery) ||
+          trimmedQuery.includes(t)
+        ) {
           score += 35;
           break;
         }
@@ -104,7 +114,9 @@ export function searchProducts(
       }
     }
 
-    scoredItems.sort((a, b) => b.score - a.score || b.product.sales - a.product.sales);
+    scoredItems.sort(
+      (a, b) => b.score - a.score || b.product.sales - a.product.sales,
+    );
     results = scoredItems.map((s) => s.product);
   }
 
@@ -187,7 +199,10 @@ export function searchProducts(
 /**
  * Get instant suggestions, matched categories, and matched tags for live search popover.
  */
-export function getSearchSuggestions(query: string, limit = 5): AutocompleteResult {
+export function getSearchSuggestions(
+  query: string,
+  limit = 5,
+): AutocompleteResult {
   const trimmed = query.trim().toLowerCase();
   if (!trimmed) {
     return { products: [], categories: [], tags: [], totalMatches: 0 };
@@ -201,11 +216,17 @@ export function getSearchSuggestions(query: string, limit = 5): AutocompleteResu
 
   for (const p of products) {
     const cat = p.category || "";
-    if (cat.toLowerCase().includes(trimmed) || trimmed.includes(cat.toLowerCase())) {
+    if (
+      cat.toLowerCase().includes(trimmed) ||
+      trimmed.includes(cat.toLowerCase())
+    ) {
       categoriesSet.add(cat.charAt(0).toUpperCase() + cat.slice(1));
     }
     for (const t of p.tags || []) {
-      if (t.toLowerCase().includes(trimmed) || trimmed.includes(t.toLowerCase())) {
+      if (
+        t.toLowerCase().includes(trimmed) ||
+        trimmed.includes(t.toLowerCase())
+      ) {
         tagsSet.add(t.charAt(0).toUpperCase() + t.slice(1));
       }
     }

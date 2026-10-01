@@ -1,8 +1,10 @@
+import { Link as RouterLink } from "react-router";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import Iconify from "components/base/Iconify";
 import Banner from "components/common/Banner";
 import { DryFruitsBg } from "data/images";
+import { paths } from "routes/paths";
 
 const QuickBreakfast = () => {
   return (
@@ -20,6 +22,8 @@ const QuickBreakfast = () => {
         Quick <br /> Breakfast
       </Typography>
       <Button
+        component={RouterLink}
+        to={paths.shop}
         variant="contained"
         color="secondary"
         size="medium"

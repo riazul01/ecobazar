@@ -1,3 +1,4 @@
+import { Link as RouterLink } from "react-router";
 import Chip, { chipClasses } from "@mui/material/Chip";
 import Typography from "@mui/material/Typography";
 import Stack from "@mui/material/Stack";
@@ -6,6 +7,7 @@ import Banner from "components/common/Banner";
 import Iconify from "components/base/Iconify";
 import { FruitsBg } from "data/images";
 import { yellow } from "theme/colors";
+import { paths } from "routes/paths";
 
 const SummerSale = () => {
   return (
@@ -58,6 +60,8 @@ const SummerSale = () => {
 
       <Stack sx={{ mt: 3.5, justifyContent: "center" }}>
         <Button
+          component={RouterLink}
+          to={paths.shop}
           variant="contained"
           color="secondary"
           size="medium"

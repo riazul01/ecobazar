@@ -9,7 +9,11 @@ import { paths } from "routes/paths";
 const Categories = () => {
   return (
     <SectionWrapper sx={{ mb: 8 }}>
-      <SectionHeader title="Popular Categories" path={paths.shop} linkText="View All" />
+      <SectionHeader
+        title="Popular Categories"
+        path={paths.shop}
+        linkText="View All"
+      />
 
       <Grid container spacing={2}>
         {categories.map((category) => (

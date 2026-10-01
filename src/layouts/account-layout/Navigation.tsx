@@ -48,41 +48,41 @@ const Navigation = () => {
               href={itemHref}
               disablePadding
             >
-            <ListItemButton
-              sx={{
-                px: 2.5,
-                borderRadius: 0,
-                bgcolor: item.active ? "#EDF2EE" : "transparent",
-                "&:hover": {
-                  bgcolor: item.active ? "#EDF2EE" : "grey.100",
-                },
-                "&::before": {
-                  position: "absolute",
-                  content: '""',
-                  top: 0,
-                  left: 0,
-                  width: 3,
-                  height: 1,
-                  bgcolor: item.active ? "primary.main" : "transparent",
-                },
-              }}
-            >
-              <ListItemIcon
-                sx={{ color: item.active ? "text.primary" : "grey.300" }}
-              >
-                {item.icon}
-              </ListItemIcon>
-              <ListItemText
-                primary={item.title}
+              <ListItemButton
                 sx={{
-                  [`& .${listItemTextClasses.primary}`]: {
-                    color: item.active ? "text.primary" : "text.secondary",
-                    fontSize: "body1.fontSize",
+                  px: 2.5,
+                  borderRadius: 0,
+                  bgcolor: item.active ? "#EDF2EE" : "transparent",
+                  "&:hover": {
+                    bgcolor: item.active ? "#EDF2EE" : "grey.100",
+                  },
+                  "&::before": {
+                    position: "absolute",
+                    content: '""',
+                    top: 0,
+                    left: 0,
+                    width: 3,
+                    height: 1,
+                    bgcolor: item.active ? "primary.main" : "transparent",
                   },
                 }}
-              />
-            </ListItemButton>
-          </ListItem>
+              >
+                <ListItemIcon
+                  sx={{ color: item.active ? "text.primary" : "grey.300" }}
+                >
+                  {item.icon}
+                </ListItemIcon>
+                <ListItemText
+                  primary={item.title}
+                  sx={{
+                    [`& .${listItemTextClasses.primary}`]: {
+                      color: item.active ? "text.primary" : "text.secondary",
+                      fontSize: "body1.fontSize",
+                    },
+                  }}
+                />
+              </ListItemButton>
+            </ListItem>
           );
         })}
       </List>

@@ -101,7 +101,10 @@ const ImageSlider = ({
                 borderColor: isSelected ? "primary.main" : "divider",
                 bgcolor: "grey.50",
                 flexShrink: 0,
-                transition: theme.transitions.create(["border-color", "box-shadow"]),
+                transition: theme.transitions.create([
+                  "border-color",
+                  "box-shadow",
+                ]),
                 "&:hover": {
                   borderColor: isSelected ? "primary.main" : "primary.light",
                 },

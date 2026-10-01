@@ -1,3 +1,4 @@
+import { Link as RouterLink } from "react-router";
 import { alpha } from "@mui/material";
 import Box from "@mui/material/Box";
 import Stack from "@mui/material/Stack";
@@ -7,6 +8,7 @@ import SectionWrapper from "components/sections/SectionWrapper";
 import Iconify from "components/base/Iconify";
 import Banner from "components/common/Banner";
 import { CtaBg } from "data/images";
+import { paths } from "routes/paths";
 
 const CTABanner = () => {
   return (
@@ -75,6 +77,8 @@ const CTABanner = () => {
             guarantee
           </Typography>
           <Button
+            component={RouterLink}
+            to={paths.shop}
             variant="contained"
             color="primary"
             size="medium"
