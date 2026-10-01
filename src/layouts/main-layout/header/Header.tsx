@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useBreakpoints } from "providers/BreakpointProvider";
 import { useCart } from "providers/CartProvider";
+import { useWishlist } from "providers/WishlistProvider";
 import Link from "@mui/material/Link";
 import Stack from "@mui/material/Stack";
 import Badge from "@mui/material/Badge";
@@ -19,6 +20,7 @@ const Header = () => {
   const [openSearch, setOpenSearch] = useState(false);
   const { downSm } = useBreakpoints();
   const { openCart, totalCount, subtotal } = useCart();
+  const { wishlistCount } = useWishlist();
 
   return (
     <>
@@ -48,7 +50,7 @@ const Header = () => {
           <Badge
             component={Link}
             href="/wishlist"
-            badgeContent={2}
+            badgeContent={wishlistCount}
             color="success"
           >
             <HeartLightIcon

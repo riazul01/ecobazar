@@ -33,12 +33,21 @@ const Navigation = () => {
           gap: 0.5,
         }}
       >
-        {accountLinks.map((item) => (
-          <ListItem
-            component={Link}
-            href={`/account/${item.path}`}
-            disablePadding
-          >
+        {accountLinks.map((item) => {
+          const itemHref =
+            item.path === "wishlist"
+              ? "/wishlist"
+              : item.path === "shopping-cart"
+                ? "/cart"
+                : `/account/${item.path}`;
+
+          return (
+            <ListItem
+              key={item.id}
+              component={Link}
+              href={itemHref}
+              disablePadding
+            >
             <ListItemButton
               sx={{
                 px: 2.5,
@@ -74,7 +83,8 @@ const Navigation = () => {
               />
             </ListItemButton>
           </ListItem>
-        ))}
+          );
+        })}
       </List>
     </Box>
   );

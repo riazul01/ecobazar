@@ -289,7 +289,7 @@ const Cart = () => {
                 <TableContainer
                   component={Card}
                   variant="outlined"
-                  sx={{ borderRadius: 2, mb: 3 }}
+                  sx={{ borderRadius: 2, mb: 3, p: 0 }}
                 >
                   <Table sx={{ minWidth: 620 }}>
                     <TableHead sx={{ bgcolor: "grey.50" }}>
@@ -338,8 +338,6 @@ const Cart = () => {
                           key={item.id}
                           sx={{
                             "&:last-child td, &:last-child th": { border: 0 },
-                            transition: "background-color 0.15s ease",
-                            "&:hover": { bgcolor: "grey.50" },
                           }}
                         >
                           {/* Product Info */}
@@ -380,7 +378,30 @@ const Cart = () => {
                                   variant="caption"
                                   sx={{ color: "text.secondary" }}
                                 >
-                                  Unit: {item.weight || 1} {item.unit || "kg"}
+                                  Unit:{" "}
+                                  {(() => {
+                                    if (!item.weight && !item.unit)
+                                      return "1 kg";
+                                    if (!item.weight) return `1 ${item.unit}`;
+                                    const weightStr = String(
+                                      item.weight,
+                                    ).trim();
+                                    const unitStr = item.unit
+                                      ? String(item.unit).trim()
+                                      : "";
+                                    if (
+                                      unitStr &&
+                                      weightStr
+                                        .toLowerCase()
+                                        .endsWith(unitStr.toLowerCase())
+                                    ) {
+                                      return weightStr;
+                                    }
+                                    if (/[a-zA-Z]/.test(weightStr)) {
+                                      return weightStr;
+                                    }
+                                    return `${weightStr} ${unitStr || "kg"}`;
+                                  })()}
                                 </Typography>
                               </Box>
                             </Stack>
@@ -516,22 +537,25 @@ const Cart = () => {
                             <IconButton
                               onClick={() => removeFromCart(item.id)}
                               aria-label={`Remove ${item.name}`}
-                              sx={{
-                                width: 32,
-                                height: 32,
-                                color: "text.disabled",
-                                transition: "all 0.15s ease",
+                              size="small"
+                              sx={(theme) => ({
+                                width: 28,
+                                height: 28,
+                                minWidth: 28,
+                                minHeight: 28,
+                                borderRadius: "50%",
+                                border: 1,
+                                borderColor: "divider",
+                                color: "grey.500",
+                                p: 0,
                                 "&:hover": {
+                                  borderColor: "error.main",
                                   color: "error.main",
-                                  bgcolor: (theme) =>
-                                    alpha(theme.palette.error.main, 0.08),
+                                  bgcolor: alpha(theme.palette.error.main, 0.08),
                                 },
-                              }}
+                              })}
                             >
-                              <Iconify
-                                icon="solar:close-circle-linear"
-                                sx={{ fontSize: 20 }}
-                              />
+                              <Iconify icon="mdi:close" sx={{ fontSize: 16 }} />
                             </IconButton>
                           </TableCell>
                         </TableRow>
@@ -556,11 +580,10 @@ const Cart = () => {
                   <Stack
                     sx={{
                       width: 1,
-                      maxWidth: 480,
-                      height: { xs: 44, md: 48 },
+                      maxWidth: 460,
+                      height: { xs: 42, md: 46 },
                       alignItems: "center",
                       justifyContent: "center",
-                      overflow: "hidden",
                     }}
                   >
                     <TextField
@@ -592,7 +615,7 @@ const Cart = () => {
                       sx={{
                         ml: -5,
                         height: 1,
-                        minWidth: 120,
+                        width: { xs: 90, sm: 140 },
                         borderRadius: 10,
                       }}
                     >

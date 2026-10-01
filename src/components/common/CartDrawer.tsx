@@ -205,7 +205,7 @@ const CartDrawer = () => {
                         variant="body2"
                         sx={{ color: "text.secondary" }}
                       >
-                        {item.quantity} kg x{" "}
+                        {item.quantity} {item.unit || "kg"} x{" "}
                         <Typography
                           component="span"
                           sx={{

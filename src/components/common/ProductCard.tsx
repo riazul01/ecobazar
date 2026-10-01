@@ -15,6 +15,7 @@ import IconButton from "@mui/material/IconButton";
 import Iconify from "components/base/Iconify";
 import ProductQuickViewModal from "components/common/ProductQuickViewModal";
 import { useCart } from "providers/CartProvider";
+import { useWishlist } from "providers/WishlistProvider";
 import type { ProductData } from "data/products";
 import { paths } from "routes/paths";
 
@@ -48,9 +49,11 @@ const defaultProduct: ProductData = {
 const ProductCard = ({ data, product }: ProductCardProps) => {
   const currentProduct = data || product || defaultProduct;
   const { items, addToCart, updateQuantity } = useCart();
+  const { isInWishlist, toggleWishlist } = useWishlist();
   const [quickViewOpen, setQuickViewOpen] = useState(false);
 
   const productId = currentProduct.id;
+  const isWishlisted = isInWishlist(productId);
   const cartItem = items.find(
     (item) => String(item.id) === String(productId),
   );
@@ -93,7 +96,7 @@ const ProductCard = ({ data, product }: ProductCardProps) => {
         price: currentProduct.price,
         image: currentProduct.image,
         unit: currentProduct.unit,
-        weight: `${currentProduct.weight} ${currentProduct.unit}`,
+        weight: currentProduct.weight,
       },
       1,
       false,
@@ -175,10 +178,22 @@ const ProductCard = ({ data, product }: ProductCardProps) => {
           </IconButton>
 
           <IconButton
+            onClick={(e) => {
+              e.preventDefault();
+              e.stopPropagation();
+              toggleWishlist(currentProduct);
+            }}
+            aria-label={isWishlisted ? "Remove from wishlist" : "Add to wishlist"}
             size="large"
             sx={{ background: `rgba(0, 0, 0, 0.45) !important` }}
           >
-            <Iconify icon="proicons:heart" color="white" />
+            <Iconify
+              icon="proicons:heart"
+              sx={{
+                color: isWishlisted ? "error.main" : "white",
+                transition: "color 0.2s ease, transform 0.2s ease",
+              }}
+            />
           </IconButton>
 
           <IconButton

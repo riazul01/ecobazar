@@ -1,4 +1,3 @@
-import { useState } from "react";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Chip from "@mui/material/Chip";
@@ -13,6 +12,8 @@ import { alpha } from "@mui/material";
 import Iconify from "components/base/Iconify";
 import Farmary from "components/icons/FarmaryIcon";
 import { useCart } from "providers/CartProvider";
+import { useWishlist } from "providers/WishlistProvider";
+import type { ProductData } from "data/products";
 import { socialLinks } from "data/social-links";
 import { paths } from "routes/paths";
 
@@ -61,10 +62,11 @@ const defaultProduct = {
 
 const ProductSummary = ({ product = defaultProduct }: ProductSummaryProps) => {
   const currentProduct = { ...defaultProduct, ...product };
-  const [isWishlisted, setIsWishlisted] = useState(false);
   const { items, addToCart, updateQuantity } = useCart();
+  const { isInWishlist, toggleWishlist } = useWishlist();
 
   const productId = currentProduct.id;
+  const isWishlisted = isInWishlist(productId);
   const cartItem = items.find(
     (item) => String(item.id) === String(productId),
   );
@@ -78,7 +80,7 @@ const ProductSummary = ({ product = defaultProduct }: ProductSummaryProps) => {
         price: currentProduct.price,
         image: currentProduct.image,
         unit: currentProduct.unit || "kg",
-        weight: `${currentProduct.weight || 1} ${currentProduct.unit || "kg"}`,
+        weight: currentProduct.weight || 1,
       },
       1,
       false,
@@ -384,8 +386,10 @@ const ProductSummary = ({ product = defaultProduct }: ProductSummaryProps) => {
 
         {/* Wishlist Button - Soft Variant */}
         <IconButton
-          onClick={() => setIsWishlisted((prev) => !prev)}
-          aria-label="Add to wishlist"
+          onClick={() =>
+            toggleWishlist(currentProduct as unknown as ProductData)
+          }
+          aria-label={isWishlisted ? "Remove from wishlist" : "Add to wishlist"}
           sx={(theme) => ({
             width: 48,
             height: 48,

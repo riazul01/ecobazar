@@ -15,6 +15,7 @@ const App = lazy(() => import("App"));
 const Home = lazy(() => import("pages/Home"));
 const Shop = lazy(() => import("pages/Shop"));
 const Cart = lazy(() => import("pages/Cart"));
+const Wishlist = lazy(() => import("pages/Wishlist"));
 const Blog = lazy(() => import("pages/Blog"));
 const About = lazy(() => import("pages/About"));
 const Contact = lazy(() => import("pages/Contact"));
@@ -72,6 +73,10 @@ const router = createBrowserRouter([
           {
             path: "cart",
             element: <Cart />,
+          },
+          {
+            path: "wishlist",
+            element: <Wishlist />,
           },
           {
             path: "blog",
