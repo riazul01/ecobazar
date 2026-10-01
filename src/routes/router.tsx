@@ -14,6 +14,7 @@ import ProductDetails from "pages/ProductDetails";
 const App = lazy(() => import("App"));
 const Home = lazy(() => import("pages/Home"));
 const Shop = lazy(() => import("pages/Shop"));
+const Cart = lazy(() => import("pages/Cart"));
 const Blog = lazy(() => import("pages/Blog"));
 const About = lazy(() => import("pages/About"));
 const Contact = lazy(() => import("pages/Contact"));
@@ -67,6 +68,10 @@ const router = createBrowserRouter([
           {
             path: "product-details",
             element: <ProductDetails />,
+          },
+          {
+            path: "cart",
+            element: <Cart />,
           },
           {
             path: "blog",

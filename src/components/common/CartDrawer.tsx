@@ -108,7 +108,7 @@ const CartDrawer = () => {
               })}
             >
               <Iconify
-                icon="solar:cart-cross-linear"
+                icon="noto-v1:shopping-cart"
                 sx={{
                   fontSize: { xs: 42, sm: 52 },
                 }}
@@ -140,6 +140,7 @@ const CartDrawer = () => {
               onClick={closeCart}
               variant="contained"
               size="medium"
+              startIcon={<Iconify icon="solar:bag-3-linear" />}
               sx={{ px: 4 }}
             >
               Start Shopping
@@ -274,6 +275,9 @@ const CartDrawer = () => {
             </Button>
 
             <Button
+              component={Link}
+              href={paths.cart}
+              onClick={closeCart}
               size="medium"
               sx={(theme) => ({
                 bgcolor: `${alpha(theme.palette.primary.light, 0.1)} !important`,

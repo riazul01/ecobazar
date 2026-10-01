@@ -4,11 +4,12 @@ import CategoryItem from "./CategoryItem";
 import SectionHeader from "components/sections/SectionHeader";
 import SectionWrapper from "components/sections/SectionWrapper";
 import { categories } from "data/categories";
+import { paths } from "routes/paths";
 
 const Categories = () => {
   return (
     <SectionWrapper sx={{ mb: 8 }}>
-      <SectionHeader title="Popular Categories" path="#!" linkText="View All" />
+      <SectionHeader title="Popular Categories" path={paths.shop} linkText="View All" />
 
       <Grid container spacing={2}>
         {categories.map((category) => (
@@ -17,6 +18,7 @@ const Categories = () => {
             component={Link}
             href={category.path}
             size={{ xs: 6, sm: 4, md: 3, lg: 2 }}
+            sx={{ textDecoration: "none" }}
           >
             <CategoryItem data={category} />
           </Grid>

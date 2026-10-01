@@ -14,6 +14,9 @@ const Button: Components<Theme>["MuiButton"] = {
     text: ({ theme }) => ({
       color: theme.palette.primary.main,
       background: "transparent !important",
+      "&.MuiButton-colorError": {
+        color: theme.palette.error.main,
+      },
     }),
     contained: ({ theme }) => ({
       "&.MuiButton-colorPrimary": {
@@ -24,11 +27,19 @@ const Button: Components<Theme>["MuiButton"] = {
         color: theme.palette.primary.main,
         background: theme.palette.common.white,
       },
+      "&.MuiButton-colorError": {
+        color: theme.palette.common.white,
+        background: theme.palette.error.main,
+      },
     }),
     outlined: ({ theme }) => ({
       "&.MuiButton-colorPrimary": {
         color: theme.palette.primary.main,
         border: `1.5px solid ${theme.palette.primary.main} !important`,
+      },
+      "&.MuiButton-colorError": {
+        color: theme.palette.error.main,
+        border: `1.5px solid ${theme.palette.error.main} !important`,
       },
     }),
     sizeLarge: ({ theme }) => ({

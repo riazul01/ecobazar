@@ -9,11 +9,16 @@ const items = [
   { label: "All Categories", value: "" },
   { label: "Fresh Fruit", value: "fruits" },
   { label: "Vegetables", value: "vegetables" },
+  { label: "Meat & Fish", value: "meat" },
   { label: "Cooking", value: "cooking" },
   { label: "Snacks", value: "snacks" },
   { label: "Beverages", value: "beverages" },
   { label: "Beauty & Health", value: "beauty-health" },
   { label: "Bread & Bakery", value: "bread-bakery" },
+  { label: "Baking Needs", value: "baking" },
+  { label: "Diabetic Food", value: "diabetic" },
+  { label: "Dish Detergents", value: "detergents" },
+  { label: "Oil", value: "oil" },
 ];
 
 const FilterByCategory = () => {
