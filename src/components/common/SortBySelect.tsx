@@ -2,6 +2,7 @@ import { useState } from "react";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select, { type SelectChangeEvent } from "@mui/material/Select";
+import { inputBaseClasses } from "@mui/material/InputBase";
 
 const sortCategories = [
   { label: "Latest", value: "Latest" },
@@ -10,18 +11,19 @@ const sortCategories = [
 ];
 
 const SortBySelect = () => {
-  const [age, setAge] = useState("Latest");
+  const [sortBy, setSortBy] = useState("Latest");
 
   const handleChange = (event: SelectChangeEvent) => {
-    setAge(event.target.value as string);
+    setSortBy(event.target.value as string);
   };
 
   return (
     <FormControl sx={{ minWidth: 120 }}>
       <Select
-        value={age}
+        value={sortBy}
         onChange={handleChange}
         inputProps={{ "aria-label": "Without label" }}
+        sx={{ [`&.${inputBaseClasses.root}`]: { px: 1.25, py: 0.75 } }}
       >
         {sortCategories.map((category) => (
           <MenuItem

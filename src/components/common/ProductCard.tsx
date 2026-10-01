@@ -261,7 +261,7 @@ const ProductCard = ({ data, product }: ProductCardProps) => {
               sx={(theme) => ({
                 px: 0,
                 flex: 1,
-                fontWeight: 600,
+                // fontWeight: 600,
                 color: "text.primary",
                 bgcolor: `${theme.palette.grey[100]} !important`,
                 cursor: "default",

@@ -50,12 +50,19 @@ const CartDrawer = () => {
             onClick={closeCart}
             aria-label="Close shopping cart"
             disableRipple
-            sx={{
+            sx={(theme) => ({
               mr: -1.5,
               width: 42,
               height: 42,
               color: "text.primary",
-            }}
+              transition: theme.transitions.create("color", {
+                duration: 200,
+                easing: theme.transitions.easing.easeInOut,
+              }),
+              "&:hover": {
+                color: "error.main",
+              },
+            })}
           >
             <Iconify
               icon="solar:close-linear"
