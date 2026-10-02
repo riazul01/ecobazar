@@ -8,6 +8,7 @@ export const paths = {
   wishlist: "/wishlist",
   about: "/about",
   blog: "/blog",
+  blogDetails: (id: string | number = ":id") => `/blog/${id}`,
   contact: "/contact",
   signIn: "/auth/signin",
   signUp: "/auth/signup",

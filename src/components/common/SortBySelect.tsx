@@ -12,7 +12,20 @@ const sortCategories = [
   { label: "Popular", value: "Popular" },
 ];
 
-const SortBySelect = () => {
+interface SortOption {
+  label: string;
+  value: string;
+}
+
+interface SortBySelectProps {
+  options?: SortOption[];
+  ariaLabel?: string;
+}
+
+const SortBySelect = ({
+  options = sortCategories,
+  ariaLabel = "Sort items",
+}: SortBySelectProps) => {
   const [searchParams, setSearchParams] = useSearchParams();
   const currentSort = searchParams.get("sort") || "Latest";
 
@@ -33,10 +46,10 @@ const SortBySelect = () => {
       <Select
         value={currentSort}
         onChange={handleChange}
-        inputProps={{ "aria-label": "Sort products" }}
+        inputProps={{ "aria-label": ariaLabel }}
         sx={{ [`&.${inputBaseClasses.root}`]: { px: 1.25, py: 0.75 } }}
       >
-        {sortCategories.map((category) => (
+        {options.map((category) => (
           <MenuItem
             key={category.value}
             value={category.value}

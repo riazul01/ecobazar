@@ -1,7 +1,7 @@
+import { Link as RouterLink } from "react-router";
 import type { Blog } from "data/blogs";
 import Box from "@mui/material/Box";
 import Card from "@mui/material/Card";
-import Link from "@mui/material/Link";
 import Stack from "@mui/material/Stack";
 import Button from "@mui/material/Button";
 import CardMedia from "@mui/material/CardMedia";
@@ -9,12 +9,17 @@ import Typography from "@mui/material/Typography";
 import CardContent from "@mui/material/CardContent";
 import CardActions from "@mui/material/CardActions";
 import Iconify from "components/base/Iconify";
+import { paths } from "routes/paths";
 
 interface BlogCardProps {
   data: Blog;
 }
 
 const BlogCard = ({ data }: BlogCardProps) => {
+  const detailLink = paths.blogDetails(data.id);
+  const fallbackImage =
+    "https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=1000&q=80";
+
   return (
     <Card
       sx={{
@@ -27,16 +32,31 @@ const BlogCard = ({ data }: BlogCardProps) => {
         borderRadius: 2,
       }}
     >
-      <Box sx={{ position: "relative" }}>
+      <Box
+        component={RouterLink}
+        to={detailLink}
+        sx={{
+          position: "relative",
+          display: "block",
+          textDecoration: "none",
+          color: "inherit",
+          overflow: "hidden",
+        }}
+      >
         <CardMedia
           component="img"
           height={300}
-          image="https://images.unsplash.com/photo-1504674900247-0877df9cc836?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-          alt="product_image"
+          image={data.image || fallbackImage}
+          alt={data.title}
           sx={{
             borderRadius: 0,
             borderTopLeftRadius: "6px !important",
             borderTopRightRadius: "6px !important",
+            objectFit: "cover",
+            transition: "transform 0.4s ease",
+            "&:hover": {
+              transform: "scale(1.04)",
+            },
           }}
         />
         <Stack
@@ -73,7 +93,7 @@ const BlogCard = ({ data }: BlogCardProps) => {
           >
             <Iconify icon="ph:tag" />
             <Typography variant="body2" noWrap>
-              {data.tags[0]}
+              {data.tags[0] || data.category || "Healthy"}
             </Typography>
           </Stack>
 
@@ -100,11 +120,16 @@ const BlogCard = ({ data }: BlogCardProps) => {
 
         <Box sx={{ mt: 1 }}>
           <Typography
-            component={Link}
-            href={data.link}
+            component={RouterLink}
+            to={detailLink}
             variant="h5"
             sx={(theme) => ({
               color: "text.primary",
+              textDecoration: "none",
+              display: "-webkit-box",
+              WebkitLineClamp: 2,
+              WebkitBoxOrient: "vertical",
+              overflow: "hidden",
               transition: theme.transitions.create("all", {
                 duration: 300,
                 easing: theme.transitions.easing.easeInOut,
@@ -119,9 +144,9 @@ const BlogCard = ({ data }: BlogCardProps) => {
 
       <CardActions>
         <Button
+          component={RouterLink}
+          to={detailLink}
           variant="text"
-          LinkComponent={Link}
-          href={data.link}
           size="medium"
           endIcon={<Iconify icon="fluent:arrow-right-32-filled" />}
           sx={{ ml: -2.25 }}

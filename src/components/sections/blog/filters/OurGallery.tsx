@@ -33,8 +33,8 @@ const OurGallery = () => {
             key={item.id}
             component={Link}
             href="#"
-            size={{ xs: 4, sm: 3 }}
-            sx={{ height: 100 }}
+            size={{ xs: 3 }}
+            sx={{ height: { xs: 68, sm: 76 } }}
           >
             <Image
               src={item.image}

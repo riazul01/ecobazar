@@ -24,7 +24,9 @@ const FiltersDrawer = ({
       slotProps={{
         paper: {
           sx: {
-            px: 2,
+            px: { xs: 2.5, sm: 3 },
+            pt: 6.5,
+            pb: 4,
           },
         },
       }}
@@ -38,11 +40,20 @@ const FiltersDrawer = ({
       <IconButton
         size="small"
         onClick={toggleDrawer}
-        sx={{ position: "absolute", top: 12, right: 12 }}
+        sx={{
+          position: "absolute",
+          top: 14,
+          right: 14,
+          zIndex: 10,
+          bgcolor: "grey.100",
+          "&:hover": {
+            bgcolor: "grey.200",
+          },
+        }}
       >
         <Iconify
           icon="mdi:close"
-          sx={{ color: "text.primary", pointerEvents: "none" }}
+          sx={{ fontSize: 20, color: "text.primary" }}
         />
       </IconButton>
 

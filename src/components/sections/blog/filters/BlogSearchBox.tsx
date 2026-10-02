@@ -1,6 +1,5 @@
 import { useState, useRef, useMemo } from "react";
 import { useNavigate, useSearchParams } from "react-router";
-import { useBreakpoints } from "providers/BreakpointProvider";
 import { alpha, inputBaseClasses } from "@mui/material";
 import ClickAwayListener from "@mui/material/ClickAwayListener";
 import InputAdornment from "@mui/material/InputAdornment";
@@ -21,27 +20,17 @@ import IconButton from "@mui/material/IconButton";
 
 import Iconify from "components/base/Iconify";
 import { paths } from "routes/paths";
-import { getSearchSuggestions } from "utils/productSearch";
+import { getBlogSearchSuggestions } from "utils/blogSearch";
 
-interface SearchBoxProps {
-  showSearchButton?: boolean;
-  onSearchSubmit?: () => void;
-  placeholder?: string;
-}
-
-const SearchBox = ({
-  showSearchButton,
-  onSearchSubmit,
-  placeholder = "Search products...",
-}: SearchBoxProps) => {
+const BlogSearchBox = () => {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const initialSearch = searchParams.get("search") || "";
+
   const [query, setQuery] = useState(initialSearch);
   const [prevInitialSearch, setPrevInitialSearch] = useState(initialSearch);
   const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
   const containerRef = useRef<HTMLDivElement | null>(null);
-  const { downLg } = useBreakpoints();
   const open = Boolean(anchorEl);
 
   if (initialSearch !== prevInitialSearch) {
@@ -49,7 +38,7 @@ const SearchBox = ({
     setQuery(initialSearch);
   }
 
-  const suggestions = useMemo(() => getSearchSuggestions(query, 5), [query]);
+  const suggestions = useMemo(() => getBlogSearchSuggestions(query, 5), [query]);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const val = event.target.value;
@@ -73,10 +62,16 @@ const SearchBox = ({
 
   const executeSearch = (searchQuery: string) => {
     const term = searchQuery.trim();
-    if (!term) return;
     handleClose();
-    navigate(`${paths.shop}?search=${encodeURIComponent(term)}`);
-    onSearchSubmit?.();
+    const newParams = new URLSearchParams(searchParams);
+    if (term) {
+      newParams.set("search", term);
+    } else {
+      newParams.delete("search");
+    }
+    newParams.delete("page");
+    const queryStr = newParams.toString();
+    navigate(`${paths.blog}${queryStr ? `?${queryStr}` : ""}`);
   };
 
   const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
@@ -88,87 +83,75 @@ const SearchBox = ({
     }
   };
 
-  const handleSelectProduct = (productId: string | number) => {
+  const handleSelectBlog = (blogId: string | number) => {
     handleClose();
-    navigate(paths.productDetails(productId));
-    onSearchSubmit?.();
+    navigate(paths.blogDetails(blogId));
   };
 
   const handleSelectCategory = (cat: string) => {
     handleClose();
-    const formatted = cat
-      .toLowerCase()
-      .replace(/ & /g, "-")
-      .replace(/\s+/g, "-");
-    navigate(`${paths.shop}?category=${encodeURIComponent(formatted)}`);
-    onSearchSubmit?.();
+    const newParams = new URLSearchParams(searchParams);
+    newParams.set("category", cat.toLowerCase());
+    newParams.delete("page");
+    navigate(`${paths.blog}?${newParams.toString()}`);
   };
 
   const handleSelectTag = (tag: string) => {
     handleClose();
-    navigate(`${paths.shop}?tag=${encodeURIComponent(tag.toLowerCase())}`);
-    onSearchSubmit?.();
+    const newParams = new URLSearchParams(searchParams);
+    newParams.set("tag", tag.toLowerCase());
+    newParams.delete("page");
+    navigate(`${paths.blog}?${newParams.toString()}`);
   };
 
   const handleClear = () => {
     setQuery("");
     handleClose();
+    if (searchParams.has("search")) {
+      const newParams = new URLSearchParams(searchParams);
+      newParams.delete("search");
+      newParams.delete("page");
+      const queryStr = newParams.toString();
+      navigate(`${paths.blog}${queryStr ? `?${queryStr}` : ""}`);
+    }
   };
 
   return (
     <ClickAwayListener onClickAway={handleClose}>
-      <Stack sx={{ flex: 1, justifyContent: "center" }}>
+      <Stack sx={{ width: 1, position: "relative" }}>
         <Stack
           ref={containerRef}
           sx={{
             width: 1,
-            height: { xs: 40, md: 46 },
-            maxWidth: showSearchButton ? { xs: 398, lg: 498 } : "unset",
+            height: 46,
             alignItems: "center",
             justifyContent: "center",
             overflow: "hidden",
           }}
         >
           <TextField
-            id="product-search"
+            id="blog-search"
             variant="filled"
-            placeholder={placeholder}
+            placeholder="Search..."
             value={query}
             onChange={handleChange}
             onFocus={handleFocus}
             onKeyDown={handleKeyDown}
-            sx={[
-              {
-                flex: 1,
+            sx={{
+              flex: 1,
+              width: 1,
+              height: 1,
+              [`& .${inputBaseClasses.root}`]: {
                 height: 1,
-                [`& .${inputBaseClasses.root}`]: {
-                  height: 1,
-                },
               },
-              showSearchButton
-                ? {
-                    [`& .${inputBaseClasses.root}`]: {
-                      borderRight: "none",
-                      borderTopRightRadius: 0,
-                      borderBottomRightRadius: 0,
-                    },
-                  }
-                : {},
-            ]}
+            }}
             slotProps={{
               input: {
                 sx: {
-                  fontSize: { xs: "body2.fontSize", md: "body1.fontSize" },
+                  fontSize: "body2.fontSize",
                 },
                 startAdornment: (
-                  <InputAdornment
-                    position="start"
-                    sx={{
-                      display: showSearchButton
-                        ? { xs: "none", lg: "flex" }
-                        : "flex",
-                    }}
-                  >
+                  <InputAdornment position="start">
                     <Iconify icon="prime:search" />
                   </InputAdornment>
                 ),
@@ -187,26 +170,6 @@ const SearchBox = ({
               },
             }}
           />
-          {showSearchButton && (
-            <Button
-              variant="contained"
-              color="primary"
-              onClick={() => executeSearch(query)}
-              sx={{
-                height: 1,
-                borderRadius: 1.5,
-                borderTopLeftRadius: 0,
-                borderBottomLeftRadius: 0,
-                minWidth: { xs: 48, lg: 96 },
-              }}
-            >
-              {downLg ? (
-                <Iconify icon="prime:search" sx={{ fontSize: 24 }} />
-              ) : (
-                "Search"
-              )}
-            </Button>
-          )}
         </Stack>
 
         <Popover
@@ -236,9 +199,9 @@ const SearchBox = ({
             },
           }}
         >
-          {suggestions.products.length > 0 ? (
+          {suggestions.blogs.length > 0 ? (
             <Box>
-              {/* Categories & Tags Suggestions */}
+              {/* Category & Tag Suggestions */}
               {(suggestions.categories.length > 0 ||
                 suggestions.tags.length > 0) && (
                 <Box sx={{ mb: 1.5 }}>
@@ -248,7 +211,7 @@ const SearchBox = ({
                   >
                     Quick Filter:
                   </Typography>
-                  <Stack sx={{ gap: 0.75, flexWrap: "wrap" }}>
+                  <Stack sx={{ gap: 0.75, flexWrap: "wrap", flexDirection: "row" }}>
                     {suggestions.categories.map((cat) => (
                       <Chip
                         key={cat}
@@ -284,112 +247,86 @@ const SearchBox = ({
                 </Box>
               )}
 
-              {/* Products List */}
+              {/* Articles List */}
               <Typography
                 variant="caption"
                 sx={{ color: "text.secondary", display: "block", mb: 0.5 }}
               >
-                Products ({suggestions.totalMatches})
+                Blog Articles ({suggestions.totalMatches})
               </Typography>
 
               <List dense sx={{ p: 0 }}>
-                {suggestions.products.map((item) => {
-                  const originalPrice =
-                    item.discountInPercent > 0
-                      ? (
-                          item.price /
-                          (1 - item.discountInPercent / 100)
-                        ).toFixed(2)
-                      : null;
-
-                  return (
-                    <ListItemButton
-                      key={item.id}
-                      onClick={() => handleSelectProduct(item.id)}
-                      sx={{
-                        borderRadius: 1.5,
-                        px: 1,
-                        py: 0.5,
-                        gap: 1.25,
-                        transition: "all 0.15s ease",
-                        "&:hover": {
-                          bgcolor: "grey.100",
-                        },
-                      }}
-                    >
-                      <ListItemAvatar sx={{ minWidth: 44 }}>
-                        <Avatar
-                          src={item.image}
-                          alt={item.name}
-                          variant="rounded"
-                          sx={{ width: 44, height: 44, borderRadius: 1.25 }}
-                        />
-                      </ListItemAvatar>
-                      <ListItemText
-                        primary={
-                          <Typography
-                            variant="body2"
-                            sx={{
-                              color: "text.primary",
-                              overflow: "hidden",
-                              textOverflow: "ellipsis",
-                              whiteSpace: "nowrap",
-                            }}
-                          >
-                            {item.name}
-                          </Typography>
-                        }
-                        secondary={
-                          <Stack
-                            sx={{ alignItems: "center", gap: 1, mt: 0.25 }}
-                          >
-                            <Typography
-                              variant="caption"
-                              sx={{ color: "text.secondary" }}
-                            >
-                              {item.category.charAt(0).toUpperCase() +
-                                item.category.slice(1)}
-                            </Typography>
-                            <Typography
-                              variant="caption"
-                              sx={{ color: "primary.main" }}
-                            >
-                              ${item.price.toFixed(2)}
-                            </Typography>
-                            {originalPrice && (
-                              <Typography
-                                variant="caption"
-                                sx={{
-                                  color: "text.disabled",
-                                  textDecoration: "line-through",
-                                }}
-                              >
-                                ${originalPrice}
-                              </Typography>
-                            )}
-                          </Stack>
-                        }
+                {suggestions.blogs.map((item) => (
+                  <ListItemButton
+                    key={item.id}
+                    onClick={() => handleSelectBlog(item.id)}
+                    sx={{
+                      borderRadius: 1.5,
+                      px: 1,
+                      py: 0.75,
+                      gap: 1.25,
+                      transition: "all 0.15s ease",
+                      "&:hover": {
+                        bgcolor: "grey.100",
+                      },
+                    }}
+                  >
+                    <ListItemAvatar sx={{ minWidth: 48 }}>
+                      <Avatar
+                        src={item.image}
+                        alt={item.title}
+                        variant="rounded"
+                        sx={{ width: 48, height: 48, borderRadius: 1.25 }}
                       />
-                      {item.discountInPercent > 0 && (
-                        <Chip
-                          label={`-${item.discountInPercent}%`}
-                          size="small"
-                          color="error"
+                    </ListItemAvatar>
+                    <ListItemText
+                      primary={
+                        <Typography
+                          variant="body2"
                           sx={{
-                            height: 20,
-                            fontSize: "0.7rem",
-                            "& .MuiChip-label": { px: 0.75 },
+                            color: "text.primary",
+                            fontWeight: 500,
+                            overflow: "hidden",
+                            textOverflow: "ellipsis",
+                            whiteSpace: "nowrap",
                           }}
-                        />
-                      )}
-                    </ListItemButton>
-                  );
-                })}
+                        >
+                          {item.title}
+                        </Typography>
+                      }
+                      secondary={
+                        <Stack
+                          direction="row"
+                          sx={{ alignItems: "center", gap: 1, mt: 0.25 }}
+                        >
+                          <Typography
+                            variant="caption"
+                            sx={{ color: "primary.main", fontWeight: 500 }}
+                          >
+                            {item.category}
+                          </Typography>
+                          <Typography
+                            variant="caption"
+                            sx={{ color: "text.disabled" }}
+                          >
+                            •
+                          </Typography>
+                          <Typography
+                            variant="caption"
+                            sx={{ color: "text.secondary" }}
+                          >
+                            {item.publishDate}
+                          </Typography>
+                        </Stack>
+                      }
+                    />
+                  </ListItemButton>
+                ))}
               </List>
 
               <Divider sx={{ my: 1 }} />
 
-              {/* View all button */}
+              {/* View all results button */}
               <Button
                 fullWidth
                 variant="text"
@@ -408,7 +345,7 @@ const SearchBox = ({
                   py: 0.75,
                 }}
               >
-                View all {suggestions.totalMatches} results
+                View all {suggestions.totalMatches} articles
               </Button>
             </Box>
           ) : (
@@ -418,13 +355,13 @@ const SearchBox = ({
                 sx={{ fontSize: 36, color: "text.disabled", mb: 1 }}
               />
               <Typography variant="subtitle2" sx={{ color: "text.primary" }}>
-                No products found
+                No articles found
               </Typography>
               <Typography
                 variant="caption"
                 sx={{ color: "text.secondary", mt: 0.5, display: "block" }}
               >
-                We couldn&apos;t find anything matching &quot;{query}&quot;.
+                We couldn&apos;t find any articles matching &quot;{query}&quot;.
               </Typography>
             </Box>
           )}
@@ -434,4 +371,4 @@ const SearchBox = ({
   );
 };
 
-export default SearchBox;
+export default BlogSearchBox;
