@@ -544,6 +544,7 @@ const BlogDetails = () => {
               px: 7,
               py: 8,
               display: "flex",
+              flexDirection: { xs: "column-reverse", sm: "row" },
               alignItems: "center",
               gap: 5,
             }}

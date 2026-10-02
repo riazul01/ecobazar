@@ -38,7 +38,10 @@ const BlogSearchBox = () => {
     setQuery(initialSearch);
   }
 
-  const suggestions = useMemo(() => getBlogSearchSuggestions(query, 5), [query]);
+  const suggestions = useMemo(
+    () => getBlogSearchSuggestions(query, 5),
+    [query],
+  );
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const val = event.target.value;
@@ -211,7 +214,9 @@ const BlogSearchBox = () => {
                   >
                     Quick Filter:
                   </Typography>
-                  <Stack sx={{ gap: 0.75, flexWrap: "wrap", flexDirection: "row" }}>
+                  <Stack
+                    sx={{ gap: 0.75, flexWrap: "wrap", flexDirection: "row" }}
+                  >
                     {suggestions.categories.map((cat) => (
                       <Chip
                         key={cat}

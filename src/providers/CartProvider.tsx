@@ -2,9 +2,12 @@ import {
   createContext,
   useContext,
   useState,
+  useEffect,
   useMemo,
   type ReactNode,
 } from "react";
+
+const CART_STORAGE_KEY = "ecobazar_cart";
 
 export interface CartItem {
   id: string | number;
@@ -38,7 +41,25 @@ const CartContext = createContext<CartContextType | undefined>(undefined);
 
 export const CartProvider = ({ children }: { children: ReactNode }) => {
   const [cartOpen, setCartOpen] = useState(false);
-  const [items, setItems] = useState<CartItem[]>([]);
+  const [items, setItems] = useState<CartItem[]>(() => {
+    try {
+      const stored = localStorage.getItem(CART_STORAGE_KEY);
+      if (stored) {
+        return JSON.parse(stored);
+      }
+    } catch {
+      // Fallback
+    }
+    return [];
+  });
+
+  useEffect(() => {
+    try {
+      localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(items));
+    } catch {
+      // Storage failure handling
+    }
+  }, [items]);
 
   const openCart = () => setCartOpen(true);
   const closeCart = () => setCartOpen(false);
