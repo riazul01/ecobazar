@@ -18,6 +18,7 @@ export interface UserProfile {
   firstName: string;
   lastName: string;
   displayName: string;
+  role?: "admin" | "customer" | string;
   phone?: string;
   avatar?: string;
   billingAddress?: BillingAddressData;
@@ -28,6 +29,7 @@ export interface UserProfile {
 export interface AuthContextType {
   user: User | null;
   profile: UserProfile | null;
+  isAdmin: boolean;
   loading: boolean;
   signIn: (
     email: string,

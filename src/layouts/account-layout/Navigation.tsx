@@ -10,17 +10,29 @@ import { Link } from "@mui/material";
 import { useLocation, useNavigate } from "react-router";
 import { useAuth } from "providers/AuthProvider";
 import { paths } from "routes/paths";
+import Iconify from "components/base/Iconify";
 
 const Navigation = () => {
   const { pathname } = useLocation();
   const navigate = useNavigate();
-  const { signOut } = useAuth();
+  const { signOut, isAdmin } = useAuth();
 
   const handleLogout = async (e: React.MouseEvent) => {
     e.preventDefault();
     await signOut();
     navigate(paths.signIn);
   };
+
+  const navItems = [...accountLinks];
+  if (isAdmin && !navItems.some((item) => item.path === "admin-product-upload")) {
+    // Insert Upload Product before Logout
+    navItems.splice(navItems.length - 1, 0, {
+      id: 99,
+      icon: <Iconify icon="solar:box-bold" sx={{ fontSize: 20 }} />,
+      title: "Upload Product",
+      path: "admin-product-upload",
+    });
+  }
 
   return (
     <Box
@@ -46,22 +58,28 @@ const Navigation = () => {
           gap: 0.5,
         }}
       >
-        {accountLinks.map((item) => {
+        {navItems.map((item) => {
           const isLogout = item.path === "log-out";
-          const itemHref =
-            item.path === "wishlist"
-              ? "/wishlist"
-              : item.path === "shopping-cart"
-                ? "/cart"
-                : `/account/${item.path}`;
+          const isAdminUpload = item.path === "admin-product-upload";
+          const itemHref = isLogout
+            ? "#!"
+            : isAdminUpload
+              ? "/admin/product-upload"
+              : item.path === "wishlist"
+                ? "/wishlist"
+                : item.path === "shopping-cart"
+                  ? "/cart"
+                  : `/account/${item.path}`;
 
           const isActive =
             !isLogout &&
-            (item.path === "dashboard"
-              ? pathname === "/account" || pathname === "/account/dashboard"
-              : pathname.startsWith(`/account/${item.path}`) ||
-                (item.path === "wishlist" && pathname === "/wishlist") ||
-                (item.path === "shopping-cart" && pathname === "/cart"));
+            (isAdminUpload
+              ? pathname === "/admin/product-upload"
+              : item.path === "dashboard"
+                ? pathname === "/account" || pathname === "/account/dashboard"
+                : pathname.startsWith(`/account/${item.path}`) ||
+                  (item.path === "wishlist" && pathname === "/wishlist") ||
+                  (item.path === "shopping-cart" && pathname === "/cart"));
 
           return (
             <ListItem

@@ -12,6 +12,7 @@ import Settings from "pages/account/Settings";
 import ProductDetails from "pages/ProductDetails";
 import AuthGuard from "./guards/AuthGuard";
 import GuestGuard from "./guards/GuestGuard";
+import AdminGuard from "./guards/AdminGuard";
 
 const App = lazy(() => import("App"));
 const Home = lazy(() => import("pages/Home"));
@@ -24,6 +25,7 @@ const About = lazy(() => import("pages/About"));
 const Contact = lazy(() => import("pages/Contact"));
 const SignIn = lazy(() => import("pages/authentication/SignIn"));
 const SignUp = lazy(() => import("pages/authentication/SignUp"));
+const ProductUpload = lazy(() => import("pages/admin/ProductUpload"));
 const MainLayout = lazy(() => import("layouts/main-layout"));
 
 const router = createBrowserRouter([
@@ -150,6 +152,20 @@ const router = createBrowserRouter([
               {
                 path: accountPaths.settings,
                 element: <Settings />,
+              },
+            ],
+          },
+          {
+            path: "admin",
+            element: (
+              <AdminGuard>
+                <Outlet />
+              </AdminGuard>
+            ),
+            children: [
+              {
+                path: "product-upload",
+                element: <ProductUpload />,
               },
             ],
           },

@@ -125,6 +125,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
         userProfileData.displayName ||
         firebaseUser.displayName ||
         `${firstName} ${lastName}`.trim(),
+      role: userProfileData.role || "customer",
       phone: userProfileData.phone || "",
       avatar: userProfileData.avatar || firebaseUser.photoURL || "",
       ...(userProfileData.billingAddress
@@ -255,6 +256,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
       firstName: updatedFirstName,
       lastName: updatedLastName,
       displayName: updatedDisplayName,
+      role: profile?.role || "customer",
       phone: data.phone !== undefined ? data.phone : profile?.phone || "",
       avatar: avatarUrl,
       updatedAt: new Date().toISOString(),
@@ -320,11 +322,14 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     setProfile(updatedProfile);
   };
 
+  const isAdmin = profile?.role === "admin";
+
   return (
     <AuthContext.Provider
       value={{
         user,
         profile,
+        isAdmin,
         loading,
         signIn,
         signUp,

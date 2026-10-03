@@ -13,6 +13,7 @@ export const paths = {
   signIn: "/auth/signin",
   signUp: "/auth/signup",
   account: "/account",
+  adminProductUpload: "/admin/product-upload",
   faq: "/faq",
 };
 
