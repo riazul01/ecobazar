@@ -14,6 +14,7 @@ export const paths = {
   signUp: "/auth/signup",
   account: "/account",
   adminProductUpload: "/admin/product-upload",
+  adminCreateBlog: "/admin/create-blog",
   faq: "/faq",
 };
 

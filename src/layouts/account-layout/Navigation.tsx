@@ -24,14 +24,23 @@ const Navigation = () => {
   };
 
   const navItems = [...accountLinks];
-  if (isAdmin && !navItems.some((item) => item.path === "admin-product-upload")) {
-    // Insert Upload Product before Logout
-    navItems.splice(navItems.length - 1, 0, {
-      id: 99,
-      icon: <Iconify icon="solar:box-bold" sx={{ fontSize: 20 }} />,
-      title: "Upload Product",
-      path: "admin-product-upload",
-    });
+  if (isAdmin) {
+    if (!navItems.some((item) => item.path === "admin-product-upload")) {
+      navItems.splice(navItems.length - 1, 0, {
+        id: 99,
+        icon: <Iconify icon="solar:box-bold" sx={{ fontSize: 20 }} />,
+        title: "Upload Product",
+        path: "admin-product-upload",
+      });
+    }
+    if (!navItems.some((item) => item.path === "admin-create-blog")) {
+      navItems.splice(navItems.length - 1, 0, {
+        id: 100,
+        icon: <Iconify icon="solar:document-add-bold" sx={{ fontSize: 20 }} />,
+        title: "Create Blog",
+        path: "admin-create-blog",
+      });
+    }
   }
 
   return (
@@ -61,25 +70,30 @@ const Navigation = () => {
         {navItems.map((item) => {
           const isLogout = item.path === "log-out";
           const isAdminUpload = item.path === "admin-product-upload";
+          const isAdminBlog = item.path === "admin-create-blog";
           const itemHref = isLogout
             ? "#!"
             : isAdminUpload
               ? "/admin/product-upload"
-              : item.path === "wishlist"
-                ? "/wishlist"
-                : item.path === "shopping-cart"
-                  ? "/cart"
-                  : `/account/${item.path}`;
+              : isAdminBlog
+                ? "/admin/create-blog"
+                : item.path === "wishlist"
+                  ? "/wishlist"
+                  : item.path === "shopping-cart"
+                    ? "/cart"
+                    : `/account/${item.path}`;
 
           const isActive =
             !isLogout &&
             (isAdminUpload
               ? pathname === "/admin/product-upload"
-              : item.path === "dashboard"
-                ? pathname === "/account" || pathname === "/account/dashboard"
-                : pathname.startsWith(`/account/${item.path}`) ||
-                  (item.path === "wishlist" && pathname === "/wishlist") ||
-                  (item.path === "shopping-cart" && pathname === "/cart"));
+              : isAdminBlog
+                ? pathname === "/admin/create-blog"
+                : item.path === "dashboard"
+                  ? pathname === "/account" || pathname === "/account/dashboard"
+                  : pathname.startsWith(`/account/${item.path}`) ||
+                    (item.path === "wishlist" && pathname === "/wishlist") ||
+                    (item.path === "shopping-cart" && pathname === "/cart"));
 
           return (
             <ListItem

@@ -26,6 +26,7 @@ const Contact = lazy(() => import("pages/Contact"));
 const SignIn = lazy(() => import("pages/authentication/SignIn"));
 const SignUp = lazy(() => import("pages/authentication/SignUp"));
 const ProductUpload = lazy(() => import("pages/admin/ProductUpload"));
+const CreateBlog = lazy(() => import("pages/admin/CreateBlog"));
 const MainLayout = lazy(() => import("layouts/main-layout"));
 
 const router = createBrowserRouter([
@@ -166,6 +167,10 @@ const router = createBrowserRouter([
               {
                 path: "product-upload",
                 element: <ProductUpload />,
+              },
+              {
+                path: "create-blog",
+                element: <CreateBlog />,
               },
             ],
           },

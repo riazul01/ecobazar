@@ -957,8 +957,8 @@ const ProductUploadForm = () => {
                     spacing={1}
                     sx={{ alignItems: "center", color: "text.disabled" }}
                   >
-                    <Iconify icon="solar:gallery-wide-bold" sx={{ fontSize: 52 }} />
-                    <Typography variant="caption" sx={{ fontWeight: 500 }}>
+                    <Iconify icon="solar:gallery-wide-outline" sx={{ fontSize: 48 }} />
+                    <Typography variant="caption" sx={{ fontWeight: 400 }}>
                       No image uploaded yet
                     </Typography>
                   </Stack>
