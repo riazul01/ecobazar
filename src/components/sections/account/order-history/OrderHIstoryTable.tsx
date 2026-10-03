@@ -3,7 +3,7 @@ import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
 import { DataGrid, type GridColDef } from "@mui/x-data-grid";
 import DataTableFooter from "components/common/DataTableFooter";
-import ActionMenu from "components/sections/common/ActionMenu";
+import ActionMenu from "components/common/ActionMenu";
 import { orderHistory } from "data/order-history";
 
 const columns: GridColDef<(typeof orderHistory)[number]>[] = [

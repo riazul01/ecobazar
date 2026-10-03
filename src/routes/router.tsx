@@ -10,6 +10,8 @@ import OrderHistory from "pages/account/OrderHistory";
 import OrderDetails from "pages/account/OrderDetails";
 import Settings from "pages/account/Settings";
 import ProductDetails from "pages/ProductDetails";
+import AuthGuard from "./guards/AuthGuard";
+import GuestGuard from "./guards/GuestGuard";
 
 const App = lazy(() => import("App"));
 const Home = lazy(() => import("pages/Home"));
@@ -103,7 +105,11 @@ const router = createBrowserRouter([
           },
           {
             path: "auth",
-            element: <Outlet />,
+            element: (
+              <GuestGuard>
+                <Outlet />
+              </GuestGuard>
+            ),
             children: [
               {
                 path: "signin",
@@ -118,9 +124,11 @@ const router = createBrowserRouter([
           {
             path: paths.account,
             element: (
-              <AccountLayout>
-                <Outlet />
-              </AccountLayout>
+              <AuthGuard>
+                <AccountLayout>
+                  <Outlet />
+                </AccountLayout>
+              </AuthGuard>
             ),
             children: [
               {

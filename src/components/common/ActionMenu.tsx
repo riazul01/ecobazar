@@ -57,7 +57,7 @@ const ActionMenu = () => {
       >
         <IconifyIcon
           icon="iconamoon:menu-kebab-horizontal-fill"
-          color="text.primary"
+          sx={{ color: "text.primary" }}
         />
       </IconButton>
       <Menu
@@ -76,17 +76,33 @@ const ActionMenu = () => {
         anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
       >
         {actions.map((actionItem) => {
+          const isError = actionItem.id === 3;
           return (
-            <MenuItem key={actionItem.id} onClick={handleActionItemClick}>
-              <ListItemIcon sx={{ mr: 1, fontSize: "h5.fontSize" }}>
+            <MenuItem
+              key={actionItem.id}
+              onClick={handleActionItemClick}
+              sx={{
+                color: isError ? "error.main" : "text.primary",
+              }}
+            >
+              <ListItemIcon
+                sx={{
+                  mr: 1,
+                  fontSize: "h5.fontSize",
+                  color: isError ? "error.main" : "inherit",
+                }}
+              >
                 <IconifyIcon
                   icon={actionItem.icon}
-                  color={actionItem.id === 3 ? "error.main" : "text.primary"}
+                  sx={{ color: isError ? "error.main" : "inherit" }}
                 />
               </ListItemIcon>
               <ListItemText>
                 <Typography
-                  color={actionItem.id === 3 ? "error.main" : "text.primary"}
+                  sx={{
+                    color: isError ? "error.main" : "text.primary",
+                    fontSize: "body2.fontSize",
+                  }}
                 >
                   {actionItem.title}
                 </Typography>

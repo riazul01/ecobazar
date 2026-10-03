@@ -9,11 +9,19 @@ import FormControlLabel from "@mui/material/FormControlLabel";
 import InputAdornment from "@mui/material/InputAdornment";
 import Typography from "@mui/material/Typography";
 import TextField from "@mui/material/TextField";
+import Alert from "@mui/material/Alert";
+import Dialog from "@mui/material/Dialog";
+import DialogTitle from "@mui/material/DialogTitle";
+import DialogContent from "@mui/material/DialogContent";
+import DialogActions from "@mui/material/DialogActions";
 import Iconify from "components/base/Iconify";
 import customShadows from "theme/shadows";
 import { Controller, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { paths } from "routes/paths";
+import { accountPaths, paths } from "routes/paths";
+import { useAuth } from "providers/AuthProvider";
+import { useNavigate, useLocation } from "react-router";
+import { getFriendlyErrorMessage } from "utils/firebaseErrors";
 import * as z from "zod";
 
 const SignInFormSchema = z.object({
@@ -25,6 +33,22 @@ const SignInFormSchema = z.object({
 type SignInFormValues = z.infer<typeof SignInFormSchema>;
 
 const SignInForm = () => {
+  const { signIn, resetPassword } = useAuth();
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const [authError, setAuthError] = useState<string | null>(null);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
+
+  // Forgot password dialog state
+  const [forgotPasswordOpen, setForgotPasswordOpen] = useState(false);
+  const [forgotEmail, setForgotEmail] = useState("");
+  const [forgotEmailError, setForgotEmailError] = useState("");
+  const [resetSuccess, setResetSuccess] = useState<string | null>(null);
+  const [resetError, setResetError] = useState<string | null>(null);
+  const [isResetting, setIsResetting] = useState(false);
+
   const {
     control,
     handleSubmit,
@@ -35,10 +59,49 @@ const SignInForm = () => {
     resolver: zodResolver(SignInFormSchema),
   });
 
-  const [showPassword, setShowPassword] = useState(false);
+  const from =
+    (location.state as { from?: { pathname?: string } })?.from?.pathname ||
+    accountPaths.dashboard;
 
-  const onSubmit = (userData: SignInFormValues) => {
-    console.log(userData);
+  const onSubmit = async (userData: SignInFormValues) => {
+    setAuthError(null);
+    setIsSubmitting(true);
+    try {
+      await signIn(userData.email, userData.password, userData.remember);
+      navigate(from, { replace: true });
+    } catch (err) {
+      setAuthError(getFriendlyErrorMessage(err));
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  const handleOpenForgotDialog = (e: React.MouseEvent) => {
+    e.preventDefault();
+    setResetSuccess(null);
+    setResetError(null);
+    setForgotEmailError("");
+    setForgotPasswordOpen(true);
+  };
+
+  const handleSendResetEmail = async () => {
+    if (!forgotEmail || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(forgotEmail)) {
+      setForgotEmailError("Please enter a valid email address");
+      return;
+    }
+    setForgotEmailError("");
+    setResetError(null);
+    setIsResetting(true);
+    try {
+      await resetPassword(forgotEmail);
+      setResetSuccess(
+        "Password reset email sent! Check your inbox for instructions.",
+      );
+    } catch (err) {
+      setResetError(getFriendlyErrorMessage(err));
+    } finally {
+      setIsResetting(false);
+    }
   };
 
   return (
@@ -56,6 +119,12 @@ const SignInForm = () => {
       <Typography variant="h2" sx={{ mb: 3, textAlign: "center" }}>
         Sign In
       </Typography>
+
+      {authError && (
+        <Alert severity="error" sx={{ mb: 2 }}>
+          {authError}
+        </Alert>
+      )}
 
       <form onSubmit={handleSubmit(onSubmit)} noValidate>
         <Controller
@@ -133,14 +202,21 @@ const SignInForm = () => {
             variant="body2"
             component={Link}
             href="#!"
-            sx={{ color: "text.secondary" }}
+            onClick={handleOpenForgotDialog}
+            sx={{ color: "text.secondary", cursor: "pointer" }}
           >
             Forgot password?
           </Typography>
         </Stack>
 
-        <Button variant="contained" type="submit" fullWidth sx={{ mb: 3 }}>
-          Sign In
+        <Button
+          variant="contained"
+          type="submit"
+          disabled={isSubmitting}
+          fullWidth
+          sx={{ mb: 3 }}
+        >
+          {isSubmitting ? "Signing in..." : "Sign In"}
         </Button>
 
         <Typography
@@ -158,6 +234,62 @@ const SignInForm = () => {
           </Typography>
         </Typography>
       </form>
+
+      {/* Forgot Password Dialog */}
+      <Dialog
+        open={forgotPasswordOpen}
+        onClose={() => setForgotPasswordOpen(false)}
+        maxWidth="xs"
+        fullWidth
+      >
+        <DialogTitle sx={{ pb: 1 }}>Reset Password</DialogTitle>
+        <DialogContent sx={{ pt: 1 }}>
+          <Typography variant="body2" sx={{ mb: 2, color: "text.secondary" }}>
+            Enter your email address and we'll send you a link to reset your
+            password.
+          </Typography>
+          {resetSuccess && (
+            <Alert severity="success" sx={{ mb: 2 }}>
+              {resetSuccess}
+            </Alert>
+          )}
+          {resetError && (
+            <Alert severity="error" sx={{ mb: 2 }}>
+              {resetError}
+            </Alert>
+          )}
+          <TextField
+            variant="filled"
+            type="email"
+            placeholder="Email address"
+            value={forgotEmail}
+            onChange={(e) => {
+              setForgotEmail(e.target.value);
+              setForgotEmailError("");
+            }}
+            error={!!forgotEmailError}
+            helperText={forgotEmailError}
+            fullWidth
+            autoFocus
+          />
+        </DialogContent>
+        <DialogActions sx={{ px: 3, pb: 2 }}>
+          <Button
+            variant="text"
+            onClick={() => setForgotPasswordOpen(false)}
+            sx={{ color: "text.secondary" }}
+          >
+            Cancel
+          </Button>
+          <Button
+            variant="contained"
+            onClick={handleSendResetEmail}
+            disabled={isResetting}
+          >
+            {isResetting ? "Sending..." : "Send Reset Link"}
+          </Button>
+        </DialogActions>
+      </Dialog>
     </Box>
   );
 };

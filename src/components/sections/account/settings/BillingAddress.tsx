@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Grid from "@mui/material/Grid";
@@ -5,9 +6,12 @@ import MenuItem from "@mui/material/MenuItem";
 import Stack from "@mui/material/Stack";
 import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
+import Alert from "@mui/material/Alert";
 import Iconify from "components/base/Iconify";
 import { Controller, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useAuth } from "providers/AuthProvider";
+import { getFriendlyErrorMessage } from "utils/firebaseErrors";
 import * as z from "zod";
 
 const BillingAddressSchema = z.object({
@@ -24,37 +28,69 @@ const BillingAddressSchema = z.object({
 
 type BillingAddressValues = z.infer<typeof BillingAddressSchema>;
 
-interface BillingAddressProps {
-  initialData?: Partial<BillingAddressValues>;
-}
-
 const countries = ["United States", "Canada", "United Kingdom", "Australia"];
 
 const states = ["Washington DC", "California", "New York", "Texas", "Florida"];
 
-const BillingAddress = ({ initialData = {} }: BillingAddressProps) => {
+const BillingAddress = () => {
+  const { profile, user, updateBillingAddress } = useAuth();
+
+  const [saveSuccess, setSaveSuccess] = useState<string | null>(null);
+  const [saveError, setSaveError] = useState<string | null>(null);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const initialBilling = profile?.billingAddress;
+
   const {
     control,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm<BillingAddressValues>({
     mode: "onBlur",
     defaultValues: {
-      firstName: initialData.firstName ?? "Dianne",
-      lastName: initialData.lastName ?? "Dianne",
-      companyName: initialData.companyName ?? "Zakirsoft",
-      streetAddress: initialData.streetAddress ?? "4140 Parl",
-      country: initialData.country ?? "United States",
-      state: initialData.state ?? "Washington DC",
-      zipCode: initialData.zipCode ?? "20033",
-      email: initialData.email ?? "dianne.russell@gmail.com",
-      phone: initialData.phone ?? "(603) 555-0123",
+      firstName: initialBilling?.firstName ?? profile?.firstName ?? "",
+      lastName: initialBilling?.lastName ?? profile?.lastName ?? "",
+      companyName: initialBilling?.companyName ?? "",
+      streetAddress: initialBilling?.streetAddress ?? "",
+      country: initialBilling?.country ?? "United States",
+      state: initialBilling?.state ?? "Washington DC",
+      zipCode: initialBilling?.zipCode ?? "",
+      email: initialBilling?.email ?? profile?.email ?? user?.email ?? "",
+      phone: initialBilling?.phone ?? profile?.phone ?? "",
     },
     resolver: zodResolver(BillingAddressSchema),
   });
 
-  const onSubmit = (data: BillingAddressValues) => {
-    console.log(data);
+  useEffect(() => {
+    if (profile || user) {
+      const billing = profile?.billingAddress;
+      reset({
+        firstName: billing?.firstName ?? profile?.firstName ?? "",
+        lastName: billing?.lastName ?? profile?.lastName ?? "",
+        companyName: billing?.companyName ?? "",
+        streetAddress: billing?.streetAddress ?? "",
+        country: billing?.country ?? "United States",
+        state: billing?.state ?? "Washington DC",
+        zipCode: billing?.zipCode ?? "",
+        email: billing?.email ?? profile?.email ?? user?.email ?? "",
+        phone: billing?.phone ?? profile?.phone ?? "",
+      });
+    }
+  }, [profile, user, reset]);
+
+  const onSubmit = async (data: BillingAddressValues) => {
+    setSaveSuccess(null);
+    setSaveError(null);
+    setIsSubmitting(true);
+    try {
+      await updateBillingAddress(data);
+      setSaveSuccess("Billing address saved successfully!");
+    } catch (err) {
+      setSaveError(getFriendlyErrorMessage(err));
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -79,6 +115,18 @@ const BillingAddress = ({ initialData = {} }: BillingAddressProps) => {
       >
         Billing Address
       </Typography>
+
+      {saveSuccess && (
+        <Alert severity="success" sx={{ m: 3, mb: 0 }}>
+          {saveSuccess}
+        </Alert>
+      )}
+
+      {saveError && (
+        <Alert severity="error" sx={{ m: 3, mb: 0 }}>
+          {saveError}
+        </Alert>
+      )}
 
       <Box
         component="form"
@@ -332,8 +380,13 @@ const BillingAddress = ({ initialData = {} }: BillingAddressProps) => {
             </Grid>
           </Grid>
 
-          <Button type="submit" variant="contained" sx={{ width: 200 }}>
-            Save Changes
+          <Button
+            type="submit"
+            variant="contained"
+            disabled={isSubmitting}
+            sx={{ width: 200 }}
+          >
+            {isSubmitting ? "Saving..." : "Save Changes"}
           </Button>
         </Stack>
       </Box>

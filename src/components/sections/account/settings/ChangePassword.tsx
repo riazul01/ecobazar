@@ -7,9 +7,12 @@ import InputAdornment from "@mui/material/InputAdornment";
 import Stack from "@mui/material/Stack";
 import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
+import Alert from "@mui/material/Alert";
 import Iconify from "components/base/Iconify";
 import { Controller, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useAuth } from "providers/AuthProvider";
+import { getFriendlyErrorMessage } from "utils/firebaseErrors";
 import * as z from "zod";
 
 const ChangePasswordFormSchema = z
@@ -26,9 +29,16 @@ const ChangePasswordFormSchema = z
 type ChangePasswordFormValues = z.infer<typeof ChangePasswordFormSchema>;
 
 const ChangePassword = () => {
+  const { updateUserPassword } = useAuth();
+
+  const [passwordSuccess, setPasswordSuccess] = useState<string | null>(null);
+  const [passwordError, setPasswordError] = useState<string | null>(null);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
   const {
     control,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm<ChangePasswordFormValues>({
     mode: "onBlur",
@@ -44,8 +54,19 @@ const ChangePassword = () => {
   const [showNewPassword, setShowNewPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
-  const onSubmit = (userData: ChangePasswordFormValues) => {
-    console.log(userData);
+  const onSubmit = async (userData: ChangePasswordFormValues) => {
+    setPasswordSuccess(null);
+    setPasswordError(null);
+    setIsSubmitting(true);
+    try {
+      await updateUserPassword(userData.currentPassword, userData.newPassword);
+      setPasswordSuccess("Password updated successfully!");
+      reset();
+    } catch (err) {
+      setPasswordError(getFriendlyErrorMessage(err));
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -70,6 +91,18 @@ const ChangePassword = () => {
       >
         Change Password
       </Typography>
+
+      {passwordSuccess && (
+        <Alert severity="success" sx={{ m: 3, mb: 0 }}>
+          {passwordSuccess}
+        </Alert>
+      )}
+
+      {passwordError && (
+        <Alert severity="error" sx={{ m: 3, mb: 0 }}>
+          {passwordError}
+        </Alert>
+      )}
 
       <Stack
         component="form"
@@ -225,9 +258,10 @@ const ChangePassword = () => {
         <Button
           type="submit"
           variant="contained"
+          disabled={isSubmitting}
           sx={{ alignSelf: "flex-start" }}
         >
-          Change Password
+          {isSubmitting ? "Updating..." : "Change Password"}
         </Button>
       </Stack>
     </Box>

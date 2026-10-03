@@ -6,9 +6,12 @@ import LocationIcon from "components/icons/LocationIcon";
 import SectionWrapper from "components/sections/SectionWrapper";
 import LanguageSelect from "./LanguageSelect";
 import CurrencySelect from "./CurrencySelect";
-import { paths } from "routes/paths";
+import { accountPaths, paths } from "routes/paths";
+import { useAuth } from "providers/AuthProvider";
 
 const Topbar = () => {
+  const { user } = useAuth();
+
   return (
     <Box sx={{ py: 1, borderBottom: 1, borderColor: "divider" }}>
       <SectionWrapper sx={{ gap: 0.5, display: "flex", alignItems: "center" }}>
@@ -39,25 +42,38 @@ const Topbar = () => {
           |
         </Typography>
 
-        <Typography
-          component={Link}
-          href={paths.signIn}
-          variant="caption"
-          sx={{ ml: { xs: "auto", sm: 0.35 }, color: "text.secondary" }}
-        >
-          Sign In
-        </Typography>
-        <Typography variant="caption" sx={{ color: "text.secondary" }}>
-          /
-        </Typography>
-        <Typography
-          component={Link}
-          href={paths.signUp}
-          variant="caption"
-          sx={{ color: "text.secondary" }}
-        >
-          Sign Up
-        </Typography>
+        {user ? (
+          <Typography
+            component={Link}
+            href={accountPaths.dashboard}
+            variant="caption"
+            sx={{ ml: { xs: "auto", sm: 0.35 }, color: "text.secondary" }}
+          >
+            My Account
+          </Typography>
+        ) : (
+          <>
+            <Typography
+              component={Link}
+              href={paths.signIn}
+              variant="caption"
+              sx={{ ml: { xs: "auto", sm: 0.35 }, color: "text.secondary" }}
+            >
+              Sign In
+            </Typography>
+            <Typography variant="caption" sx={{ color: "text.secondary" }}>
+              /
+            </Typography>
+            <Typography
+              component={Link}
+              href={paths.signUp}
+              variant="caption"
+              sx={{ color: "text.secondary" }}
+            >
+              Sign Up
+            </Typography>
+          </>
+        )}
       </SectionWrapper>
     </Box>
   );

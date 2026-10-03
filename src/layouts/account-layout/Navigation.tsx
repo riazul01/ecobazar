@@ -7,8 +7,21 @@ import ListItemButton from "@mui/material/ListItemButton";
 import ListItemText, { listItemTextClasses } from "@mui/material/ListItemText";
 import { accountLinks } from "data/accounts";
 import { Link } from "@mui/material";
+import { useLocation, useNavigate } from "react-router";
+import { useAuth } from "providers/AuthProvider";
+import { paths } from "routes/paths";
 
 const Navigation = () => {
+  const { pathname } = useLocation();
+  const navigate = useNavigate();
+  const { signOut } = useAuth();
+
+  const handleLogout = async (e: React.MouseEvent) => {
+    e.preventDefault();
+    await signOut();
+    navigate(paths.signIn);
+  };
+
   return (
     <Box
       aria-label="account-navigation"
@@ -34,6 +47,7 @@ const Navigation = () => {
         }}
       >
         {accountLinks.map((item) => {
+          const isLogout = item.path === "log-out";
           const itemHref =
             item.path === "wishlist"
               ? "/wishlist"
@@ -41,20 +55,29 @@ const Navigation = () => {
                 ? "/cart"
                 : `/account/${item.path}`;
 
+          const isActive =
+            !isLogout &&
+            (item.path === "dashboard"
+              ? pathname === "/account" || pathname === "/account/dashboard"
+              : pathname.startsWith(`/account/${item.path}`) ||
+                (item.path === "wishlist" && pathname === "/wishlist") ||
+                (item.path === "shopping-cart" && pathname === "/cart"));
+
           return (
             <ListItem
               key={item.id}
               component={Link}
-              href={itemHref}
+              href={isLogout ? "#!" : itemHref}
+              onClick={isLogout ? handleLogout : undefined}
               disablePadding
             >
               <ListItemButton
                 sx={{
                   px: 2.5,
                   borderRadius: 0,
-                  bgcolor: item.active ? "#EDF2EE" : "transparent",
+                  bgcolor: isActive ? "#EDF2EE" : "transparent",
                   "&:hover": {
-                    bgcolor: item.active ? "#EDF2EE" : "grey.100",
+                    bgcolor: isActive ? "#EDF2EE" : "grey.100",
                   },
                   "&::before": {
                     position: "absolute",
@@ -63,12 +86,12 @@ const Navigation = () => {
                     left: 0,
                     width: 3,
                     height: 1,
-                    bgcolor: item.active ? "primary.main" : "transparent",
+                    bgcolor: isActive ? "primary.main" : "transparent",
                   },
                 }}
               >
                 <ListItemIcon
-                  sx={{ color: item.active ? "text.primary" : "grey.300" }}
+                  sx={{ color: isActive ? "text.primary" : "grey.300" }}
                 >
                   {item.icon}
                 </ListItemIcon>
@@ -76,7 +99,7 @@ const Navigation = () => {
                   primary={item.title}
                   sx={{
                     [`& .${listItemTextClasses.primary}`]: {
-                      color: item.active ? "text.primary" : "text.secondary",
+                      color: isActive ? "text.primary" : "text.secondary",
                       fontSize: "body1.fontSize",
                     },
                   }}

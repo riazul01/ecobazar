@@ -5,9 +5,12 @@ import Button from "@mui/material/Button";
 import Stack from "@mui/material/Stack";
 import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
+import Alert from "@mui/material/Alert";
 import Iconify from "components/base/Iconify";
 import { Controller, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useAuth } from "providers/AuthProvider";
+import { getFriendlyErrorMessage } from "utils/firebaseErrors";
 import * as z from "zod";
 
 const AccountSettingsSchema = z.object({
@@ -30,37 +33,52 @@ const AccountSettingsSchema = z.object({
 
 type AccountSettingsValues = z.infer<typeof AccountSettingsSchema>;
 
-interface AccountSettingsProps {
-  initialData?: {
-    firstName?: string;
-    lastName?: string;
-    email?: string;
-    phone?: string;
-    avatar?: string;
-  };
-}
-
-const AccountSettings = ({ initialData = {} }: AccountSettingsProps) => {
+const AccountSettings = () => {
+  const { profile, user, updateUserProfile } = useAuth();
   const fileInputRef = useRef<HTMLInputElement>(null);
 
-  const [avatarPreview, setAvatarPreview] = useState(initialData.avatar ?? "");
+  const [selectedFilePreview, setSelectedFilePreview] = useState<string | null>(
+    null,
+  );
+  const [saveSuccess, setSaveSuccess] = useState<string | null>(null);
+  const [saveError, setSaveError] = useState<string | null>(null);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const activeAvatar =
+    selectedFilePreview || profile?.avatar || user?.photoURL || "";
 
   const {
     control,
     handleSubmit,
     setValue,
+    reset,
     formState: { errors },
   } = useForm<AccountSettingsValues>({
     mode: "onBlur",
     defaultValues: {
-      firstName: initialData.firstName ?? "Dianne",
-      lastName: initialData.lastName ?? "Russell",
-      email: initialData.email ?? "dianne.russell@gmail.com",
-      phone: initialData.phone ?? "(603) 555-0123",
+      firstName: profile?.firstName || "",
+      lastName: profile?.lastName || "",
+      email: profile?.email || user?.email || "",
+      phone: profile?.phone || "",
       avatar: undefined,
     },
     resolver: zodResolver(AccountSettingsSchema),
   });
+
+  useEffect(() => {
+    if (profile || user) {
+      reset({
+        firstName: profile?.firstName || user?.displayName?.split(" ")[0] || "",
+        lastName:
+          profile?.lastName ||
+          user?.displayName?.split(" ").slice(1).join(" ") ||
+          "",
+        email: profile?.email || user?.email || "",
+        phone: profile?.phone || "",
+        avatar: undefined,
+      });
+    }
+  }, [profile, user, reset]);
 
   const handleImageChange = (event: ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
@@ -75,19 +93,34 @@ const AccountSettings = ({ initialData = {} }: AccountSettingsProps) => {
     });
 
     const previewUrl = URL.createObjectURL(file);
-    setAvatarPreview(previewUrl);
+    setSelectedFilePreview(previewUrl);
   };
 
   useEffect(() => {
     return () => {
-      if (avatarPreview.startsWith("blob:")) {
-        URL.revokeObjectURL(avatarPreview);
+      if (selectedFilePreview) {
+        URL.revokeObjectURL(selectedFilePreview);
       }
     };
-  }, [avatarPreview]);
+  }, [selectedFilePreview]);
 
-  const onSubmit = (userData: AccountSettingsValues) => {
-    console.log(userData);
+  const onSubmit = async (userData: AccountSettingsValues) => {
+    setSaveSuccess(null);
+    setSaveError(null);
+    setIsSubmitting(true);
+    try {
+      await updateUserProfile({
+        firstName: userData.firstName,
+        lastName: userData.lastName,
+        phone: userData.phone,
+        avatar: userData.avatar,
+      });
+      setSaveSuccess("Account settings saved successfully!");
+    } catch (err) {
+      setSaveError(getFriendlyErrorMessage(err));
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -112,6 +145,18 @@ const AccountSettings = ({ initialData = {} }: AccountSettingsProps) => {
       >
         Account Settings
       </Typography>
+
+      {saveSuccess && (
+        <Alert severity="success" sx={{ m: 3, mb: 0 }}>
+          {saveSuccess}
+        </Alert>
+      )}
+
+      {saveError && (
+        <Alert severity="error" sx={{ m: 3, mb: 0 }}>
+          {saveError}
+        </Alert>
+      )}
 
       <Stack
         sx={{
@@ -177,6 +222,7 @@ const AccountSettings = ({ initialData = {} }: AccountSettingsProps) => {
                   {...field}
                   type="email"
                   variant="filled"
+                  disabled
                   error={!!errors.email}
                   helperText={errors.email?.message}
                   fullWidth
@@ -206,8 +252,13 @@ const AccountSettings = ({ initialData = {} }: AccountSettingsProps) => {
             />
           </Box>
 
-          <Button type="submit" variant="contained" sx={{ width: 200 }}>
-            Save Changes
+          <Button
+            type="submit"
+            variant="contained"
+            disabled={isSubmitting}
+            sx={{ width: 200 }}
+          >
+            {isSubmitting ? "Saving..." : "Save Changes"}
           </Button>
         </Box>
 
@@ -221,7 +272,7 @@ const AccountSettings = ({ initialData = {} }: AccountSettingsProps) => {
               sx={{ minWidth: 320, alignItems: "center" }}
             >
               <Avatar
-                src={avatarPreview}
+                src={activeAvatar}
                 alt="Profile"
                 sx={{
                   width: {
