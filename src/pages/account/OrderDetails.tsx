@@ -71,11 +71,13 @@ const OrderDetails = () => {
       }}
     >
       <Stack
-        spacing={0.25}
+        direction="row"
         sx={{
           px: 3,
           py: 2,
           alignItems: "center",
+          flexWrap: "wrap",
+          gap: 1,
           borderBottom: 1,
           borderColor: "divider",
         }}
@@ -98,7 +100,12 @@ const OrderDetails = () => {
           3 Products
         </Typography>
 
-        <Button sx={{ ml: "auto", px: 0 }} disableRipple>
+        <Button
+          component="a"
+          href="/account/order-history"
+          sx={{ ml: { xs: 0, sm: "auto" }, px: 0 }}
+          disableRipple
+        >
           Back to List
         </Button>
       </Stack>

@@ -6,10 +6,10 @@ import Profile from "components/sections/account/dashboard/Profile";
 const Dashboard = () => {
   return (
     <Grid container spacing={3} sx={{ width: 1 }}>
-      <Grid size={6}>
+      <Grid size={{ xs: 12, lg: 6 }}>
         <Profile />
       </Grid>
-      <Grid size={6}>
+      <Grid size={{ xs: 12, lg: 6 }}>
         <BillingAddress />
       </Grid>
       <Grid size={12}>

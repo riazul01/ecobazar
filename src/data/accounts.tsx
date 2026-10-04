@@ -1,5 +1,4 @@
 import type { ReactNode } from "react";
-import ExitIcon from "components/icons/ExitIcon";
 import DashboardIcon from "components/icons/DashboardIcon";
 import RefreshIcon from "components/icons/RefreshIcon";
 import HeartIcon from "components/icons/HeartIcon";
@@ -45,11 +44,5 @@ export const accountLinks: AccountLink[] = [
     icon: <CogIcon />,
     title: "Settings",
     path: "settings",
-  },
-  {
-    id: 6,
-    icon: <ExitIcon />,
-    title: "Log-out",
-    path: "log-out",
   },
 ];

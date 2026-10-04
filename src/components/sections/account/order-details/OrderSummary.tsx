@@ -46,7 +46,14 @@ const OrderSummary = ({
       }}
     >
       <Stack
-        divider={<Divider orientation="vertical" flexItem />}
+        direction={{ xs: "column", sm: "row" }}
+        divider={
+          <Divider
+            orientation="vertical"
+            flexItem
+            sx={{ display: { xs: "none", sm: "block" } }}
+          />
+        }
         sx={{
           borderBottom: 1,
           borderColor: "divider",
@@ -57,6 +64,8 @@ const OrderSummary = ({
             flex: 1,
             px: 2.5,
             py: 2.25,
+            borderBottom: { xs: 1, sm: 0 },
+            borderColor: "divider",
           }}
         >
           <Typography

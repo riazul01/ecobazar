@@ -91,16 +91,21 @@ const ProductSummary = ({ product = defaultProduct }: ProductSummaryProps) => {
     );
   };
 
+  const hasDiscount = Boolean(
+    currentProduct.discountInPercent && currentProduct.discountInPercent > 0,
+  );
+
   const originalPrice =
-    currentProduct.originalPrice ??
-    (currentProduct.discountInPercent && currentProduct.discountInPercent > 0
-      ? Number(
-          (
-            currentProduct.price /
-            (1 - currentProduct.discountInPercent / 100)
-          ).toFixed(2),
-        )
-      : undefined);
+    currentProduct.originalPrice && currentProduct.originalPrice > currentProduct.price
+      ? currentProduct.originalPrice
+      : hasDiscount
+        ? Number(
+            (
+              currentProduct.price /
+              (1 - (currentProduct.discountInPercent || 0) / 100)
+            ).toFixed(2),
+          )
+        : undefined;
 
   return (
     <Box sx={{ flex: 1 }}>
@@ -175,7 +180,7 @@ const ProductSummary = ({ product = defaultProduct }: ProductSummaryProps) => {
 
       {/* Price Section */}
       <Stack sx={{ alignItems: "center", gap: 1.5, mb: 2.5 }}>
-        {originalPrice && (
+        {hasDiscount && originalPrice && (
           <Typography
             component="span"
             variant="h5"
@@ -195,24 +200,23 @@ const ProductSummary = ({ product = defaultProduct }: ProductSummaryProps) => {
         >
           ${currentProduct.price.toFixed(2)}
         </Typography>
-        {currentProduct.discountInPercent &&
-          currentProduct.discountInPercent > 0 && (
-            <Chip
-              label={`${currentProduct.discountInPercent}% Off`}
-              size="small"
-              sx={(theme) => ({
-                bgcolor: alpha(theme.palette.error.main, 0.12),
+        {hasDiscount && (
+          <Chip
+            label={`${currentProduct.discountInPercent}% Off`}
+            size="small"
+            sx={(theme) => ({
+              bgcolor: alpha(theme.palette.error.main, 0.12),
+              color: "error.main",
+              fontWeight: 700,
+              fontSize: "0.8rem",
+              borderRadius: 1.5,
+              "& .MuiChip-label": {
                 color: "error.main",
-                fontWeight: 700,
-                fontSize: "0.8rem",
-                borderRadius: 1.5,
-                "& .MuiChip-label": {
-                  color: "error.main",
-                  px: 1,
-                },
-              })}
-            />
-          )}
+                px: 1,
+              },
+            })}
+          />
+        )}
       </Stack>
 
       <Divider sx={{ my: 2 }} />

@@ -114,9 +114,8 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
     return items.reduce((sum, item) => sum + item.price * item.quantity, 0);
   }, [items]);
 
-  const totalCount = useMemo(() => {
-    return items.reduce((sum, item) => sum + item.quantity, 0);
-  }, [items]);
+  // totalCount represents the distinct number of product items in the cart (quantity changes do not affect it)
+  const totalCount = items.length;
 
   return (
     <CartContext.Provider

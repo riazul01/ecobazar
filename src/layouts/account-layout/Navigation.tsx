@@ -5,12 +5,16 @@ import Typography from "@mui/material/Typography";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemText, { listItemTextClasses } from "@mui/material/ListItemText";
+import Button from "@mui/material/Button";
+import Divider from "@mui/material/Divider";
+import { alpha } from "@mui/material/styles";
 import { accountLinks } from "data/accounts";
 import { Link } from "@mui/material";
 import { useLocation, useNavigate } from "react-router";
 import { useAuth } from "providers/AuthProvider";
 import { paths } from "routes/paths";
 import Iconify from "components/base/Iconify";
+import ExitIcon from "components/icons/ExitIcon";
 
 const Navigation = () => {
   const { pathname } = useLocation();
@@ -26,7 +30,7 @@ const Navigation = () => {
   const navItems = [...accountLinks];
   if (isAdmin) {
     if (!navItems.some((item) => item.path === "admin-product-upload")) {
-      navItems.splice(navItems.length - 1, 0, {
+      navItems.push({
         id: 99,
         icon: <Iconify icon="solar:box-bold" sx={{ fontSize: 20 }} />,
         title: "Upload Product",
@@ -34,7 +38,7 @@ const Navigation = () => {
       });
     }
     if (!navItems.some((item) => item.path === "admin-create-blog")) {
-      navItems.splice(navItems.length - 1, 0, {
+      navItems.push({
         id: 100,
         icon: <Iconify icon="solar:document-add-bold" sx={{ fontSize: 20 }} />,
         title: "Create Blog",
@@ -49,11 +53,13 @@ const Navigation = () => {
       sx={{
         py: 1,
         width: 1,
-        maxWidth: 280,
+        maxWidth: { xs: "100%", md: 280 },
+        flexShrink: 0,
         border: 1,
         borderColor: "divider",
         borderRadius: 2,
         overflow: "hidden",
+        bgcolor: "background.paper",
       }}
     >
       <Typography variant="h5" sx={{ fontWeight: 500, px: 3, py: 1.5 }}>
@@ -68,23 +74,19 @@ const Navigation = () => {
         }}
       >
         {navItems.map((item) => {
-          const isLogout = item.path === "log-out";
           const isAdminUpload = item.path === "admin-product-upload";
           const isAdminBlog = item.path === "admin-create-blog";
-          const itemHref = isLogout
-            ? "#!"
-            : isAdminUpload
-              ? "/admin/product-upload"
-              : isAdminBlog
-                ? "/admin/create-blog"
-                : item.path === "wishlist"
-                  ? "/wishlist"
-                  : item.path === "shopping-cart"
-                    ? "/cart"
-                    : `/account/${item.path}`;
+          const itemHref = isAdminUpload
+            ? "/admin/product-upload"
+            : isAdminBlog
+              ? "/admin/create-blog"
+              : item.path === "wishlist"
+                ? "/wishlist"
+                : item.path === "shopping-cart"
+                  ? "/cart"
+                  : `/account/${item.path}`;
 
           const isActive =
-            !isLogout &&
             (isAdminUpload
               ? pathname === "/admin/product-upload"
               : isAdminBlog
@@ -99,8 +101,7 @@ const Navigation = () => {
             <ListItem
               key={item.id}
               component={Link}
-              href={isLogout ? "#!" : itemHref}
-              onClick={isLogout ? handleLogout : undefined}
+              href={itemHref}
               disablePadding
             >
               <ListItemButton
@@ -123,7 +124,7 @@ const Navigation = () => {
                 }}
               >
                 <ListItemIcon
-                  sx={{ color: isActive ? "text.primary" : "grey.300" }}
+                  sx={{ color: isActive ? "text.primary" : "grey.400" }}
                 >
                   {item.icon}
                 </ListItemIcon>
@@ -141,6 +142,46 @@ const Navigation = () => {
           );
         })}
       </List>
+
+      <Divider sx={{ my: 1.5, borderColor: "divider" }} />
+
+      <Box sx={{ px: 2, pb: 1 }}>
+        <Button
+          fullWidth
+          onClick={handleLogout}
+          startIcon={<ExitIcon sx={{ fontSize: 20 }} />}
+          disableRipple
+          sx={(theme) => ({
+            bgcolor: `${alpha(theme.palette.error.main, 0.1)} !important`,
+            color: `${theme.palette.error.main} !important`,
+            fontWeight: 500,
+            py: 1.25,
+            borderRadius: Number(theme.shape.borderRadius) * 12,
+            boxShadow: "none !important",
+            border: "none !important",
+            transition: "none",
+            "&:hover": {
+              bgcolor: `${alpha(theme.palette.error.main, 0.1)} !important`,
+              color: `${theme.palette.error.main} !important`,
+              boxShadow: "none !important",
+              transform: "none !important",
+            },
+            "&:active": {
+              bgcolor: `${alpha(theme.palette.error.main, 0.1)} !important`,
+              color: `${theme.palette.error.main} !important`,
+              boxShadow: "none !important",
+              transform: "none !important",
+            },
+            "&:focus": {
+              bgcolor: `${alpha(theme.palette.error.main, 0.1)} !important`,
+              color: `${theme.palette.error.main} !important`,
+              boxShadow: "none !important",
+            },
+          })}
+        >
+          Log out
+        </Button>
+      </Box>
     </Box>
   );
 };

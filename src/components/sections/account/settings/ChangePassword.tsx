@@ -259,7 +259,7 @@ const ChangePassword = () => {
           type="submit"
           variant="contained"
           disabled={isSubmitting}
-          sx={{ alignSelf: "flex-start" }}
+          sx={{ width: { xs: "100%", sm: "auto" }, minWidth: { sm: 180 }, alignSelf: { xs: "stretch", sm: "flex-start" } }}
         >
           {isSubmitting ? "Updating..." : "Change Password"}
         </Button>

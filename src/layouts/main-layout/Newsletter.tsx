@@ -1,3 +1,4 @@
+import { alpha } from "@mui/material/styles";
 import { useBreakpoints } from "providers/BreakpointProvider";
 import SectionWrapper from "components/sections/SectionWrapper";
 import Iconify from "components/base/Iconify";
@@ -93,16 +94,34 @@ const Newsletter = () => {
         </Stack>
 
         <Stack sx={{ gap: 1, alignItems: "center" }}>
-          {socialLinks.map((item) => (
-            <IconButton
-              key={item.id}
-              size="large"
-              component={Link}
-              href={item.link}
-            >
-              <Iconify icon={item.icon} sx={{ color: "grey.500" }} />
-            </IconButton>
-          ))}
+          {socialLinks.map((item) => {
+            const brandColor = item.color || "#1877F2";
+            return (
+              <IconButton
+                key={item.id}
+                size="large"
+                component={Link}
+                href={item.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={`Follow us on ${item.name || "social media"}`}
+                sx={(theme) => ({
+                  color: "grey.600",
+                  borderRadius: "50%",
+                  transition: theme.transitions.create(
+                    ["color", "background-color"],
+                    { duration: theme.transitions.duration.shorter },
+                  ),
+                  "&:hover": {
+                    color: brandColor,
+                    bgcolor: alpha(brandColor, 0.12),
+                  },
+                })}
+              >
+                <Iconify icon={item.icon} sx={{ fontSize: 22 }} />
+              </IconButton>
+            );
+          })}
         </Stack>
       </SectionWrapper>
     </Stack>

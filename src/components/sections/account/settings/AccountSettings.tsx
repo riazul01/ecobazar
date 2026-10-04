@@ -159,15 +159,17 @@ const AccountSettings = () => {
       )}
 
       <Stack
+        direction={{ xs: "column-reverse", md: "row" }}
         sx={{
           gap: { xs: 4, md: 6 },
           p: 3,
+          alignItems: { xs: "center", md: "flex-start" },
         }}
       >
         <Box
           component="form"
           onSubmit={handleSubmit(onSubmit)}
-          sx={{ flex: 1 }}
+          sx={{ flex: 1, width: 1 }}
           noValidate
         >
           <Box sx={{ mb: 2 }}>
@@ -256,7 +258,7 @@ const AccountSettings = () => {
             type="submit"
             variant="contained"
             disabled={isSubmitting}
-            sx={{ width: 200 }}
+            sx={{ width: { xs: "100%", sm: 200 } }}
           >
             {isSubmitting ? "Saving..." : "Save Changes"}
           </Button>
@@ -269,7 +271,7 @@ const AccountSettings = () => {
             <Stack
               direction="column"
               spacing={3}
-              sx={{ minWidth: 320, alignItems: "center" }}
+              sx={{ minWidth: { xs: "auto", md: 240, lg: 280 }, alignItems: "center" }}
             >
               <Avatar
                 src={activeAvatar}

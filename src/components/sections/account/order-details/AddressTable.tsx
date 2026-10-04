@@ -76,10 +76,18 @@ const AddressTable = ({ billing, shipping }: AddressTableProps) => {
         borderColor: "divider",
         borderRadius: 2,
         mb: 3,
+        overflow: "hidden",
       }}
     >
       <Stack
-        divider={<Divider orientation="vertical" flexItem />}
+        direction={{ xs: "column", sm: "row" }}
+        divider={
+          <Divider
+            orientation="vertical"
+            flexItem
+            sx={{ display: { xs: "none", sm: "block" } }}
+          />
+        }
         sx={{ borderBottom: 1, borderColor: "divider" }}
       >
         <Typography
@@ -91,6 +99,8 @@ const AddressTable = ({ billing, shipping }: AddressTableProps) => {
             color: "text.disabled",
             letterSpacing: 0.8,
             flex: 1,
+            borderBottom: { xs: 1, sm: 0 },
+            borderColor: "divider",
           }}
         >
           Billing Address
@@ -110,13 +120,24 @@ const AddressTable = ({ billing, shipping }: AddressTableProps) => {
         </Typography>
       </Stack>
 
-      <Stack divider={<Divider orientation="vertical" flexItem />}>
+      <Stack
+        direction={{ xs: "column", sm: "row" }}
+        divider={
+          <Divider
+            orientation="vertical"
+            flexItem
+            sx={{ display: { xs: "none", sm: "block" } }}
+          />
+        }
+      >
         <Box
           sx={{
             px: 2.5,
             py: 1.75,
             verticalAlign: "top",
             flex: 1,
+            borderBottom: { xs: 1, sm: 0 },
+            borderColor: "divider",
           }}
         >
           {renderAddress(billing)}

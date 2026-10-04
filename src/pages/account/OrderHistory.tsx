@@ -6,6 +6,7 @@ const OrderHistory = () => {
   return (
     <Box
       sx={{
+        width: 1,
         border: 1,
         borderColor: "divider",
         borderRadius: 2,
@@ -13,7 +14,7 @@ const OrderHistory = () => {
       }}
     >
       <Typography variant="h5" sx={{ px: 3, py: 2, fontWeight: 500 }}>
-        Order Histroy
+        Order History
       </Typography>
       <OrderHistoryTable />
     </Box>

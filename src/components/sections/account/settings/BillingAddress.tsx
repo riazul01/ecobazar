@@ -384,7 +384,7 @@ const BillingAddress = () => {
             type="submit"
             variant="contained"
             disabled={isSubmitting}
-            sx={{ width: 200 }}
+            sx={{ width: { xs: "100%", sm: "auto" }, minWidth: { sm: 180 } }}
           >
             {isSubmitting ? "Saving..." : "Save Changes"}
           </Button>
